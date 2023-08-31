@@ -89,6 +89,7 @@ paths:
       operationId: createCustomer
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
       requestBody:
         content:
           application/json:
@@ -173,6 +174,7 @@ paths:
       operationId: deleteCustomer
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: customerId
           in: path
           description: ID of customer to be deleted
@@ -199,6 +201,7 @@ paths:
       operationId: createCustomerAccount
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: customerId
           in: path
           description: ID of customer
@@ -338,6 +341,7 @@ paths:
       operationId: deleteAccount
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: accountId
           in: path
           description: ID of account to be closed
@@ -374,6 +378,7 @@ paths:
       operationId: createOrUpdateAccountLimit
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: accountId
           in: path
           description: ID of the account
@@ -472,6 +477,7 @@ paths:
       operationId: deleteAccountLimit
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: accountId
           in: path
           description: ID of account to be closed
@@ -515,6 +521,7 @@ paths:
       operationId: createCustomerCard
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: customerId
           in: path
           description: ID of customer
@@ -652,6 +659,7 @@ paths:
       operationId: deleteCard
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: cardId
           in: path
           description: ID of a card to be closed
@@ -710,6 +718,7 @@ paths:
       operationId: createOrUpdateWebhook
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
       requestBody:
         content:
           application/json:
@@ -756,6 +765,7 @@ paths:
       operationId: deleteWebhook
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: webhookId
           in: path
           description: ID for a webhook to be removed
@@ -1333,6 +1343,12 @@ components:
       in: header
       name: X-Signature
       description: HTTP signature
+      schema:
+        type: string
+    IdempotencyKeyHeader:
+      in: header
+      name: X-Idempotency-Key
+      description: Idempotency key (free format)
       schema:
         type: string
 
