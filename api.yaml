@@ -88,11 +88,7 @@ paths:
       description: Creates new customer and generates a KYC verification URL
       operationId: createCustomer
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
       requestBody:
         content:
           application/json:
@@ -122,6 +118,8 @@ paths:
       summary: Retrieve customers
       description: Retrieves customers' details
       operationId: getCustomers
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
       responses:
         '200':
           description: Successful operation
@@ -145,11 +143,7 @@ paths:
       description: Retrieves customer's details
       operationId: getCustomer
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of customer to be retrieved
@@ -178,11 +172,7 @@ paths:
       description: Deactivates customer and all associated resources
       operationId: deleteCustomer
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of customer to be deleted
@@ -208,11 +198,7 @@ paths:
       description: Creates new account for the customer
       operationId: createCustomerAccount
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of customer
@@ -266,11 +252,7 @@ paths:
       description: Retrieves customer's accounts
       operationId: getCustomerAccounts
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of the customer
@@ -301,6 +283,8 @@ paths:
       summary: Retrieve accounts
       description: Retrieves accounts' details
       operationId: getAccounts
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
       responses:
         '200':
           description: Successful operation
@@ -324,11 +308,7 @@ paths:
       description: Retrieves account's details
       operationId: getAccount
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of account to be retrieved
@@ -357,11 +337,7 @@ paths:
       description: Closes account
       operationId: deleteAccount
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of account to be closed
@@ -387,11 +363,7 @@ paths:
       description: Creates new spending limit for the account or updates an existing one
       operationId: createOrUpdateAccountLimit
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of the account
@@ -456,11 +428,7 @@ paths:
       description: Retrieves spending limits set up for the account
       operationId: getAccountLimits
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of the account
@@ -492,11 +460,7 @@ paths:
       description: Removes account spending limit
       operationId: deleteAccountLimit
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of account to be closed
@@ -539,11 +503,7 @@ paths:
       description: Creates new card for the customer
       operationId: createCustomerCard
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of customer
@@ -595,11 +555,7 @@ paths:
       description: Retrieves customer's cards
       operationId: getCustomerCards
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: customerId
           in: path
           description: ID of the customer
@@ -631,11 +587,7 @@ paths:
       description: Retrieves cards' details
       operationId: getCards
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
       responses:
         '200':
           description: Successful operation
@@ -659,11 +611,7 @@ paths:
       description: Retrieves card's details
       operationId: getCard
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: cardId
           in: path
           description: ID of a card to be retrieved
@@ -692,11 +640,7 @@ paths:
       description: Terminates card
       operationId: deleteCard
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: cardId
           in: path
           description: ID of a card to be closed
@@ -722,11 +666,7 @@ paths:
       description: Retrieves account's transactions
       operationId: getAccountTransactions
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: accountId
           in: path
           description: ID of the account
@@ -758,11 +698,7 @@ paths:
       description: Creates new webhook subscription or updates an existing one
       operationId: createOrUpdateWebhook
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
       requestBody:
         content:
           application/json:
@@ -808,11 +744,7 @@ paths:
       description: Removes webhook subscription
       operationId: deleteWebhook
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
         - name: webhookId
           in: path
           description: ID for a webhook to be removed
@@ -834,11 +766,7 @@ webhooks:
   '{callbackUrl}':
     post:
       parameters:
-        - in: header
-          name: X-Signature
-          description: HTTP signature
-          schema:
-            type: string
+        - $ref: '#/components/parameters/SignatureHeader'
       requestBody:
         description: Updates for entities based on subscribed scope
         content:
@@ -1382,6 +1310,14 @@ components:
       allOf: 
         - $ref: '#/components/schemas/EntityUpdate'
         - $ref: '#/components/schemas/Authorisation'
+
+  parameters:
+    SignatureHeader:
+      in: header
+      name: X-Signature
+      description: HTTP signature
+      schema:
+        type: string
 
   securitySchemes:
     bearerAuth:
