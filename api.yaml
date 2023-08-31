@@ -344,6 +344,16 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - signature
+              properties:
+                signature:
+                  $ref: '#/components/schemas/UserSignature'
       responses:
         '204':
           description: Successful operation
