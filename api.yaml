@@ -763,6 +763,10 @@ paths:
               responses:
                 '200':
                   description: Return a 200 status to indicate that the data was received successfully
+                  content: 
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/WebhookResponse'
       responses:
         '200':
           description: Successful operation
@@ -826,6 +830,10 @@ webhooks:
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
 components:
   schemas:
     Authentication:
@@ -1359,6 +1367,26 @@ components:
       allOf: 
         - $ref: '#/components/schemas/EntityUpdate'
         - $ref: '#/components/schemas/Authorisation'
+    
+    AuthorisationResponse:
+      type: object
+      required:
+        - approved
+      description: Webhook response for relayed payment authorisation logic
+      properties: 
+        approved:
+          type: boolean
+          description: Notifies whether the authorisation should be approved or rejected
+
+    EmptyResponse:
+      type: object
+      description: Empty response for webhook notifications
+    
+    WebhookResponse:
+      oneOf:
+        - $ref: '#/components/schemas/AuthorisationResponse'
+        - $ref: '#/components/schemas/EmptyResponse'
+
 
   parameters:
     SignatureHeader:
