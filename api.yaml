@@ -741,6 +741,28 @@ paths:
                   description: Scopes for events to be received by the callback
                   items:
                     $ref: '#/components/schemas/EntityUpdateType'
+      callbacks:
+        webhook:
+          '{$request.body#/callbackUrl}':
+            post:
+              parameters:
+                - $ref: '#/components/parameters/SignatureHeader'
+              requestBody:
+                description: Updates for entities based on subscribed scope
+                content:
+                  application/json:
+                    schema:
+                      oneOf: 
+                        - $ref: "#/components/schemas/CustomerUpdate"
+                        - $ref: "#/components/schemas/AccountUpdate"
+                        - $ref: "#/components/schemas/CardUpdate"
+                        - $ref: "#/components/schemas/AuthorisationUpdate"
+                        - $ref: "#/components/schemas/TransactionUpdate"
+                      discriminator:
+                        propertyName: entityType
+              responses:
+                '200':
+                  description: Return a 200 status to indicate that the data was received successfully
       responses:
         '200':
           description: Successful operation
