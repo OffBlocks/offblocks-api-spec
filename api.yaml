@@ -1218,7 +1218,7 @@ components:
     
     UserSignature:
       type: object
-      description: Cryptographic signature generated using customer's EOA private key according to EIP-712 (ECDSA algorithm). Signature is used for signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
+      description: Cryptographic signature generated using customer's EOA private key according to ERC-1271 (ECDSA algorithm). Signature is used for signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
       properties:
         chainId:
           type: integer
