@@ -1,0 +1,1291 @@
+openapi: 3.1.0
+info:
+  title: OffBlocks API 1.0
+  version: 1.0.0
+servers:
+  - url: https://api.offblocks.xyz/v1
+  - url: https://api.sandbox.offblocks.xyz/v1
+tags:
+  - name: Authentication
+  - name: Customers
+  - name: Accounts
+  - name: Cards
+  - name: Transactions
+  - name: Webhooks
+paths:
+  /auth/token:
+    post:
+      tags:
+        - Authentication
+      summary: Initial Authentication
+      description: Retrieve authentication token using API credentials
+      operationId: token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - clientId
+                - clientSecret
+              type: object
+              properties:
+                clientId:
+                  type: string
+                  description: Client ID issued for your programme in our console. Note this can be different for live and sandbox environments
+                  examples: ["96392030-c636-48b5-807a-41b02b6bcf46"]
+                clientSecret:
+                  type: string
+                  description: Unique secret generated in our console
+                  examples: ["64ec977db2e585887c80ed62fe9997994aed8093"]
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authentication'
+        '400':
+          description: Invalid request
+        '403':
+          description: Invalid credentials
+  /auth/refresh:
+    post:
+      tags:
+        - Authentication
+      summary: Authentication Token Refresh
+      description: Refresh authentication token using previously issued refresh token
+      operationId: tokenRefresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - refreshToken
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+                  description: Previously issued refresh token
+                  examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTg3NjU0MzIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.-8I0nVhS21q_fpDkSue1Eli7g9o45SoWfNNhZUlMin8"]
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authentication'
+        '400':
+          description: Invalid request
+        '403':
+          description: Invalid or expired refresh token
+  /customers:
+    post:
+      tags:
+        - Customers
+      summary: Create new customer
+      description: Creates new customer and generates a KYC verification URL
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+              properties:
+                id:
+                  $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - Customers
+      summary: Retrieve customers
+      description: Retrieves customers' details
+      operationId: getCustomers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+      security:
+        - bearerAuth: []
+  /customers/{customerId}:
+    get:
+      tags:
+        - Customers
+      summary: Retrieve customer
+      description: Retrieves customer's details
+      operationId: getCustomer
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Customers
+      summary: Delete customer
+      description: Deactivates customer and all associated resources
+      operationId: deleteCustomer
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to be deleted
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/accounts:
+    post:
+      tags:
+        - Accounts
+      summary: Create new customer account
+      description: Creates new account for the customer
+      operationId: createCustomerAccount
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - type
+                - currencies
+                - signature
+              properties:
+                id:
+                  $ref: '#/components/schemas/AccountId'
+                type:
+                  type: string
+                  description: Type of the account
+                  enum:
+                    - CARD_ACCOUNT
+                currencies:
+                  type: array
+                  description: Currencies of the account, at least one is required (ISO-4217)
+                  items:
+                    type: string
+                signature:
+                  $ref: '#/components/schemas/UserSignature'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve customer accounts
+      description: Retrieves customer's accounts
+      operationId: getCustomerAccounts
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of the customer
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve accounts
+      description: Retrieves accounts' details
+      operationId: getAccounts
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve account
+      description: Retrieves account's details
+      operationId: getAccount
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of account to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+    delete:
+        tags:
+          - Accounts
+        summary: Close account
+        description: Closes account
+        operationId: deleteAccount
+        parameters:
+          - name: accountId
+            in: path
+            description: ID of account to be closed
+            required: true
+            schema:
+              $ref: '#/components/schemas/AccountId'
+        responses:
+          '204':
+            description: Successful operation
+          '400':
+            description: Invalid request
+          '403':
+            description: Not authorised
+          '404':
+            description: Account not found
+        security:
+          - bearerAuth: []
+  /accounts/{accountId}/limits:
+    put:
+      tags:
+        - Accounts
+      summary: Create new or update an existing account spending limit
+      description: Creates new spending limit for the account or updates an existing one
+      operationId: createOrUpdateAccountLimit
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - token
+                - amount
+                - period
+                - signature
+              properties:
+                id:
+                  description: ID for a limit to be created or updated
+                  $ref: '#/components/schemas/WalletAddress'
+                token:
+                  description: ERC-20 token contract address
+                  $ref: '#/components/schemas/WalletAddress'
+                amount:
+                  type: integer
+                  description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
+                  examples: ["100000000"]
+                period:
+                  type: string
+                  description: Period for spending limit reset
+                  enum:
+                    - DAILY
+                    - WEEKLY
+                    - MONTHLY
+                    - YEARLY
+                sessionKey:
+                  type: string
+                  description: Base64 encoded session key used to authorise token transfers on customer's behalf
+                  examples: ["MHgwYmZlYjczNDJjMWVhY2IyY2ZjNWFkMWE2YTI1Mzc0MTA3MjA4ZDU4Y2Q1N2UyNzIwNmI4NTY2OWI0MDQ1NWEy"]
+                signature:
+                  $ref: '#/components/schemas/UserSignature'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Limit'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - Accounts
+      summary: List account spending limits
+      description: Retrieves spending limits set up for the account
+      operationId: getAccountLimits
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Limit'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}/limits/{limitId}:
+    delete:
+        tags:
+          - Accounts
+        summary: Remove account spending limit
+        description: Removes account spending limit
+        operationId: deleteAccountLimit
+        parameters:
+          - name: accountId
+            in: path
+            description: ID of account to be closed
+            required: true
+            schema:
+              $ref: '#/components/schemas/AccountId'
+          - name: limitId
+            in: path
+            description: ID for a limit to be created or updated
+            required: true
+            schema:
+              $ref: '#/components/schemas/WalletAddress'
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - signature
+                properties:
+                  signature:
+                    $ref: '#/components/schemas/UserSignature'
+        responses:
+          '204':
+            description: Successful operation
+          '400':
+            description: Invalid request
+          '403':
+            description: Not authorised
+          '404':
+            description: Account not found
+        security:
+          - bearerAuth: []
+  
+  /customers/{customerId}/cards:
+    post:
+      tags:
+        - Cards
+      summary: Create new customer card
+      description: Creates new card for the customer
+      operationId: createCustomerCard
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - accountId
+                - type
+              properties:
+                id:
+                  $ref: '#/components/schemas/CardId'
+                accountId:
+                  $ref: '#/components/schemas/AccountId'
+                type:
+                  type: string
+                  description: Type of the card
+                  enum:
+                    - VIRTUAL
+                    - PHYSICAL
+                shippingAddress:
+                  description: Shipping address for the card. Required for physical cards
+                  $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - Cards
+      summary: Retrieve customer cards
+      description: Retrieves customer's cards
+      operationId: getCustomerCards
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of the customer
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /cards:
+    get:
+      tags:
+        - Cards
+      summary: Retrieve cards
+      description: Retrieves cards' details
+      operationId: getCards
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+      security:
+        - bearerAuth: []
+  /cards/{cardId}:
+    get:
+      tags:
+        - Cards
+      summary: Retrieve card
+      description: Retrieves card's details
+      operationId: getCard
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of a card to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Card not found
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Cards
+      summary: Terminate card
+      description: Terminates card
+      operationId: deleteCard
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of a card to be closed
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Card not found
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Retrieve account transactions
+      description: Retrieves account's transactions
+      operationId: getAccountTransactions
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+  /webhooks:
+    put:
+      tags:
+        - Webhooks
+      summary: Create new or update an existing webhook
+      description: Creates new webhook subscription or updates an existing one
+      operationId: createOrUpdateWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - callbackUrl
+                - scopes
+              properties:
+                id:
+                  description: Unique ID of the webhook
+                  $ref: '#/components/schemas/WalletAddress'
+                callbackUrl:
+                  type: string
+                  description: URL to be subscribed for receiving events
+                  examples: ["https://example.com/callback"]
+                scopes:
+                  type: array
+                  description: Scopes for events to be received by the callback
+                  items:
+                    $ref: '#/components/schemas/EntityUpdateType'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Webhook'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /webhooks/{webhookId}:
+    delete:
+        tags:
+          - Webhooks
+        summary: Remove webhook subscription
+        description: Removes webhook subscription
+        operationId: deleteWebhook
+        parameters:
+          - name: webhookId
+            in: path
+            description: ID for a webhook to be removed
+            required: true
+            schema:
+              $ref: '#/components/schemas/WalletAddress'
+        responses:
+          '204':
+            description: Successful operation
+          '400':
+            description: Invalid request
+          '403':
+            description: Not authorised
+          '404':
+            description: Account not found
+        security:
+          - bearerAuth: []
+webhooks:
+  '{callbackUrl}':
+    post:
+      requestBody:
+        description: Updates for entities based on subscribed scope
+        content:
+          application/json:
+            schema:
+              oneOf: 
+                - $ref: "#/components/schemas/CustomerUpdate"
+                - $ref: "#/components/schemas/AccountUpdate"
+                - $ref: "#/components/schemas/CardUpdate"
+                - $ref: "#/components/schemas/AuthorisationUpdate"
+                - $ref: "#/components/schemas/TransactionUpdate"
+              discriminator:
+                propertyName: entityType
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully
+components:
+  schemas:
+    Authentication:
+      required:
+        - accessToken
+        - refreshToken
+        - expiresIn
+        - refreshExpiresIn
+        - tokenType
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: JWT token that can be used for further requests to authenticated endpoints
+          examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"]
+        refreshToken:
+          type: string
+          description: JWT token that can be used to refresh existing token after its expiry
+          examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTg3NjU0MzIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.-8I0nVhS21q_fpDkSue1Eli7g9o45SoWfNNhZUlMin8"]
+        expiresIn:
+          type: integer
+          description: "`accessToken` validity in seconds"
+          examples: [3600]
+        refreshExpiresIn:
+          type: integer
+          description: "`refreshToken` validity in seconds"
+          examples: [86400]
+        tokenType:
+          type: string
+          description: '`accessToken` type. Must be "Bearer"'
+          examples: ["Bearer"]
+    Customer:
+      required:
+        - id
+        - status
+        - createdAt
+        - verification
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CustomerId'
+        status:
+          type: string
+          description: Customer status
+          enum:
+            - INIT
+            - PENDING_VERIFICATION
+            - APPROVED
+            - REJECTED
+            - ON_HOLD
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this customer was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this customer was updated (ISO-8601)
+        verification:
+          type: object
+          required:
+            - level
+            - result
+            - status
+            - provider
+          description: Customer verification details for external KYC verification process
+          properties:
+            url:
+              type: string
+              description: A KYC verification URL redirecting to KYC provider webpage. Not present if customer has already been approved or rejected
+              examples: ["https://api.sumsub.com/idensic/l/#/lPDnIKwzmxPfDohk"]
+            level:
+              type: string
+              description: Customer's verification level
+            result:
+              type: string
+              description: Verification check result
+              enum:
+                - SUCCESS
+                - FAILED
+            status:
+              type: string
+              description: Verification status
+              enum:
+                - INIT
+                - PRECHECKED
+                - QUEUED
+                - PENDING
+                - COMPLETED
+                - ON_HOLD
+            provider:
+              type: string
+              description: KYC verification provider
+              examples: ["SUMSUB"]
+            rejectReason:
+              type: string
+              description: Reason for verification rejection
+    CustomerId:
+      type: string
+      description: Unique customer ID in a form of a valid Ethereum address. This would normally correspond to customer's EOA wallet address
+      $ref: '#/components/schemas/WalletAddress'
+
+    Account:
+      required:
+        - id
+        - customerId
+        - status
+        - type
+        - createdAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/AccountId'
+        customerId:
+          $ref: '#/components/schemas/CustomerId'
+        status:
+          type: string
+          description: Account status
+          enum:
+            - INIT
+            - PENDING
+            - ACTIVE
+            - BLOCKED
+            - CLOSED
+        type:
+          type: string
+          description: Type of the account
+          enum:
+            - CARD_ACCOUNT
+        currencies:
+          type: array
+          description: Currencies of the account, at least one is required (ISO-4217)
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this account was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this account was updated (ISO-8601)
+    AccountId:
+      type: string
+      description: Unique account ID in a form of a valid Ethereum address. This would normally correspond to customer's SCA address
+      $ref: '#/components/schemas/WalletAddress'
+
+    Limit:
+      required:
+        - id
+        - accountId
+        - token
+        - amount
+        - period
+        - createdAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WalletAddress'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        token:
+          description: ERC-20 token contract address
+          $ref: '#/components/schemas/WalletAddress'
+        amount:
+          type: integer
+          description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
+          examples: ["100000000"]
+        period:
+          type: string
+          description: Period for spending limit reset
+          enum:
+            - DAILY
+            - WEEKLY
+            - MONTHLY
+            - YEARLY
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this limit was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this limit was updated (ISO-8601)
+
+    Card:
+      required:
+        - id
+        - accountId
+        - customerId
+        - type
+        - name
+        - network
+        - lastFourDigits
+        - expirationDate
+        - status
+        - createdAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CardId'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        customerId:
+          $ref: '#/components/schemas/CustomerId'
+        type:
+          type: string
+          description: Type of the card
+          enum:
+            - VIRTUAL
+            - PHYSICAL
+        name:
+          type: string
+          description: Name on the card
+          examples: ["John Carter"]
+        network:
+          type: string
+          description: Network brand of the card
+          enum:
+            - VISA
+            - MASTERCARD
+        lastFourDigits:
+          type: string
+          description: Last four digits of card PAN
+          examples: ["4039"]
+        expirationDate:
+          type: string
+          description: Expiration date of the card in MM/YYYY format
+          examples: ["10/2028"]
+        status:
+          type: string
+          description: Card status
+          enum:
+            - INIT
+            - READY_TO_ISSUE
+            - ISSUE_FAILED
+            - ISSUE_PENDING
+            - INACTIVE
+            - ACTIVE
+            - BLOCKED
+            - REPORTED
+            - SUSPENDED
+            - TERMINATED
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this card was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this card was updated (ISO-8601)
+    CardId:
+      type: string
+      description: Unique card ID in a form of a valid Ethereum address. This does not correspond to neither EOA nor SCAs of the customer, but the format is the same to ensure consistency
+      $ref: '#/components/schemas/WalletAddress'
+
+    Address:
+      type: object
+      required:
+        - firstLine
+        - city
+        - country
+        - postCode
+      properties:
+        firstLine:
+          type: string
+          description: First line of address
+          examples: ["Flat G"]
+        secondLine:
+          type: string
+          description: Second line of address (optional)
+          examples: ["321 West End Lane"]
+        city:
+          type: string
+          description: City
+          examples: ["London"]
+        state:
+          type: string
+          description: State or province (optional)
+        country:
+          type: string
+          description: Country code (ISO 3166-1)
+          examples: ["GB"]
+        postCode:
+          type: string
+          description: Postal or ZIP code
+          examples: ["NW6 2FG"]
+
+    Transaction:
+      required:
+        - id
+        - accountId
+        - customerId
+        - status
+        - createdAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/TransactionId'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        customerId:
+          $ref: '#/components/schemas/CustomerId'
+        status:
+          type: string
+          description: Transaction status
+          enum:
+            - INIT
+            - PENDING
+            - AUTHORISED
+            - REJECTED
+            - CLEARED
+            - REVERSED
+            - COMPLETED
+        amount:
+          type: integer
+          description: Transaction amount expressed in minor units according to ISO-4217
+          examples: [125700]
+        currency:
+          type: string
+          description: Currency of the transaction (ISO-4217)
+          examples: ["EUR"]
+        token:
+          description: ERC-20 token contract address
+          $ref: '#/components/schemas/WalletAddress'
+        tokenAmount:
+          type: integer
+          description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
+          examples: ["100000000"]
+        meta:
+          type: object
+          description: Metadata related to the transaction
+          properties: 
+            direction:
+              type: string
+              description: Direction of the transaction
+              enum:
+                - DEBIT
+                - CREDIT
+                - NOOP
+            exchangeRate:
+              type: integer
+              description: Exchange rate for transaction if currency is different to account currency expressed in minor units
+              examples: [125]
+            merchant:
+              type: object
+              description: Merchant information
+              properties: 
+                name:
+                  type: string
+                  description: Name of the merchan
+                mcc:
+                  type: string
+                  description: Merchant Category Code
+                country:
+                  type: string
+                  description: Country code of the merchant location (ISO 3166-1)
+                city:
+                  type: string
+                  description: City of the merchant location
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this transaction was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this transaction was updated (ISO-8601)
+    TransactionId:
+      type: string
+      description: Unique transaction ID in a form of a valid Ethereum transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
+      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f"]
+
+    Authorisation:
+      required:
+        - id
+        - accountId
+        - customerId
+        - status
+        - createdAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/AuthorisationId'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        customerId:
+          $ref: '#/components/schemas/CustomerId'
+        status:
+          type: string
+          description: Transaction status
+          enum:
+            - PENDING
+            - APPROVED
+            - REJECTED
+        request:
+          type: object
+          description: Details of pending authorisation request including requested amount in fiat currency and ERC-20 token
+          properties:
+            amount:
+              type: integer
+              description: Transaction amount pending authorisation expressed in minor units according to ISO-4217
+              examples: [125700]
+            currency:
+              type: string
+              description: Currency of the transaction (ISO-4217)
+              examples: ["EUR"]
+            token:
+              description: ERC-20 token contract address
+              $ref: '#/components/schemas/WalletAddress'
+            tokenAmount:
+              type: integer
+              description: Token amount pending authorisation expressed in minor units (varies by token, up to 18 decimal points)
+              examples: ["100000000"]
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this authorisation was created (ISO-8601)
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date this authorisation was updated (ISO-8601)
+    AuthorisationId:
+      type: string
+      description: Unique authorisation ID in a form of a valid Ethereum transaction hash
+      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f"]
+
+    WalletAddress:
+      type: string
+      description: Unique ID in a form of a valid Ethereum address
+      examples: ["0xf806Ab0C6C8c32345644994987B26c99ac002c5D"]
+    
+    UserSignature:
+      type: object
+      description: Cryptographic signature generated using customer's EOA private key according to EIP-712 (ECDSA algorithm). Signature is used for signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
+      properties:
+        chainId:
+          type: integer
+          description: ID of a target chain in decimal format (eg 137 for Polygon Mainnet)
+          examples: [137]
+        owner:
+          description: Address of the EOA signer
+          $ref: '#/components/schemas/WalletAddress'
+        r:
+          type: string
+          examples: ["0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d"]
+        s:
+          type: string
+          examples: ["0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562"]
+        v:
+          type: integer
+          examples: [28]
+    
+    Webhook:
+      type: object
+      required:
+        - id
+        - callbackUrl
+        - scopes
+        - createdAt
+      description: Webhook details for subscribed callback URL receiving entity update events
+      properties:
+        id:
+          description: Unique ID of the webhook
+          $ref: '#/components/schemas/WalletAddress'
+        callbackUrl:
+          type: string
+          description: URL to be subscribed for receiving events
+          examples: ["https://example.com/callback"]
+        scopes:
+          type: array
+          description: Scopes for events to be received by the callback
+          items:
+            $ref: '#/components/schemas/EntityUpdateType'
+        createdAt:
+          type: string
+          format: date-time
+          description: Date this webhook was created (ISO-8601)
+
+    EntityUpdateType:
+      type: string
+      description: Entity type
+      enum:
+        - CUSTOMER
+        - ACCOUNT
+        - CARD
+        - AUTHORISATION
+        - TRANSACTION
+
+    EntityUpdate:
+      type: object
+      required:
+        - entityType
+      description: Event object representing entity update used in webhook callbacks
+      properties: 
+        entityType:
+          $ref: '#/components/schemas/EntityUpdateType'
+  
+    CustomerUpdate:
+      description: Event object representing customer update used in webhook callbacks
+      allOf: 
+        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/Customer'
+  
+    AccountUpdate:
+      description: Event object representing account update used in webhook callbacks
+      allOf: 
+        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/Account'
+  
+    CardUpdate:
+      description: Event object representing card update used in webhook callbacks
+      allOf: 
+        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/Card'
+  
+    TransactionUpdate:
+      description: Event object representing transaction update used in webhook callbacks
+      allOf: 
+        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/Transaction'
+  
+    AuthorisationUpdate:
+      description: Event object representing authorisation update used in webhook callbacks
+      allOf: 
+        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/Authorisation'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
