@@ -25,15 +25,15 @@ paths:
           application/json:
             schema:
               required:
-                - clientId
-                - clientSecret
+                - apiKey
+                - apiSecret
               type: object
               properties:
-                clientId:
+                apiKey:
                   type: string
-                  description: Client ID issued for your programme in our console. Note this can be different for live and sandbox environments
-                  examples: ["96392030-c636-48b5-807a-41b02b6bcf46"]
-                clientSecret:
+                  description: Unique API key used to identify your API integration. Note this can be different for live and sandbox environments
+                  examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
+                apiSecret:
                   type: string
                   description: Unique secret generated in our console
                   examples: ["64ec977db2e585887c80ed62fe9997994aed8093"]
@@ -49,37 +49,6 @@ paths:
           description: Invalid request
         '403':
           description: Invalid credentials
-  /auth/refresh:
-    post:
-      tags:
-        - Authentication
-      summary: Authentication Token Refresh
-      description: Refresh authentication token using previously issued refresh token
-      operationId: tokenRefresh
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - refreshToken
-              type: object
-              properties:
-                refreshToken:
-                  type: string
-                  description: Previously issued refresh token
-                  examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTg3NjU0MzIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.-8I0nVhS21q_fpDkSue1Eli7g9o45SoWfNNhZUlMin8"]
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Authentication'
-        '400':
-          description: Invalid request
-        '403':
-          description: Invalid or expired refresh token
   /customers:
     post:
       tags:
@@ -838,32 +807,22 @@ components:
   schemas:
     Authentication:
       required:
-        - accessToken
-        - refreshToken
-        - expiresIn
-        - refreshExpiresIn
+        - token
+        - expiresAt
         - tokenType
       type: object
       properties:
-        accessToken:
+        token:
           type: string
           description: JWT token that can be used for further requests to authenticated endpoints
           examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"]
-        refreshToken:
-          type: string
-          description: JWT token that can be used to refresh existing token after its expiry
-          examples: ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTg3NjU0MzIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.-8I0nVhS21q_fpDkSue1Eli7g9o45SoWfNNhZUlMin8"]
-        expiresIn:
+        expiresAt:
           type: integer
-          description: "`accessToken` validity in seconds"
-          examples: [3600]
-        refreshExpiresIn:
-          type: integer
-          description: "`refreshToken` validity in seconds"
-          examples: [86400]
+          description: "`token` expiration time (UNIX timestamp)"
+          examples: [1699974342]
         tokenType:
           type: string
-          description: '`accessToken` type. Must be "Bearer"'
+          description: '`token` type. Must be "Bearer"'
           examples: ["Bearer"]
     Customer:
       required:
