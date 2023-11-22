@@ -674,22 +674,22 @@ paths:
       security:
         - bearerAuth: []
   
-  /customers/{customerId}/cards:
+  /accounts/{accountId}/cards:
     post:
       tags:
         - Cards
-      summary: Create new customer card
-      description: Creates new card for the customer
-      operationId: createCustomerCard
+      summary: Create new card
+      description: Creates new card for the account
+      operationId: createAccountCard
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
-        - name: customerId
+        - name: accountId
           in: path
-          description: ID of customer
+          description: ID of account
           required: true
           schema:
-            $ref: '#/components/schemas/CustomerId'
+            $ref: '#/components/schemas/AccountId'
       requestBody:
         content:
           application/json:
@@ -697,19 +697,20 @@ paths:
               type: object
               required: 
                 - id
-                - accountId
                 - type
+                - billingAddress
               properties:
                 id:
                   $ref: '#/components/schemas/CardId'
-                accountId:
-                  $ref: '#/components/schemas/AccountId'
                 type:
                   type: string
                   description: Type of the card
                   enum:
                     - VIRTUAL
                     - PHYSICAL
+                billingAddress:
+                  description: Billing address of a cardholder
+                  $ref: '#/components/schemas/Address'
                 shippingAddress:
                   description: Shipping address for the card. Required for physical cards
                   $ref: '#/components/schemas/Address'
@@ -725,23 +726,23 @@ paths:
         '403':
           description: Not authorised
         '404':
-          description: Customer not found
+          description: Account not found
       security:
         - bearerAuth: []
     get:
       tags:
         - Cards
-      summary: Retrieve customer cards
-      description: Retrieves customer's cards
-      operationId: getCustomerCards
+      summary: Retrieve account cards
+      description: Retrieves account's cards
+      operationId: getAccountCards
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
-        - name: customerId
+        - name: accountId
           in: path
-          description: ID of the customer
+          description: ID of the account
           required: true
           schema:
-            $ref: '#/components/schemas/CustomerId'
+            $ref: '#/components/schemas/AccountId'
       responses:
         '200':
           description: Successful operation
@@ -756,7 +757,7 @@ paths:
         '403':
           description: Not authorised
         '404':
-          description: Customer not found
+          description: Account not found
       security:
         - bearerAuth: []
   /cards:
@@ -837,6 +838,68 @@ paths:
           description: Not authorised
         '404':
           description: Card not found
+      security:
+        - bearerAuth: []
+  /cards/{cardId}/deactivate:
+    patch:
+      tags:
+        - Cards
+      summary: Deactivate card
+      description: Deactivates card and all associated resources
+      operationId: deactivateCard
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: cardId
+          in: path
+          description: ID of card to be deactivated
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+  /cards/{cardId}/activate:
+    patch:
+      tags:
+        - Cards
+      summary: Activate card
+      description: Activates card and all associated resources
+      operationId: activateCard
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: cardId
+          in: path
+          description: ID of card to be activated
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Account not found
       security:
         - bearerAuth: []
   /accounts/{accountId}/transactions:
@@ -1204,12 +1267,9 @@ components:
         - accountId
         - customerId
         - type
-        - name
-        - network
-        - lastFourDigits
-        - expirationDate
         - status
         - createdAt
+        - updatedAt
       type: object
       properties:
         id:
@@ -1242,17 +1302,19 @@ components:
           type: string
           description: Expiration date of the card in MM/YYYY format
           examples: ["10/2028"]
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+          description: Billing address of a cardholder
         status:
           type: string
           description: Card status
           enum:
-            - INIT
+            - INITIATING
             - READY_TO_ISSUE
             - ISSUE_FAILED
             - ISSUE_PENDING
             - INACTIVE
             - ACTIVE
-            - BLOCKED
             - REPORTED
             - SUSPENDED
             - TERMINATED
