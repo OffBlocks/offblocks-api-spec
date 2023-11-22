@@ -70,7 +70,7 @@ paths:
                 id:
                   $ref: '#/components/schemas/CustomerId'
       responses:
-        '200':
+        '201':
           description: Successful operation
           content:
             application/json:
@@ -135,24 +135,155 @@ paths:
           description: Customer not found
       security:
         - bearerAuth: []
-    delete:
+  /customers/{customerId}/deactivate:
+    patch:
       tags:
         - Customers
-      summary: Delete customer
+      summary: Deactivate customer
       description: Deactivates customer and all associated resources
-      operationId: deleteCustomer
+      operationId: deactivateCustomer
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
         - name: customerId
           in: path
-          description: ID of customer to be deleted
+          description: ID of customer to be deactivated
           required: true
           schema:
             $ref: '#/components/schemas/CustomerId'
       responses:
-        '204':
+        '200':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/activate:
+    patch:
+      tags:
+        - Customers
+      summary: Activate customer
+      description: Activates customer and all associated resources
+      operationId: activateCustomer
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be activated
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/info:
+    get:
+      tags:
+        - Customers
+      summary: Retrieve customer info
+      description: Retrieves customer's personal details
+      operationId: getCustomerInfo
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerInfo'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+    put:
+      tags:
+        - Customers
+      summary: Update customer info
+      description: Updates customer's personal details
+      operationId: updateCustomerInfo
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be updated
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerInfo'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerInfo'
+        '400':
+          description: Invalid request
+        '403':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/verification:
+    get:
+      tags:
+        - Customers
+      summary: Retrieve latest customer verification info
+      description: Retrieves customer's verification details
+      operationId: getCustomerVerification
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerVerification'
         '400':
           description: Invalid request
         '403':
@@ -203,7 +334,7 @@ paths:
                 signature:
                   $ref: '#/components/schemas/UserSignature'
       responses:
-        '200':
+        '201':
           description: Successful operation
           content:
             application/json:
@@ -521,7 +652,7 @@ paths:
                   description: Shipping address for the card. Required for physical cards
                   $ref: '#/components/schemas/Address'
       responses:
-        '200':
+        '201':
           description: Successful operation
           content:
             application/json:
@@ -829,7 +960,7 @@ components:
         - id
         - status
         - createdAt
-        - verification
+        - updatedAt
       type: object
       properties:
         id:
@@ -838,11 +969,12 @@ components:
           type: string
           description: Customer status
           enum:
-            - INIT
-            - PENDING_VERIFICATION
-            - APPROVED
+            - INITIATING
+            - VERIFYING
+            - REVIEWING
             - REJECTED
-            - ON_HOLD
+            - ACTIVE
+            - INACTIVE
         createdAt:
           type: string
           format: date-time
@@ -851,49 +983,74 @@ components:
           type: string
           format: date-time
           description: Date this customer was updated (ISO-8601)
-        verification:
-          type: object
-          required:
-            - level
-            - result
-            - status
-            - provider
-          description: Customer verification details for external KYC verification process
-          properties:
-            url:
-              type: string
-              description: A KYC verification URL redirecting to KYC provider webpage. Not present if customer has already been approved or rejected
-              examples: ["https://api.sumsub.com/idensic/l/#/lPDnIKwzmxPfDohk"]
-            level:
-              type: string
-              description: Customer's verification level
-            result:
-              type: string
-              description: Verification check result
-              enum:
-                - SUCCESS
-                - FAILED
-            status:
-              type: string
-              description: Verification status
-              enum:
-                - INIT
-                - PRECHECKED
-                - QUEUED
-                - PENDING
-                - COMPLETED
-                - ON_HOLD
-            provider:
-              type: string
-              description: KYC verification provider
-              examples: ["SUMSUB"]
-            rejectReason:
-              type: string
-              description: Reason for verification rejection
     CustomerId:
       type: string
       description: Unique customer ID in a form of a valid Ethereum address. This would normally correspond to customer's EOA wallet address
       $ref: '#/components/schemas/WalletAddress'
+
+    CustomerInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Full first and last name of the customer (not initials)
+        email:
+          type: string
+          format: email
+          description: The email address of the customer according to RFC 2822. One of email/phone is required
+        phone:
+          type: string
+          description: The phone number of the customer in formats recommended by ITU. The country calling code must be included and prefixed with a +. One of email/phone is required
+        dateOfBirth:
+          type: string
+          format: date
+          description: The date of birth of the customer, in YYYY-MM-DD format.
+        address:
+          $ref: '#/components/schemas/Address'
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date customer info was updated (ISO-8601)
+
+    CustomerVerification:
+      type: object
+      required:
+        - level
+        - result
+        - status
+        - provider
+      description: Customer verification details for external KYC verification process
+      properties:
+        url:
+          type: string
+          description: A KYC verification URL redirecting to KYC provider webpage. Not present if customer has already been approved or rejected
+          examples: ["https://api.sumsub.com/idensic/l/#/lPDnIKwzmxPfDohk"]
+        level:
+          type: string
+          description: Customer's verification level
+        result:
+          type: string
+          description: Verification check result
+          enum:
+            - SUCCESS
+            - FAILED
+        status:
+          type: string
+          description: Verification status
+          enum:
+            - INIT
+            - PRECHECKED
+            - QUEUED
+            - PENDING
+            - COMPLETED
+            - ON_HOLD
+        provider:
+          type: string
+          description: KYC verification provider
+          examples: ["SUMSUB"]
+        rejectReason:
+          type: string
+          description: Reason for verification rejection
 
     Account:
       required:
@@ -1143,7 +1300,7 @@ components:
               properties: 
                 name:
                   type: string
-                  description: Name of the merchan
+                  description: Name of the merchant
                 mcc:
                   type: string
                   description: Merchant Category Code
