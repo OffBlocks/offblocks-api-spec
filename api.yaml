@@ -567,9 +567,10 @@ paths:
                   description: ERC-20 token contract address
                   $ref: '#/components/schemas/WalletAddress'
                 amount:
-                  type: integer
-                  description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
-                  examples: ["100000000"]
+                  type: string
+                  format: decimal
+                  description: Token amount expressed as a decimal
+                  examples: ["10.0"]
                 period:
                   type: string
                   description: Period for spending limit reset
@@ -1227,23 +1228,34 @@ components:
       required:
         - id
         - accountId
+        - status
         - token
         - amount
         - period
         - createdAt
+        - updatedAt
       type: object
       properties:
         id:
           $ref: '#/components/schemas/WalletAddress'
         accountId:
           $ref: '#/components/schemas/AccountId'
+        status:
+          type: string
+          description: Limit status
+          enum:
+            - INITIATING
+            - PENDING
+            - ACTIVE
+            - INACTIVE
         token:
           description: ERC-20 token contract address
           $ref: '#/components/schemas/WalletAddress'
         amount:
-          type: integer
-          description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
-          examples: ["100000000"]
+          type: string
+          format: decimal
+          description: Token amount expressed as a decimal number
+          examples: ["10.0"]
         period:
           type: string
           description: Period for spending limit reset
