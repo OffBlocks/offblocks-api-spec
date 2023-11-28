@@ -1644,14 +1644,14 @@ components:
   parameters:
     SignatureHeader:
       in: header
-      name: X-Signature
+      name: Signature
       required: true
       description: HTTP signature
       schema:
         type: string
     IdempotencyKeyHeader:
       in: header
-      name: X-Idempotency-Key
+      name: Idempotency-Key
       required: true
       description: Idempotency key (free format)
       schema:
