@@ -47,7 +47,7 @@ paths:
                 $ref: '#/components/schemas/Authentication'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Invalid credentials
   /customers:
     post:
@@ -78,7 +78,7 @@ paths:
                   $ref: '#/components/schemas/Customer'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
       security:
         - bearerAuth: []
@@ -101,7 +101,7 @@ paths:
                   $ref: '#/components/schemas/Customer'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
       security:
         - bearerAuth: []
@@ -129,7 +129,7 @@ paths:
                 $ref: '#/components/schemas/Customer'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -160,7 +160,7 @@ paths:
                 $ref: '#/components/schemas/Customer'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -191,7 +191,7 @@ paths:
                 $ref: '#/components/schemas/Customer'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -221,7 +221,7 @@ paths:
                 $ref: '#/components/schemas/CustomerInfo'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -256,7 +256,7 @@ paths:
                 $ref: '#/components/schemas/CustomerInfo'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -286,7 +286,7 @@ paths:
                 $ref: '#/components/schemas/CustomerVerification'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -342,7 +342,7 @@ paths:
                   $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -373,7 +373,7 @@ paths:
                   $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -399,7 +399,7 @@ paths:
                   $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
       security:
         - bearerAuth: []
@@ -427,7 +427,7 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -463,7 +463,7 @@ paths:
           description: Successful operation
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -494,7 +494,7 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -525,7 +525,7 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -594,7 +594,7 @@ paths:
                   $ref: '#/components/schemas/Limit'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -625,7 +625,7 @@ paths:
                   $ref: '#/components/schemas/Limit'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -668,7 +668,7 @@ paths:
           description: Successful operation
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -724,7 +724,7 @@ paths:
                   $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -755,7 +755,7 @@ paths:
                   $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -781,7 +781,7 @@ paths:
                   $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
       security:
         - bearerAuth: []
@@ -809,7 +809,7 @@ paths:
                 $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Card not found
@@ -835,7 +835,7 @@ paths:
           description: Successful operation
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Card not found
@@ -866,7 +866,7 @@ paths:
                 $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -897,7 +897,7 @@ paths:
                 $ref: '#/components/schemas/Card'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -929,10 +929,72 @@ paths:
                   $ref: '#/components/schemas/Transaction'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
+      security:
+        - bearerAuth: []
+  /cards/{cardId}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Retrieve card transactions
+      description: Retrieves card's transactions
+      operationId: getCardTransactions
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - name: cardId
+          in: path
+          description: ID of the card
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Card not found
+      security:
+        - bearerAuth: []
+  /transactions/{transactionId}:
+    get:
+      tags:
+        - Transactions
+      summary: Retrieve transaction details
+      description: Retrieves transaction's details
+      operationId: getTransactionDetails
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - name: transactionId
+          in: path
+          description: ID of the transaction
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Transaction not found
       security:
         - bearerAuth: []
   /webhooks:
@@ -1002,7 +1064,7 @@ paths:
                   $ref: '#/components/schemas/Webhook'
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Customer not found
@@ -1029,7 +1091,7 @@ paths:
           description: Successful operation
         '400':
           description: Invalid request
-        '403':
+        '401':
           description: Not authorised
         '404':
           description: Account not found
@@ -1309,7 +1371,7 @@ components:
         lastFourDigits:
           type: string
           description: Last four digits of card PAN
-          examples: ["4039"]
+          examples: ["4019"]
         expirationDate:
           type: string
           description: Expiration date of the card in MM/YYYY format
@@ -1382,19 +1444,22 @@ components:
         - customerId
         - status
         - createdAt
+        - updatedAt
       type: object
       properties:
         id:
           $ref: '#/components/schemas/TransactionId'
         accountId:
           $ref: '#/components/schemas/AccountId'
+        cardId:
+          $ref: '#/components/schemas/CardId'
         customerId:
           $ref: '#/components/schemas/CustomerId'
         status:
           type: string
           description: Transaction status
           enum:
-            - INIT
+            - INITIATING
             - PENDING
             - AUTHORISED
             - REJECTED
@@ -1413,9 +1478,10 @@ components:
           description: ERC-20 token contract address
           $ref: '#/components/schemas/WalletAddress'
         tokenAmount:
-          type: integer
-          description: Token amount expressed in minor units (varies by token, up to 18 decimal points)
-          examples: ["100000000"]
+          type: string
+          format: decimal
+          description: Token amount expressed as a decimal number
+          examples: ["10.0"]
         meta:
           type: object
           description: Metadata related to the transaction
@@ -1467,12 +1533,15 @@ components:
         - customerId
         - status
         - createdAt
+        - updatedAt
       type: object
       properties:
         id:
           $ref: '#/components/schemas/AuthorisationId'
         accountId:
           $ref: '#/components/schemas/AccountId'
+        cardId:
+          $ref: '#/components/schemas/CardId'
         customerId:
           $ref: '#/components/schemas/CustomerId'
         status:
@@ -1498,9 +1567,41 @@ components:
               description: ERC-20 token contract address
               $ref: '#/components/schemas/WalletAddress'
             tokenAmount:
-              type: integer
-              description: Token amount pending authorisation expressed in minor units (varies by token, up to 18 decimal points)
-              examples: ["100000000"]
+              type: string
+              format: decimal
+              description: Token amount pending authorisation expressed as a decimal number
+              examples: ["10.0"]
+            meta:
+              type: object
+              description: Metadata related to the transaction
+              properties: 
+                direction:
+                  type: string
+                  description: Direction of the transaction
+                  enum:
+                    - DEBIT
+                    - CREDIT
+                    - NOOP
+                exchangeRate:
+                  type: integer
+                  description: Exchange rate for transaction if currency is different to account currency expressed in minor units
+                  examples: [125]
+                merchant:
+                  type: object
+                  description: Merchant information
+                  properties: 
+                    name:
+                      type: string
+                      description: Name of the merchant
+                    mcc:
+                      type: string
+                      description: Merchant Category Code
+                    country:
+                      type: string
+                      description: Country code of the merchant location (ISO 3166-1)
+                    city:
+                      type: string
+                      description: City of the merchant location
         createdAt:
           type: string
           format: date-time
@@ -1511,7 +1612,7 @@ components:
           description: Date this authorisation was updated (ISO-8601)
     AuthorisationId:
       type: string
-      description: Unique authorisation ID in a form of a valid Ethereum transaction hash
+      description: Unique authorisation ID in a form of a valid Ethereum transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
       examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f"]
 
     WalletAddress:
