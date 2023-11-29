@@ -19,7 +19,7 @@ paths:
         - Authentication
       summary: Initial Authentication
       description: Retrieve authentication token using API credentials
-      operationId: getToken
+      operationId: token
       requestBody:
         content:
           application/json:
@@ -35,7 +35,7 @@ paths:
                   examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
                 apiSecret:
                   type: string
-                  description: API secret
+                  description: Unique secret generated in our console
                   examples: ["64ec977db2e585887c80ed62fe9997994aed8093"]
         required: true
       responses:
@@ -49,81 +49,6 @@ paths:
           description: Invalid request
         '401':
           description: Invalid credentials
-  /auth/signing:
-    put:
-      tags:
-        - Authentication
-      summary: Update signing key
-      description: Update public key used to sign API requests. When you upload your public key, a unique key ID is returned in response. This is different to your public key itself, and is required to sign your requests
-      operationId: updateSigningKey
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - signingKey
-              type: object
-              properties:
-                signingKey:
-                  type: string
-                  description: Base64 encoded public key used for signing requests. Requirements for cryptographic algorithms and more details can be found in our documentation
-                  examples: ["LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZZd0VBWUhLb1pJemowQ0FRWUZLNEVFQUFvRFFnQUUzTEw1RldmVFgvL3BJaXNEL0xneFVIT2lxdlFTSUVWTgpGekloOTdLZXBlWk1iZVZsUGd1akZ4Yk5MN2x1ZVhRQnBpUWUzNmZLN0xSbXZNNHdEaWZFTkE9PQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0="]
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                required:
-                  - keyId
-                type: object
-                properties:
-                  keyId:
-                    type: string
-                    format: uuid
-                    description: Unique ID assigned to your key. This is different to your public key itself, and is required to sign your requests
-                    examples: ["86b59965-6cf1-4633-9148-92848330fd1b"]
-        '400':
-          description: Invalid request
-        '401':
-          description: Not authorised
-      security:
-        - bearerAuth: []
-  /auth/credentials:
-    put:
-      tags:
-        - Authentication
-      summary: Update API credentials
-      description: Update existing API credentials (API key, API secret or both). This invalidates all issued tokens and active sessions
-      operationId: updateCredentials
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - apiKey
-                - apiSecret
-              type: object
-              properties:
-                apiKey:
-                  type: string
-                  description: Unique API key used to identify your API integration. Note this can be different for live and sandbox environments
-                  examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
-                apiSecret:
-                  type: string
-                  description: API secret
-                  examples: ["64ec977db2e585887c80ed62fe9997994aed8093"]
-        required: true
-      responses:
-        '204':
-          description: Successful operation
-        '400':
-          description: Invalid request
-        '401':
-          description: Not authorised
-      security:
-        - bearerAuth: []
   /customers:
     post:
       tags:
