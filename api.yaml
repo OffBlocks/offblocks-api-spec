@@ -195,10 +195,10 @@ paths:
             schema:
               type: object
               required: 
-                - id
+                - chainId
               properties:
-                id:
-                  $ref: '#/components/schemas/CustomerId'
+                chainId:
+                  $ref: '#/components/schemas/BlockchainAddress'
       responses:
         '201':
           description: Successful operation
@@ -457,8 +457,6 @@ paths:
                 - currencies
                 - signature
               properties:
-                id:
-                  $ref: '#/components/schemas/AccountId'
                 type:
                   type: string
                   description: Type of the account
@@ -697,8 +695,7 @@ paths:
           application/json:
             schema:
               type: object
-              required: 
-                - id
+              required:
                 - token
                 - amount
                 - period
@@ -706,11 +703,11 @@ paths:
                 - signature
               properties:
                 id:
-                  description: ID for a limit to be created or updated
-                  $ref: '#/components/schemas/WalletAddress'
+                  description: ID for a limit to be updated
+                  $ref: '#/components/schemas/LimitId'
                 token:
-                  description: ERC-20 token contract address
-                  $ref: '#/components/schemas/WalletAddress'
+                  description: Token contract address
+                  $ref: '#/components/schemas/BlockchainAddress'
                 amount:
                   type: string
                   format: decimal
@@ -796,10 +793,10 @@ paths:
             $ref: '#/components/schemas/AccountId'
         - name: limitId
           in: path
-          description: ID for a limit to be created or updated
+          description: ID for a limit to be deleted
           required: true
           schema:
-            $ref: '#/components/schemas/WalletAddress'
+            $ref: '#/components/schemas/LimitId'
       requestBody:
         content:
           application/json:
@@ -844,13 +841,10 @@ paths:
           application/json:
             schema:
               type: object
-              required: 
-                - id
+              required:
                 - type
                 - billingAddress
               properties:
-                id:
-                  $ref: '#/components/schemas/CardId'
                 type:
                   type: string
                   description: Type of the card
@@ -1176,8 +1170,8 @@ paths:
                 - scopes
               properties:
                 id:
-                  description: Unique ID of the webhook
-                  $ref: '#/components/schemas/WalletAddress'
+                  description: Unique ID of the webhook to be created or updated
+                  $ref: '#/components/schemas/WebhookId'
                 callbackUrl:
                   type: string
                   description: URL to be subscribed for receiving events
@@ -1245,7 +1239,7 @@ paths:
           description: ID for a webhook to be removed
           required: true
           schema:
-            $ref: '#/components/schemas/WalletAddress'
+            $ref: '#/components/schemas/WebhookId'
       responses:
         '204':
           description: Successful operation
@@ -1314,6 +1308,9 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/CustomerId'
+        chainId:
+          description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
+          $ref: '#/components/schemas/BlockchainAddress'
         status:
           type: string
           description: Customer status
@@ -1333,9 +1330,8 @@ components:
           format: date-time
           description: Date this customer was updated (ISO-8601)
     CustomerId:
-      type: string
-      description: Unique customer ID in a form of a valid Ethereum address. This would normally correspond to customer's EOA wallet address
-      $ref: '#/components/schemas/WalletAddress'
+      description: Unique customer ID
+      $ref: '#/components/schemas/UUID'
 
     CustomerInfo:
       type: object
@@ -1415,6 +1411,9 @@ components:
           $ref: '#/components/schemas/AccountId'
         customerId:
           $ref: '#/components/schemas/CustomerId'
+        chainId:
+          description: Unique account ID in a form of a valid on-chain address. This would normally correspond to account's SCA address
+          $ref: '#/components/schemas/BlockchainAddress'
         status:
           type: string
           description: Account status
@@ -1443,9 +1442,8 @@ components:
           format: date-time
           description: Date this account was updated (ISO-8601)
     AccountId:
-      type: string
-      description: Unique account ID in a form of a valid Ethereum address. This would normally correspond to customer's SCA address
-      $ref: '#/components/schemas/WalletAddress'
+      description: Unique account ID
+      $ref: '#/components/schemas/UUID'
 
     Limit:
       required:
@@ -1460,7 +1458,7 @@ components:
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/WalletAddress'
+          $ref: '#/components/schemas/LimitId'
         accountId:
           $ref: '#/components/schemas/AccountId'
         status:
@@ -1472,8 +1470,8 @@ components:
             - ACTIVE
             - INACTIVE
         token:
-          description: ERC-20 token contract address
-          $ref: '#/components/schemas/WalletAddress'
+          description: Token contract address
+          $ref: '#/components/schemas/BlockchainAddress'
         amount:
           type: string
           format: decimal
@@ -1495,6 +1493,9 @@ components:
           type: string
           format: date-time
           description: Date this limit was updated (ISO-8601)
+    LimitId:
+      description: Unique limit ID
+      $ref: '#/components/schemas/UUID'
 
     Card:
       required:
@@ -1562,9 +1563,8 @@ components:
           format: date-time
           description: Date this card was updated (ISO-8601)
     CardId:
-      type: string
-      description: Unique card ID in a form of a valid Ethereum address. This does not correspond to neither EOA nor SCAs of the customer, but the format is the same to ensure consistency
-      $ref: '#/components/schemas/WalletAddress'
+      description: Unique card ID
+      $ref: '#/components/schemas/UUID'
 
     Address:
       type: object
@@ -1616,6 +1616,9 @@ components:
           $ref: '#/components/schemas/CardId'
         customerId:
           $ref: '#/components/schemas/CustomerId'
+        chainId:
+          description: Unique transaction ID in a form of a valid transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
+          $ref: '#/components/schemas/BlockchainHash'
         status:
           type: string
           description: Transaction status
@@ -1636,8 +1639,8 @@ components:
           description: Currency of the transaction (ISO-4217)
           examples: ["EUR"]
         token:
-          description: ERC-20 token contract address
-          $ref: '#/components/schemas/WalletAddress'
+          description: Token contract address
+          $ref: '#/components/schemas/BlockchainAddress'
         tokenAmount:
           type: string
           format: decimal
@@ -1683,9 +1686,8 @@ components:
           format: date-time
           description: Date this transaction was updated (ISO-8601)
     TransactionId:
-      type: string
-      description: Unique transaction ID in a form of a valid Ethereum transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
-      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f"]
+      description: Unique transaction ID
+      $ref: '#/components/schemas/UUID'
 
     Authorisation:
       required:
@@ -1725,8 +1727,8 @@ components:
               description: Currency of the transaction (ISO-4217)
               examples: ["EUR"]
             token:
-              description: ERC-20 token contract address
-              $ref: '#/components/schemas/WalletAddress'
+              description: Token contract address
+              $ref: '#/components/schemas/BlockchainAddress'
             tokenAmount:
               type: string
               format: decimal
@@ -1772,14 +1774,34 @@ components:
           format: date-time
           description: Date this authorisation was updated (ISO-8601)
     AuthorisationId:
-      type: string
-      description: Unique authorisation ID in a form of a valid Ethereum transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
-      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f"]
+      description: Unique authorisation ID
+      $ref: '#/components/schemas/UUID'
 
-    WalletAddress:
+    BlockchainAddress:
+      description: Unique on-chain identifier (address) of the entity
+      oneOf:
+        - $ref: '#/components/schemas/EthereumAddress'
+
+    BlockchainHash:
+      description: Unique on-chain identifier (hash) of the transaction
+      oneOf:
+        - $ref: '#/components/schemas/EthereumHash'
+
+    EthereumAddress:
       type: string
-      description: Unique ID in a form of a valid Ethereum address
+      x-go-type: common.Address
+      x-go-type-import:
+        path: github.com/ethereum/go-ethereum/common
+      description: Valid Ethereum address
       examples: ["0xf806Ab0C6C8c32345644994987B26c99ac002c5D"]
+
+    EthereumHash:
+      type: string
+      x-go-type: common.Hash
+      x-go-type-import:
+        path: github.com/ethereum/go-ethereum/common
+      description: Valid Ethereum hash
+      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f", "0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d", "0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562"]
     
     UserSignature:
       type: object
@@ -1797,13 +1819,11 @@ components:
           examples: [137]
         owner:
           description: Address of the EOA signer
-          $ref: '#/components/schemas/WalletAddress'
+          $ref: '#/components/schemas/EthereumAddress'
         r:
-          type: string
-          examples: ["0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d"]
+          $ref: '#/components/schemas/EthereumHash'
         s:
-          type: string
-          examples: ["0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562"]
+          $ref: '#/components/schemas/EthereumHash'
         v:
           type: integer
           examples: [28]
@@ -1818,8 +1838,7 @@ components:
       description: Webhook details for subscribed callback URL receiving entity update events
       properties:
         id:
-          description: Unique ID of the webhook
-          $ref: '#/components/schemas/WalletAddress'
+          $ref: '#/components/schemas/WebhookId'
         callbackUrl:
           type: string
           description: URL to be subscribed for receiving events
@@ -1833,6 +1852,9 @@ components:
           type: string
           format: date-time
           description: Date this webhook was created (ISO-8601)
+    WebhookId:
+      description: Unique webhook ID
+      $ref: '#/components/schemas/UUID'
 
     EntityUpdateType:
       type: string
@@ -1901,6 +1923,10 @@ components:
       oneOf:
         - $ref: '#/components/schemas/AuthorisationResponse'
         - $ref: '#/components/schemas/EmptyResponse'
+
+    UUID:
+      type: string
+      format: uuid
 
 
   parameters:
