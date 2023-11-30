@@ -367,6 +367,184 @@
 					]
 				},
 				{
+					"name": "Delete signing key",
+					"id": "8334c027-859e-4655-8b79-dddeec22033c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signing",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signing"
+							]
+						},
+						"description": "Delete public key used to sign API requests"
+					},
+					"response": [
+						{
+							"id": "109f901e-112d-42a4-b75f-5f303fd63532",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signing"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "80531afe-e1a8-4334-b206-b8daa79463f1",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signing"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "ca3391f8-c507-4789-93a7-a37746cfcbd2",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signing"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
 					"name": "Update API credentials",
 					"id": "96aa30d8-c200-4931-806e-eac535e99a38",
 					"protocolProfileBehavior": {
@@ -831,7 +1009,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"status\": \"INITIATING\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"status\": \"REVIEWING\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"status\": \"INITIATING\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"status\": \"REVIEWING\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]"
 						},
 						{
 							"id": "13f24b33-6af6-40ec-b9c6-42df782d2017",
@@ -1037,7 +1215,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "fffc3baf-51de-4bbe-9b1d-fd117751917b",
@@ -1242,7 +1420,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\"\n}"
+							"raw": "{\n  \"id\": \"<string>\",\n  \"chainId\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
@@ -1327,7 +1505,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "281d1026-f410-4572-a6c3-442318547708",
@@ -1583,7 +1761,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "ddcc3c3c-3335-4310-b630-3d3f40d409b7",
@@ -1887,7 +2065,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "fdebfec1-9e6a-4381-9cb8-9252b2dcce4a",
@@ -3095,7 +3273,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"CLOSED\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"INITIATING\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"CLOSED\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"INITIATING\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
 						},
 						{
 							"id": "0c83179e-d2d0-4848-a916-60af8599eedd",
@@ -3301,7 +3479,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
 							"id": "51367f0f-c8ae-4dc4-984a-8a8d24371bf2",
@@ -3577,7 +3755,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"CLOSED\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"INITIATING\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"CLOSED\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"INITIATING\",\n    \"type\": \"CARD_ACCOUNT\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
 						},
 						{
 							"id": "28391b43-ed14-4dde-8610-609adbd71a19",
@@ -3888,7 +4066,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
 							"id": "a5f44a56-02cb-44ad-b01d-dae28703e314",
@@ -4234,7 +4412,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
 							"id": "8a9a83ce-103c-4ad3-9e63-916c4a50acb4",
@@ -4538,7 +4716,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
 							"id": "9cdab790-078d-4428-ae1a-4c51d4e613e5",
@@ -5170,7 +5348,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"status\": \"PENDING\",\n    \"token\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"period\": \"YEARLY\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"status\": \"PENDING\",\n    \"token\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"period\": \"MONTHLY\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"status\": \"PENDING\",\n    \"token\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"period\": \"YEARLY\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"status\": \"PENDING\",\n    \"token\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"period\": \"MONTHLY\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]"
 						},
 						{
 							"id": "6648fd89-0769-4e3b-971c-b517837e1d63",
@@ -5378,7 +5556,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"period\": \"YEARLY\",\n  \"sessionKey\": \"<string>\",\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
+							"raw": "{\n  \"id\": \"<uuid>\",\n  \"token\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"period\": \"YEARLY\",\n  \"sessionKey\": \"<string>\",\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/limits",
@@ -5481,7 +5659,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"token\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"period\": \"YEARLY\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"status\": \"ACTIVE\",\n  \"token\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"period\": \"YEARLY\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "1c442190-3769-4a7a-a274-6b9cfa0d171c",
@@ -6178,7 +6356,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"type\": \"PHYSICAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"type\": \"VIRTUAL\",\n    \"status\": \"SUSPENDED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"PHYSICAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"VIRTUAL\",\n    \"status\": \"SUSPENDED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
 							"id": "e646ba20-ecad-403a-8b47-3d7ee5a88da6",
@@ -6384,7 +6562,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
 							"id": "4e3f29a2-8655-4436-86e1-fe8fe0c482ef",
@@ -6660,7 +6838,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"type\": \"PHYSICAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"type\": \"VIRTUAL\",\n    \"status\": \"SUSPENDED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"PHYSICAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"VIRTUAL\",\n    \"status\": \"SUSPENDED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"VISA\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
 							"id": "d00133f5-b067-4c98-a837-14c269ac59d8",
@@ -6971,7 +7149,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
 							"id": "22ab8c93-0ffc-431a-b914-251da854b31c",
@@ -7317,7 +7495,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
 							"id": "39722d4d-451c-404c-9d3a-b2d9aeb17b5f",
@@ -7621,7 +7799,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"PHYSICAL\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"VISA\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
 							"id": "8f9b8271-8439-432f-b548-a6ee7bd780e9",
@@ -8193,7 +8371,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"cardId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"token\": \"<string>\",\n  \"tokenAmount\": \"<string>\",\n  \"meta\": {\n    \"direction\": \"NOOP\",\n    \"exchangeRate\": \"<integer>\",\n    \"merchant\": {\n      \"name\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    }\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"cardId\": \"<uuid>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"token\": \"<string>\",\n  \"tokenAmount\": \"<string>\",\n  \"meta\": {\n    \"direction\": \"NOOP\",\n    \"exchangeRate\": \"<integer>\",\n    \"merchant\": {\n      \"name\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    }\n  }\n}"
 						},
 						{
 							"id": "d7607b73-4bf2-48b3-8d70-b1d5ef844951",
@@ -8469,7 +8647,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
 						},
 						{
 							"id": "ae9f6647-2eeb-40c5-9e25-be47b0541000",
@@ -8748,7 +8926,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
 						},
 						{
 							"id": "42b1504f-2495-4cec-a2ce-f34dea1ab227",
@@ -8962,7 +9140,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\",\n  \"callbackUrl\": \"<string>\",\n  \"scopes\": [\n    \"AUTHORISATION\",\n    \"ACCOUNT\"\n  ]\n}"
+							"raw": "{\n  \"id\": \"<uuid>\",\n  \"callbackUrl\": \"<string>\",\n  \"scopes\": [\n    \"AUTHORISATION\",\n    \"ACCOUNT\"\n  ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/webhooks",
@@ -9042,7 +9220,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<string>\",\n  \"callbackUrl\": \"<string>\",\n  \"scopes\": [\n    \"CUSTOMER\",\n    \"CUSTOMER\"\n  ],\n  \"createdAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"callbackUrl\": \"<string>\",\n  \"scopes\": [\n    \"CUSTOMER\",\n    \"CUSTOMER\"\n  ],\n  \"createdAt\": \"<dateTime>\"\n}"
 						},
 						{
 							"id": "f019d46a-043e-435d-a8c6-3ec5188afeff",
@@ -9506,184 +9684,6 @@
 				}
 			],
 			"id": "a325e9c6-46a3-46b5-80f4-5fb81a81530f"
-		},
-		{
-			"name": "Delete signing key",
-			"id": "8334c027-859e-4655-8b79-dddeec22033c",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearerToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/auth/signing",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"auth",
-						"signing"
-					]
-				},
-				"description": "Delete public key used to sign API requests"
-			},
-			"response": [
-				{
-					"id": "109f901e-112d-42a4-b75f-5f303fd63532",
-					"name": "Successful operation",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"description": "Added as a part of security scheme: bearer",
-								"key": "Authorization",
-								"value": "Bearer <token>"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/signing",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signing"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "text",
-					"header": [],
-					"cookie": []
-				},
-				{
-					"id": "80531afe-e1a8-4334-b206-b8daa79463f1",
-					"name": "Invalid request",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"description": "Added as a part of security scheme: bearer",
-								"key": "Authorization",
-								"value": "Bearer <token>"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/signing",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signing"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "text",
-					"header": [],
-					"cookie": []
-				},
-				{
-					"id": "ca3391f8-c507-4789-93a7-a37746cfcbd2",
-					"name": "Not authorised",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"description": "Added as a part of security scheme: bearer",
-								"key": "Authorization",
-								"value": "Bearer <token>"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"signingKeyId\": \"<uuid>\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/signing",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signing"
-							]
-						}
-					},
-					"status": "Unauthorized",
-					"code": 401,
-					"_postman_previewlanguage": "text",
-					"header": [],
-					"cookie": []
-				}
-			]
 		}
 	],
 	"auth": {
