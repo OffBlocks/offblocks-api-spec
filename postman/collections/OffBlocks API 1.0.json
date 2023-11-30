@@ -224,7 +224,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"signingKey\": \"<string>\",\n  \"signingKeyId\": \"<uuid>\"\n}"
+							"raw": "{\n  \"signingKey\": \"{{signaturePublicKey}}\",\n  \"signingKeyId\": \"{{signatureKeyId}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signing",
@@ -9700,14 +9700,17 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "20273019-5da5-406b-b7fa-d06fd00bd74d",
+				"id": "6cae5ea7-2a82-4333-98b5-b9e218178f15",
 				"type": "text/javascript",
 				"exec": [
+					"const URL = require('url').Url",
+					"",
 					"function updateRequestSignature(httpMessageSignatures) {",
 					"    const keyId = pm.environment.get(\"signatureKeyId\");",
 					"    const privateKey = pm.environment.get(\"signaturePrivateKey\");",
 					"",
 					"    const key = httpMessageSignatures.createSigner(privateKey, 'ecdsa-p256-sha256', keyId);",
+					"    const fields = ['@method', '@request-target', '@path']",
 					"    ",
 					"    const url = pm.variables.replaceIn(pm.request.url.toString());",
 					"    const method = pm.request.method;",
@@ -9717,6 +9720,7 @@
 					"    const headers = {};",
 					"    if (idempotencyKey) {",
 					"        headers[\"idempotency-key\"] = idempotencyKey;",
+					"        fields.push('idempotency-key')",
 					"    }",
 					"",
 					"    var body = undefined;",
@@ -9727,7 +9731,8 @@
 					"    const updateSignature = (async () => {",
 					"        try {",
 					"            const signedRequest = await httpMessageSignatures.httpbis.signMessage({",
-					"                key",
+					"                key,",
+					"                fields",
 					"            }, {",
 					"                method,",
 					"                url,",
@@ -9744,7 +9749,7 @@
 					"    updateSignature();",
 					"}",
 					"",
-					"pm.sendRequest('https://github.com/OffBlocks/node-http-message-signatures/releases/download/v1.0.3/http-message-signatures.min.js', (err, res) => {",
+					"pm.sendRequest('https://github.com/OffBlocks/node-http-message-signatures/releases/download/v1.0.4/http-message-signatures.min.js', (err, res) => {",
 					"    if (err) {",
 					"        console.log(err)",
 					"    } else {",
@@ -9773,7 +9778,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "9b2f402a-4722-4d0a-a303-7158c0d0dd53",
+				"id": "708e5d6a-941d-4884-8c2a-dfa7ebf498cf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -9783,7 +9788,7 @@
 	],
 	"variable": [
 		{
-			"id": "83f8f232-372b-43bd-8285-8b3c3cc98873",
+			"id": "f31d4054-f771-432f-986b-07e251012873",
 			"key": "baseUrl",
 			"value": "https://api.offblocks.xyz/v1",
 			"type": "string"
