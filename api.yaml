@@ -1948,9 +1948,10 @@ components:
       in: header
       name: Idempotency-Key
       required: true
-      description: Idempotency key (free format)
+      description: Idempotency key (UUID)
       schema:
         type: string
+        format: uuid
 
   securitySchemes:
     bearerAuth:
