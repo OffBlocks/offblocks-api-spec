@@ -85,6 +85,35 @@ paths:
           description: Not authorised
       security:
         - bearerAuth: []
+    delete:
+      tags:
+        - Authentication
+      summary: Delete signing key
+      description: Delete public key used to sign API requests
+      operationId: deleteSigningKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - signingKeyId
+              type: object
+              properties:
+                signingKeyId:
+                  type: string
+                  format: uuid
+                  description: Unique ID of your key. This is different to your public key itself, and is required to sign your requests
+                  examples: ["86b59965-6cf1-4633-9148-92848330fd1b"]
+        required: true
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+      security:
+        - bearerAuth: []
   /auth/credentials:
     put:
       tags:
