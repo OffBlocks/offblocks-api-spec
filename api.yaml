@@ -31,6 +31,7 @@ paths:
               properties:
                 apiKey:
                   type: string
+                  format: uuid
                   description: Unique API key used to identify your API integration. Note this can be different for live and sandbox environments
                   examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
                 apiSecret:
@@ -61,29 +62,23 @@ paths:
           application/json:
             schema:
               required:
+                - signingKeyId
                 - signingKey
               type: object
               properties:
+                signingKeyId:
+                  type: string
+                  format: uuid
+                  description: Unique ID of your key. This is different to your public key itself, and is required to sign your requests
+                  examples: ["86b59965-6cf1-4633-9148-92848330fd1b"]
                 signingKey:
                   type: string
                   description: Base64 encoded public key used for signing requests. Requirements for cryptographic algorithms and more details can be found in our documentation
                   examples: ["LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZZd0VBWUhLb1pJemowQ0FRWUZLNEVFQUFvRFFnQUUzTEw1RldmVFgvL3BJaXNEL0xneFVIT2lxdlFTSUVWTgpGekloOTdLZXBlWk1iZVZsUGd1akZ4Yk5MN2x1ZVhRQnBpUWUzNmZLN0xSbXZNNHdEaWZFTkE9PQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0="]
         required: true
       responses:
-        '200':
+        '204':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                required:
-                  - keyId
-                type: object
-                properties:
-                  keyId:
-                    type: string
-                    format: uuid
-                    description: Unique ID assigned to your key. This is different to your public key itself, and is required to sign your requests
-                    examples: ["86b59965-6cf1-4633-9148-92848330fd1b"]
         '400':
           description: Invalid request
         '401':
@@ -95,7 +90,7 @@ paths:
       tags:
         - Authentication
       summary: Update API credentials
-      description: Update existing API credentials (API key, API secret or both). This invalidates all issued tokens and active sessions
+      description: Add or update API credentials. If credentials are updated this action invalidates all issued tokens and active sessions
       operationId: updateCredentials
       requestBody:
         content:
@@ -108,12 +103,42 @@ paths:
               properties:
                 apiKey:
                   type: string
+                  format: uuid
                   description: Unique API key used to identify your API integration. Note this can be different for live and sandbox environments
                   examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
                 apiSecret:
                   type: string
                   description: API secret
                   examples: ["64ec977db2e585887c80ed62fe9997994aed8093"]
+        required: true
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Authentication
+      summary: Delete API credentials
+      description: Delete existing API credentials. This invalidates all issued tokens and active sessions
+      operationId: deleteCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - apiKey
+              type: object
+              properties:
+                apiKey:
+                  type: string
+                  format: uuid
+                  description: Unique API key used to identify your API integration. Note this can be different for live and sandbox environments
+                  examples: ["d04953b7-5878-4fd0-8970-0a5f77fbce59"]
         required: true
       responses:
         '204':

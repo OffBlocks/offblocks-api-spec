@@ -76,11 +76,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/auth/token",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/auth/token",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"auth",
 										"token"
 									]
@@ -219,13 +224,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"signingKey\": \"<string>\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
+							"raw": "{\n  \"signingKey\": \"<string>\",\n  \"signingKeyId\": \"<uuid>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signing",
@@ -240,59 +239,6 @@
 						"description": "Update public key used to sign API requests. When you upload your public key, a unique key ID is returned in response. This is different to your public key itself, and is required to sign your requests"
 					},
 					"response": [
-						{
-							"id": "e4b0c0b9-31fc-4e05-9235-164bd71fd3f7",
-							"name": "Successful operation",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									},
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"signingKey\": \"<string>\"\n}",
-									"options": {
-										"raw": {
-											"headerFamily": "json",
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/signing",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"signing"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"keyId\": \"<uuid>\"\n}"
-						},
 						{
 							"id": "9f687f94-d814-4e3e-afa5-01a0f68f4c38",
 							"name": "Invalid request",
@@ -378,6 +324,45 @@
 							"_postman_previewlanguage": "text",
 							"header": [],
 							"cookie": []
+						},
+						{
+							"id": "2ef6bfab-3c78-48ea-927d-a919efc48e9b",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signingKey\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/signing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"signing"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
 						}
 					]
 				},
@@ -455,11 +440,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/auth/credentials",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/auth/credentials",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"auth",
 										"credentials"
 									]
@@ -558,6 +548,184 @@
 							"cookie": []
 						}
 					]
+				},
+				{
+					"name": "Delete API credentials",
+					"id": "1b5e3d75-55aa-4044-97cc-6df559d4f2d0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"apiKey\": \"{{apiKey}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/credentials",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"credentials"
+							]
+						},
+						"description": "Delete existing API credentials. This invalidates all issued tokens and active sessions"
+					},
+					"response": [
+						{
+							"id": "99593fbc-2367-45b2-ae9f-fc08e3ec9f1e",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiKey\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/credentials",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"credentials"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "1ec74a46-bdf3-407f-be77-40f5ce904007",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiKey\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/credentials",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"credentials"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "d213bb47-43a2-4d2f-a66f-ca438e0b3c24",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiKey\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/credentials",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"credentials"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
 				}
 			],
 			"id": "5b5f6c35-4b50-44f3-8eb7-c566256191b5"
@@ -620,7 +788,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -638,11 +806,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers"
 									]
 								},
@@ -813,7 +986,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -831,11 +1004,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId"
 									],
@@ -1087,7 +1265,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -1124,11 +1302,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/customers",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers"
 									]
 								},
@@ -1343,7 +1526,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -1366,11 +1549,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/deactivate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/deactivate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"deactivate"
@@ -1642,7 +1830,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -1665,11 +1853,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/activate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/activate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"activate"
@@ -1936,7 +2129,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -1954,11 +2147,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/info",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/info",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"info"
@@ -2223,7 +2421,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -2260,11 +2458,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/info",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/info",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"info"
@@ -2573,7 +2776,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -2591,11 +2794,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/verification",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/verification",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"verification"
@@ -2844,7 +3052,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -2862,11 +3070,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts"
 									]
 								},
@@ -3037,7 +3250,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -3055,11 +3268,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId"
 									],
@@ -3307,7 +3525,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -3325,11 +3543,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/accounts",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/accounts",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"accounts"
@@ -3594,7 +3817,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -3631,11 +3854,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/accounts",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/accounts",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"customers",
 										":customerId",
 										"accounts"
@@ -3949,7 +4177,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -3972,11 +4200,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/deactivate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/deactivate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"deactivate"
@@ -4248,7 +4481,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -4271,11 +4504,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/activate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/activate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"activate"
@@ -4550,7 +4788,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -4583,11 +4821,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId"
 									],
@@ -4875,7 +5118,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -4893,11 +5136,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/limits",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/limits",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"limits"
@@ -5162,7 +5410,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -5199,11 +5447,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/limits",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/limits",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"limits"
@@ -5527,7 +5780,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -5560,11 +5813,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/limits/:limitId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"limits",
@@ -5877,7 +6135,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -5895,11 +6153,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards"
 									]
 								},
@@ -6070,7 +6333,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -6088,11 +6351,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards/:cardId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards/:cardId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards",
 										":cardId"
 									],
@@ -6340,7 +6608,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -6358,11 +6626,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/cards",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/cards",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"cards"
@@ -6627,7 +6900,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -6664,11 +6937,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/cards",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/cards",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"cards"
@@ -6982,7 +7260,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -7005,11 +7283,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards/:cardId/deactivate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards/:cardId/deactivate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards",
 										":cardId",
 										"deactivate"
@@ -7281,7 +7564,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -7304,11 +7587,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards/:cardId/activate",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards/:cardId/activate",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards",
 										":cardId",
 										"activate"
@@ -7575,7 +7863,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -7594,11 +7882,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards/:cardId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards/:cardId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards",
 										":cardId"
 									],
@@ -7849,7 +8142,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -7867,11 +8160,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/transactions/:transactionId",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/transactions/:transactionId",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"transactions",
 										":transactionId"
 									],
@@ -8119,7 +8417,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -8137,11 +8435,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountId/transactions",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/transactions",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"accounts",
 										":accountId",
 										"transactions"
@@ -8393,7 +8696,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{bearerToken}}",
+											"value": "",
 											"type": "string"
 										}
 									]
@@ -8411,11 +8714,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/cards/:cardId/transactions",
+									"raw": "https://api.sandbox.offblocks.xyz/v1/cards/:cardId/transactions",
+									"protocol": "https",
 									"host": [
-										"{{baseUrl}}"
+										"api",
+										"sandbox",
+										"offblocks",
+										"xyz"
 									],
 									"path": [
+										"v1",
 										"cards",
 										":cardId",
 										"transactions"
