@@ -1658,6 +1658,10 @@ components:
     
     TransactionMetadata:
       type: object
+      required:
+        - transactionType
+        - authCode
+        - merchant
       description: Metadata related to the transaction
       properties: 
         transactionType:
@@ -1677,24 +1681,34 @@ components:
           description: Card authorisation number
           examples: ["123456"]
         merchant:
-          type: object
-          description: Merchant information
-          properties: 
-            id:
-              type: string
-              description: ID of the merchant
-            name:
-              type: string
-              description: Name of the merchant
-            mcc:
-              type: integer
-              description: Merchant Category Code
-            country:
-              type: string
-              description: Country code of the merchant location (ISO 3166-1)
-            city:
-              type: string
-              description: City of the merchant location
+          $ref: '#/components/schemas/Merchant'
+
+    Merchant:
+      type: object
+      required:
+        - id
+        - name
+        - mcc
+        - country
+        - city
+      description: Merchant information
+      properties: 
+        id:
+          type: string
+          description: ID of the merchant
+        name:
+          type: string
+          description: Name of the merchant
+        mcc:
+          type: integer
+          description: Merchant Category Code
+        country:
+          type: string
+          description: Country code of the merchant location (ISO 3166-1)
+        city:
+          type: string
+          description: City of the merchant location
+
     Authorisation:
       required:
         - id
