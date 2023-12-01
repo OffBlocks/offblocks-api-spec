@@ -709,10 +709,8 @@ paths:
                   description: Token contract address
                   $ref: '#/components/schemas/BlockchainAddress'
                 amount:
-                  type: string
-                  format: decimal
                   description: Token amount expressed as a decimal
-                  examples: ["10.0"]
+                  $ref: '#/components/schemas/Decimal'
                 period:
                   type: string
                   description: Period for spending limit reset
@@ -1473,10 +1471,8 @@ components:
           description: Token contract address
           $ref: '#/components/schemas/BlockchainAddress'
         amount:
-          type: string
-          format: decimal
           description: Token amount expressed as a decimal number
-          examples: ["10.0"]
+          $ref: '#/components/schemas/Decimal'
         period:
           type: string
           description: Period for spending limit reset
@@ -1623,17 +1619,19 @@ components:
           type: string
           description: Transaction status
           enum:
-            - INITIATING
-            - PENDING
-            - AUTHORISED
-            - REJECTED
-            - CLEARED
-            - REVERSED
-            - COMPLETED
+          - INITIATING
+          - AUTHORISING
+          - AUTHORISED
+          - REJECTED
+          - PROCESSING
+          - CLEARED
+          - REVERSED
+          - COMPLETED
+          - REFUNDED
+          - DISPUTED
         amount:
-          type: integer
-          description: Transaction amount expressed in minor units according to ISO-4217
-          examples: [125700]
+          description: Transaction amount expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
         currency:
           type: string
           description: Currency of the transaction (ISO-4217)
@@ -1642,41 +1640,10 @@ components:
           description: Token contract address
           $ref: '#/components/schemas/BlockchainAddress'
         tokenAmount:
-          type: string
-          format: decimal
           description: Token amount expressed as a decimal number
-          examples: ["10.0"]
+          $ref: '#/components/schemas/Decimal'
         meta:
-          type: object
-          description: Metadata related to the transaction
-          properties: 
-            direction:
-              type: string
-              description: Direction of the transaction
-              enum:
-                - DEBIT
-                - CREDIT
-                - NOOP
-            exchangeRate:
-              type: integer
-              description: Exchange rate for transaction if currency is different to account currency expressed in minor units
-              examples: [125]
-            merchant:
-              type: object
-              description: Merchant information
-              properties: 
-                name:
-                  type: string
-                  description: Name of the merchant
-                mcc:
-                  type: string
-                  description: Merchant Category Code
-                country:
-                  type: string
-                  description: Country code of the merchant location (ISO 3166-1)
-                city:
-                  type: string
-                  description: City of the merchant location
+          $ref: '#/components/schemas/TransactionMetadata'
         createdAt:
           type: string
           format: date-time
@@ -1688,7 +1655,46 @@ components:
     TransactionId:
       description: Unique transaction ID
       $ref: '#/components/schemas/UUID'
-
+    
+    TransactionMetadata:
+      type: object
+      description: Metadata related to the transaction
+      properties: 
+        transactionType:
+          type: string
+          description: Type of the transaction
+          enum:
+            - PURCHASE
+            - DEPOSIT
+            - REFUND
+            - WITHDRAWAL
+            - OTHER
+        exchangeRate:
+          description: Exchange rate for transaction if currency is different to account currency expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        authCode:
+          type: string
+          description: Card authorisation number
+          examples: ["123456"]
+        merchant:
+          type: object
+          description: Merchant information
+          properties: 
+            id:
+              type: string
+              description: ID of the merchant
+            name:
+              type: string
+              description: Name of the merchant
+            mcc:
+              type: integer
+              description: Merchant Category Code
+            country:
+              type: string
+              description: Country code of the merchant location (ISO 3166-1)
+            city:
+              type: string
+              description: City of the merchant location
     Authorisation:
       required:
         - id
@@ -1709,7 +1715,7 @@ components:
           $ref: '#/components/schemas/CustomerId'
         status:
           type: string
-          description: Transaction status
+          description: Authorisation status
           enum:
             - PENDING
             - APPROVED
@@ -1719,9 +1725,8 @@ components:
           description: Details of pending authorisation request including requested amount in fiat currency and ERC-20 token
           properties:
             amount:
-              type: integer
-              description: Transaction amount pending authorisation expressed in minor units according to ISO-4217
-              examples: [125700]
+              description: Transaction amount pending authorisation expressed as a decimal number
+              $ref: '#/components/schemas/Decimal'
             currency:
               type: string
               description: Currency of the transaction (ISO-4217)
@@ -1730,41 +1735,10 @@ components:
               description: Token contract address
               $ref: '#/components/schemas/BlockchainAddress'
             tokenAmount:
-              type: string
-              format: decimal
               description: Token amount pending authorisation expressed as a decimal number
-              examples: ["10.0"]
+              $ref: '#/components/schemas/Decimal'
             meta:
-              type: object
-              description: Metadata related to the transaction
-              properties: 
-                direction:
-                  type: string
-                  description: Direction of the transaction
-                  enum:
-                    - DEBIT
-                    - CREDIT
-                    - NOOP
-                exchangeRate:
-                  type: integer
-                  description: Exchange rate for transaction if currency is different to account currency expressed in minor units
-                  examples: [125]
-                merchant:
-                  type: object
-                  description: Merchant information
-                  properties: 
-                    name:
-                      type: string
-                      description: Name of the merchant
-                    mcc:
-                      type: string
-                      description: Merchant Category Code
-                    country:
-                      type: string
-                      description: Country code of the merchant location (ISO 3166-1)
-                    city:
-                      type: string
-                      description: City of the merchant location
+              $ref: '#/components/schemas/TransactionMetadata'
         createdAt:
           type: string
           format: date-time
@@ -1815,7 +1789,7 @@ components:
       properties:
         chainId:
           type: integer
-          description: ID of a target chain in decimal format (eg 137 for Polygon Mainnet)
+          description: ID of a target chain (eg 137 for Polygon Mainnet)
           examples: [137]
         owner:
           description: Address of the EOA signer
@@ -1928,6 +1902,14 @@ components:
       type: string
       format: uuid
 
+    Decimal:
+      type: string
+      format: decimal
+      x-go-type: decimal.Decimal
+      x-go-type-import:
+        path: github.com/shopspring/decimal
+      description: Decimal number
+      examples: ["10.0"]
 
   parameters:
     SignatureHeader:
