@@ -198,7 +198,8 @@ paths:
                 - chainId
               properties:
                 chainId:
-                  $ref: '#/components/schemas/BlockchainAddress'
+                  description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
+                  $ref: '#/components/schemas/BlockchainAccountId'
       responses:
         '201':
           description: Successful operation
@@ -390,37 +391,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerInfo'
-        '400':
-          description: Invalid request
-        '401':
-          description: Not authorised
-        '404':
-          description: Customer not found
-      security:
-        - bearerAuth: []
-  /customers/{customerId}/verification:
-    get:
-      tags:
-        - Customers
-      summary: Retrieve latest customer verification info
-      description: Retrieves customer's verification details
-      operationId: getCustomerVerification
-      parameters:
-        - $ref: '#/components/parameters/SignatureHeader'
-        - $ref: '#/components/parameters/SignatureInputHeader'
-        - name: customerId
-          in: path
-          description: ID of customer to be retrieved
-          required: true
-          schema:
-            $ref: '#/components/schemas/CustomerId'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerVerification'
         '400':
           description: Invalid request
         '401':
@@ -707,7 +677,7 @@ paths:
                   $ref: '#/components/schemas/LimitId'
                 token:
                   description: Token contract address
-                  $ref: '#/components/schemas/BlockchainAddress'
+                  $ref: '#/components/schemas/BlockchainAssetId'
                 amount:
                   description: Token amount expressed as a decimal
                   $ref: '#/components/schemas/Decimal'
@@ -1308,7 +1278,7 @@ components:
           $ref: '#/components/schemas/CustomerId'
         chainId:
           description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
-          $ref: '#/components/schemas/BlockchainAddress'
+          $ref: '#/components/schemas/BlockchainAccountId'
         status:
           type: string
           description: Customer status
@@ -1355,46 +1325,6 @@ components:
           format: date-time
           description: Date customer info was updated (ISO-8601)
 
-    CustomerVerification:
-      type: object
-      required:
-        - level
-        - result
-        - status
-        - provider
-      description: Customer verification details for external KYC verification process
-      properties:
-        url:
-          type: string
-          description: A KYC verification URL redirecting to KYC provider webpage. Not present if customer has already been approved or rejected
-          examples: ["https://api.sumsub.com/idensic/l/#/lPDnIKwzmxPfDohk"]
-        level:
-          type: string
-          description: Customer's verification level
-        result:
-          type: string
-          description: Verification check result
-          enum:
-            - SUCCESS
-            - FAILED
-        status:
-          type: string
-          description: Verification status
-          enum:
-            - INIT
-            - PRECHECKED
-            - QUEUED
-            - PENDING
-            - COMPLETED
-            - ON_HOLD
-        provider:
-          type: string
-          description: KYC verification provider
-          examples: ["SUMSUB"]
-        rejectReason:
-          type: string
-          description: Reason for verification rejection
-
     Account:
       required:
         - id
@@ -1411,7 +1341,7 @@ components:
           $ref: '#/components/schemas/CustomerId'
         chainId:
           description: Unique account ID in a form of a valid on-chain address. This would normally correspond to account's SCA address
-          $ref: '#/components/schemas/BlockchainAddress'
+          $ref: '#/components/schemas/BlockchainAccountId'
         status:
           type: string
           description: Account status
@@ -1469,7 +1399,7 @@ components:
             - INACTIVE
         token:
           description: Token contract address
-          $ref: '#/components/schemas/BlockchainAddress'
+          $ref: '#/components/schemas/BlockchainAssetId'
         amount:
           description: Token amount expressed as a decimal number
           $ref: '#/components/schemas/Decimal'
@@ -1613,8 +1543,8 @@ components:
         customerId:
           $ref: '#/components/schemas/CustomerId'
         chainId:
-          description: Unique transaction ID in a form of a valid transaction hash. Normally, card payment is represented by multiple Ethereum transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
-          $ref: '#/components/schemas/BlockchainHash'
+          description: Unique transaction ID in a form of a valid transaction hash. Normally, card payment is represented by multiple transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
+          $ref: '#/components/schemas/BlockchainTransactionId'
         status:
           type: string
           description: Transaction status
@@ -1638,7 +1568,7 @@ components:
           examples: ["EUR"]
         token:
           description: Token contract address
-          $ref: '#/components/schemas/BlockchainAddress'
+          $ref: '#/components/schemas/BlockchainAssetId'
         tokenAmount:
           description: Token amount expressed as a decimal number
           $ref: '#/components/schemas/Decimal'
@@ -1747,7 +1677,7 @@ components:
               examples: ["EUR"]
             token:
               description: Token contract address
-              $ref: '#/components/schemas/BlockchainAddress'
+              $ref: '#/components/schemas/BlockchainAssetId'
             tokenAmount:
               description: Token amount pending authorisation expressed as a decimal number
               $ref: '#/components/schemas/Decimal'
@@ -1765,32 +1695,21 @@ components:
       description: Unique authorisation ID
       $ref: '#/components/schemas/UUID'
 
-    BlockchainAddress:
-      description: Unique on-chain identifier (address) of the entity
-      oneOf:
-        - $ref: '#/components/schemas/EthereumAddress'
-
-    BlockchainHash:
-      description: Unique on-chain identifier (hash) of the transaction
-      oneOf:
-        - $ref: '#/components/schemas/EthereumHash'
-
-    EthereumAddress:
+    BlockchainAccountId:
+      description: Universal unique on-chain identifier of the account following CAIP-10 specification
       type: string
-      x-go-type: common.Address
-      x-go-type-import:
-        path: github.com/ethereum/go-ethereum/common
-      description: Valid Ethereum address
-      examples: ["0xf806Ab0C6C8c32345644994987B26c99ac002c5D"]
+      examples: ["eip155:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb", "starknet:SN_MAIN:0x02dd1b492765c064eac4039e3841aa5f382773b598097a40073bd8b48170ab57"]
 
-    EthereumHash:
+    BlockchainTransactionId:
+      description: Universal unique on-chain identifier of the transaction with chain identification part following CAIP-2 specification
       type: string
-      x-go-type: common.Hash
-      x-go-type-import:
-        path: github.com/ethereum/go-ethereum/common
-      description: Valid Ethereum hash
-      examples: ["0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f", "0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d", "0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562"]
-    
+      examples: ["eip155:1:0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f", "starknet:SN_MAIN:0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d"]
+
+    BlockchainAseetId:
+      description: Universal unique on-chain identifier of the asset following CAIP-19 specification
+      type: string
+      examples: ["eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f", "starknet:SN_MAIN:0x02dd1b492765c064eac4039e3841aa5f382773b598097a40073bd8b48170ab57"]
+
     UserSignature:
       type: object
       required:

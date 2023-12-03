@@ -9,7 +9,7 @@ id = 1646ffbf-311d-45a7-852e-65d331e33667
 
 [config.relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"26207872-3222055a-103f-4ee7-9d2f-f2d617a9f61d","path":"OffBlocks API 1.0.json","metaData":{"generateCollectionPreferences":"{\"updateCollectionSync\":true}"}}
+files[] = {"id":"31088643-3222055a-103f-4ee7-9d2f-f2d617a9f61d","path":"OffBlocks API 1.0.json","metaData":{"generateCollectionPreferences":"{\"updateCollectionSync\":true}"}}
 
 [config.relations.collections.metaData]
 

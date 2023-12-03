@@ -1420,7 +1420,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"chainId\": \"0x43158f45b5EbD7b1179130130DF00393928C2691\"\n}"
+							"raw": "{\n  \"chainId\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
@@ -2582,7 +2582,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "<string>",
+									"value": "9578ab75-53fe-4a48-a318-b07346964764",
 									"description": "(Required) ID of customer to be updated"
 								}
 							]
@@ -2880,285 +2880,6 @@
 									]
 								},
 								"description": "Updates customer's personal details"
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [],
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "Retrieve latest customer verification info",
-					"id": "2f021cd4-7afa-491b-aa87-dc15f3cf1990",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearerToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) HTTP message signature input",
-								"key": "Signature-Input",
-								"value": "<string>"
-							},
-							{
-								"description": "(Required) HTTP signature",
-								"key": "Signature",
-								"value": "<string>"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/customers/:customerId/verification",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"customers",
-								":customerId",
-								"verification"
-							],
-							"variable": [
-								{
-									"key": "customerId",
-									"value": "<string>",
-									"description": "(Required) ID of customer to be retrieved"
-								}
-							]
-						},
-						"description": "Retrieves customer's verification details"
-					},
-					"response": [
-						{
-							"id": "0b404e39-6742-45d6-94c5-8a1b5fbb408a",
-							"name": "Successful operation",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "https://api.sandbox.offblocks.xyz/v1/customers/:customerId/verification",
-									"protocol": "https",
-									"host": [
-										"api",
-										"sandbox",
-										"offblocks",
-										"xyz"
-									],
-									"path": [
-										"v1",
-										"customers",
-										":customerId",
-										"verification"
-									],
-									"variable": [
-										{
-											"key": "customerId",
-											"value": "<string>",
-											"description": "(Required) ID of customer to be retrieved"
-										}
-									]
-								},
-								"description": "Retrieves customer's verification details"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"level\": \"<string>\",\n  \"result\": \"SUCCESS\",\n  \"status\": \"ON_HOLD\",\n  \"provider\": \"<string>\",\n  \"url\": \"<string>\",\n  \"rejectReason\": \"<string>\"\n}"
-						},
-						{
-							"id": "6b6ca1de-6293-4605-b0c0-b962ef32caba",
-							"name": "Invalid request",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{bearerToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/verification",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"customers",
-										":customerId",
-										"verification"
-									],
-									"variable": [
-										{
-											"key": "customerId",
-											"value": "<string>",
-											"description": "(Required) ID of customer to be retrieved"
-										}
-									]
-								},
-								"description": "Retrieves customer's verification details"
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [],
-							"cookie": [],
-							"body": null
-						},
-						{
-							"id": "0fe47237-2a3f-4744-99c4-d38cf4f32baf",
-							"name": "Not authorised",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{bearerToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/verification",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"customers",
-										":customerId",
-										"verification"
-									],
-									"variable": [
-										{
-											"key": "customerId",
-											"value": "<string>",
-											"description": "(Required) ID of customer to be retrieved"
-										}
-									]
-								},
-								"description": "Retrieves customer's verification details"
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "text",
-							"header": [],
-							"cookie": [],
-							"body": null
-						},
-						{
-							"id": "4a6b6228-6ec0-48d7-a95a-36c075cbc9c6",
-							"name": "Customer not found",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{bearerToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/customers/:customerId/verification",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"customers",
-										":customerId",
-										"verification"
-									],
-									"variable": [
-										{
-											"key": "customerId",
-											"value": "<string>",
-											"description": "(Required) ID of customer to be retrieved"
-										}
-									]
-								},
-								"description": "Retrieves customer's verification details"
 							},
 							"status": "Not Found",
 							"code": 404,
@@ -8371,7 +8092,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"cardId\": \"<uuid>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"token\": \"<string>\",\n  \"tokenAmount\": \"<string>\",\n  \"meta\": {\n    \"direction\": \"NOOP\",\n    \"exchangeRate\": \"<integer>\",\n    \"merchant\": {\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    }\n  }\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"cardId\": \"<uuid>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"token\": \"<string>\",\n  \"tokenAmount\": \"<string>\",\n  \"meta\": {\n    \"direction\": \"NOOP\",\n    \"exchangeRate\": \"<integer>\",\n    \"merchant\": {\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"transactionType\": \"PURCHASE\",\n    \"authCode\": \"<string>\"\n  }\n}"
 						},
 						{
 							"id": "d7607b73-4bf2-48b3-8d70-b1d5ef844951",
@@ -8647,7 +8368,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"DEPOSIT\",\n      \"authCode\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"REFUND\",\n      \"authCode\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
 							"id": "ae9f6647-2eeb-40c5-9e25-be47b0541000",
@@ -8926,7 +8647,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\"\n      }\n    }\n  }\n]"
+							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"OTHER\",\n      \"authCode\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"REVERSED\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"WITHDRAWAL\",\n      \"authCode\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
 							"id": "42b1504f-2495-4cec-a2ce-f34dea1ab227",
