@@ -73,6 +73,7 @@ paths:
                   examples: ["86b59965-6cf1-4633-9148-92848330fd1b"]
                 signingKey:
                   type: string
+                  format: byte
                   description: Base64 encoded public key used for signing requests. Requirements for cryptographic algorithms and more details can be found in our documentation
                   examples: ["LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZZd0VBWUhLb1pJemowQ0FRWUZLNEVFQUFvRFFnQUUzTEw1RldmVFgvL3BJaXNEL0xneFVIT2lxdlFTSUVWTgpGekloOTdLZXBlWk1iZVZsUGd1akZ4Yk5MN2x1ZVhRQnBpUWUzNmZLN0xSbXZNNHdEaWZFTkE9PQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0="]
         required: true
@@ -183,7 +184,7 @@ paths:
       tags:
         - Customers
       summary: Create new customer
-      description: Creates new customer and generates a KYC verification URL
+      description: Creates new customer and generates a cryptographic challenge to verify ownership of blockchain account
       operationId: createCustomer
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
@@ -206,7 +207,9 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Customer'
+                allOf:
+                  - $ref: '#/components/schemas/Customer'
+                  - $ref: '#/components/schemas/OwnerChallenge'
         '400':
           description: Invalid request
         '401':
@@ -260,6 +263,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/challenge:
+    get:
+      tags:
+        - Customers
+      summary: Retrieve customer challenge
+      description: Retrieves challenge to verify customer's ownership of their blockchain account. This operation invalidates any previously issued challenges for the customer
+      operationId: getCustomerChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerChallenge'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Customer not found
+      security:
+        - bearerAuth: []
+  /customers/{customerId}/challenge/sign:
+    post:
+      tags:
+        - Customers
+      summary: Sign previously issued customer challenge
+      description: Signs previously issued challenge to verify customer's ownership of their blockchain account
+      operationId: signCustomerChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OwnerSignature'
+      responses:
+        '204':
+          description: Successful operation
         '400':
           description: Invalid request
         '401':
@@ -404,7 +471,7 @@ paths:
       tags:
         - Accounts
       summary: Create new customer account
-      description: Creates new account for the customer
+      description: Creates new account for the customer and generates a challenge to be signed in order to create a related blockchain account
       operationId: createCustomerAccount
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
@@ -437,15 +504,15 @@ paths:
                   description: Currencies of the account, at least one is required (ISO-4217)
                   items:
                     type: string
-                signature:
-                  $ref: '#/components/schemas/UserSignature'
       responses:
         '201':
           description: Successful operation
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Account'
+                allOf:
+                  - $ref: '#/components/schemas/Account'
+                  - $ref: '#/components/schemas/OwnerChallenge'
         '400':
           description: Invalid request
         '401':
@@ -546,7 +613,7 @@ paths:
       tags:
         - Accounts
       summary: Close account
-      description: Closes account
+      description: Closes account and generates a challenge to be signed in order to delete related blockchain account
       operationId: deleteAccount
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
@@ -558,16 +625,74 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerChallenge'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}/challenge:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve account challenge
+      description: Retrieves challenge to sign account creation or deletion transaction on-chain. This operation invalidates any previously issued challenges for the account
+      operationId: getAccountChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - name: accountId
+          in: path
+          description: ID of account to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerChallenge'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Account not found
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}/challenge/sign:
+    post:
+      tags:
+        - Accounts
+      summary: Sign previously issued account challenge
+      description: Signs previously issued challenge to sign account creation or deletion transaction on-chain
+      operationId: signAccountChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: accountId
+          in: path
+          description: ID of account to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - signature
-              properties:
-                signature:
-                  $ref: '#/components/schemas/UserSignature'
+              $ref: '#/components/schemas/OwnerSignature'
       responses:
         '204':
           description: Successful operation
@@ -648,7 +773,7 @@ paths:
       tags:
         - Accounts
       summary: Create new or update an existing account spending limit
-      description: Creates new spending limit for the account or updates an existing one
+      description: Creates new spending limit for the account or updates an existing one. Generates a challenge to be signed in order to make relevant changes on-chain
       operationId: createOrUpdateAccountLimit
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
@@ -669,7 +794,6 @@ paths:
                 - token
                 - amount
                 - period
-                - sessionKey
                 - signature
               properties:
                 id:
@@ -689,19 +813,15 @@ paths:
                     - WEEKLY
                     - MONTHLY
                     - YEARLY
-                sessionKey:
-                  type: string
-                  description: Base64 encoded session key used to authorise token transfers on customer's behalf
-                  examples: ["MHgwYmZlYjczNDJjMWVhY2IyY2ZjNWFkMWE2YTI1Mzc0MTA3MjA4ZDU4Y2Q1N2UyNzIwNmI4NTY2OWI0MDQ1NWEy"]
-                signature:
-                  $ref: '#/components/schemas/UserSignature'
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Limit'
+                allOf:
+                  - $ref: '#/components/schemas/Limit'
+                  - $ref: '#/components/schemas/OwnerChallenge'
         '400':
           description: Invalid request
         '401':
@@ -765,19 +885,13 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/LimitId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - signature
-              properties:
-                signature:
-                  $ref: '#/components/schemas/UserSignature'
       responses:
-        '204':
+        '200':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerChallenge'
         '400':
           description: Invalid request
         '401':
@@ -786,7 +900,82 @@ paths:
           description: Account not found
       security:
         - bearerAuth: []
-  
+  /accounts/{accountId}/limits/{limitId}/challenge:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve account limit challenge
+      description: Retrieves challenge to sign account limit creation, update or deletion transaction on-chain. This operation invalidates any previously issued challenges for the limit
+      operationId: getAccountLimitChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - name: accountId
+          in: path
+          description: ID of account to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: limitId
+          in: path
+          description: ID for a limit to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/LimitId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerChallenge'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Limit not found
+      security:
+        - bearerAuth: []
+  /accounts/{accountId}/limits/{limitId}/challenge/sign:
+    post:
+      tags:
+        - Accounts
+      summary: Sign previously issued limit challenge
+      description: Signs previously issued challenge to sign account limit creation, update or deletion transaction on-chain
+      operationId: signAccountChallenge
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: accountId
+          in: path
+          description: ID of account to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: limitId
+          in: path
+          description: ID for a limit to be challenged
+          required: true
+          schema:
+            $ref: '#/components/schemas/LimitId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OwnerSignature'
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Limit not found
+      security:
+        - bearerAuth: []
   /accounts/{accountId}/cards:
     post:
       tags:
@@ -1710,30 +1899,39 @@ components:
       type: string
       examples: ["eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f", "starknet:SN_MAIN:0x02dd1b492765c064eac4039e3841aa5f382773b598097a40073bd8b48170ab57"]
 
-    UserSignature:
+    OwnerChallenge:
       type: object
       required:
-        - chainId
-        - owner
-        - r
-        - s
-        - v
-      description: Cryptographic signature generated using customer's EOA private key according to ERC-1271 (ECDSA algorithm). Signature is used for signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
+        - challenge
+      description: Cryptographic challenge generated to be signed by owner's EOA private key according to chain-specific algorithm. Challenge is used for verifying ownership of the account and signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
       properties:
-        chainId:
-          type: integer
-          description: ID of a target chain (eg 137 for Polygon Mainnet)
-          examples: [137]
-        owner:
-          description: Address of the EOA signer
-          $ref: '#/components/schemas/EthereumAddress'
-        r:
-          $ref: '#/components/schemas/EthereumHash'
-        s:
-          $ref: '#/components/schemas/EthereumHash'
-        v:
-          type: integer
-          examples: [28]
+        challenge:
+          type: string
+          format: byte
+          description: Base64 encoded message provided by this API for owner to sign
+          examples: ["LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZZd0VBWUhLb1pJemowQ0FRWUZLNEVFQUFvRFFnQUUzTEw1RldmVFgvL3BJaXNEL0xneFVIT2lxdlFTSUVWTgpGekloOTdLZXBlWk1iZVZsUGd1akZ4Yk5MN2x1ZVhRQnBpUWUzNmZLN0xSbXZNNHdEaWZFTkE9PQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0="]
+
+    OwnerSignature:
+      type: object
+      required:
+        - ownerId
+        - challenge
+        - signature
+      description: Cryptographic signature generated using owner's EOA private key according to chain-specific algorithm. Signature is used for signing on-chain transactions such as creating a new account, authorising a recurring payment or setting up spending limits
+      properties:
+        ownerId:
+          description: Unique signer account ID in a form of a valid on-chain address
+          $ref: '#/components/schemas/BlockchainAccountId'
+        challenge:
+          type: string
+          format: byte
+          description: Original base64 encoded challenge provided by this API for owner to sign
+          examples: ["LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZZd0VBWUhLb1pJemowQ0FRWUZLNEVFQUFvRFFnQUUzTEw1RldmVFgvL3BJaXNEL0xneFVIT2lxdlFTSUVWTgpGekloOTdLZXBlWk1iZVZsUGd1akZ4Yk5MN2x1ZVhRQnBpUWUzNmZLN0xSbXZNNHdEaWZFTkE9PQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0="]
+        signature:
+          type: string
+          format: byte
+          description: Base64 encoded signature
+          examples: ["IfvwaW1eCqLvQaK0/7YjvK8HBGHWHPclHHQWH4L+w6Q3CFS8CjSzq0h8G8AhzTGMc0xRrik3TyvrDm8t1JtL9Bw="]
     
     Webhook:
       type: object

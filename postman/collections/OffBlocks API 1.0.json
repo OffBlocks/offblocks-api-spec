@@ -1505,7 +1505,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"INITIATING\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
 							"id": "281d1026-f410-4572-a6c3-442318547708",
@@ -1632,6 +1632,586 @@
 							"header": [],
 							"cookie": [],
 							"body": null
+						}
+					]
+				},
+				{
+					"name": "Retrieve customer challenge",
+					"id": "9135af0e-197d-4563-be25-88bed6834a82",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/customers/:customerId/challenge",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerId",
+								"challenge"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of customer to be challenged"
+								}
+							]
+						},
+						"description": "Retrieves challenge to verify customer's ownership of their blockchain account. This operation invalidates any previously issued challenges for the customer"
+					},
+					"response": [
+						{
+							"id": "09ff063e-fd01-4b89-9b5a-e49a465adf0e",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"challenge\": \"<string>\"\n}"
+						},
+						{
+							"id": "cf1c144c-1bfa-4743-a75e-82f6a2e3870f",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "cc481d45-63f7-45c1-a0b4-fe4c0bb69e94",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "0fa2f5cf-b0dd-4a43-82de-15ea2acf9208",
+							"name": "Customer not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Sign previously issued customer challenge",
+					"id": "3830e20a-1074-4f3f-bc1e-a0b3748798c2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) Idempotency key (UUID)",
+								"key": "Idempotency-Key",
+								"value": "<uuid>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerId",
+								"challenge",
+								"sign"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of customer to be challenged"
+								}
+							]
+						},
+						"description": "Signs previously issued challenge to verify customer's ownership of their blockchain account"
+					},
+					"response": [
+						{
+							"id": "e93301a1-24c8-495c-9520-ac36dee0c41b",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "6098ee85-71a1-4762-be64-ad63db48ec6d",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "fdff5db9-7452-4fd8-b79c-46d06f7b9964",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "f993375d-bab4-47c4-ac38-0a3d4e01644c",
+							"name": "Customer not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customers",
+										":customerId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "customerId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
 						}
 					]
 				},
@@ -3787,7 +4367,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"INACTIVE\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
 							"id": "a5f44a56-02cb-44ad-b01d-dae28703e314",
@@ -4004,6 +4584,586 @@
 							"header": [],
 							"cookie": [],
 							"body": null
+						}
+					]
+				},
+				{
+					"name": "Retrieve account challenge",
+					"id": "0a577a3a-8d54-428c-83ff-7507873da703",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountId/challenge",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountId",
+								"challenge"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of account to be challenged"
+								}
+							]
+						},
+						"description": "Retrieves challenge to sign account creation or deletion transaction on-chain. This operation invalidates any previously issued challenges for the account"
+					},
+					"response": [
+						{
+							"id": "96ef4e07-d19f-4be8-9f9f-55d1fb2cd38e",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"challenge\": \"<string>\"\n}"
+						},
+						{
+							"id": "c4c2005e-7982-4258-b3a6-969b43b652a7",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "b73e7a78-8410-45bc-8def-bd5cf296942b",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "c9103ba6-cdaf-487a-9121-ffb204e3cecd",
+							"name": "Account not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Sign previously issued account challenge",
+					"id": "1cd4a6ec-7822-478f-94dc-491396b91385",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) Idempotency key (UUID)",
+								"key": "Idempotency-Key",
+								"value": "<uuid>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountId",
+								"challenge",
+								"sign"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of account to be challenged"
+								}
+							]
+						},
+						"description": "Signs previously issued challenge to sign account creation or deletion transaction on-chain"
+					},
+					"response": [
+						{
+							"id": "d1c03c6c-9755-497f-9a80-931dd4f68c70",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "0de79043-5785-4040-8d0f-c8cd26e3f9f3",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "85de1fe3-eca8-4985-92ab-8c7c39c208a0",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "8691af97-8ee6-49cc-9f7a-628bc72656e2",
+							"name": "Account not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
 						}
 					]
 				},
@@ -4679,78 +5839,6 @@
 					},
 					"response": [
 						{
-							"id": "13f82b12-96c6-4e2a-b570-8d382ae09370",
-							"name": "Successful operation",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"description": "(Required) Idempotency key (free format)",
-										"key": "Idempotency-Key",
-										"value": "<string>"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}",
-									"options": {
-										"raw": {
-											"headerFamily": "json",
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId",
-									"protocol": "https",
-									"host": [
-										"api",
-										"sandbox",
-										"offblocks",
-										"xyz"
-									],
-									"path": [
-										"v1",
-										"accounts",
-										":accountId"
-									],
-									"variable": [
-										{
-											"key": "accountId",
-											"value": "<string>",
-											"description": "(Required) ID of account to be closed"
-										}
-									]
-								},
-								"description": "Closes account"
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "text",
-							"header": [],
-							"cookie": [],
-							"body": null
-						},
-						{
 							"id": "f979d547-1bd3-4246-b322-184be23901ac",
 							"name": "Invalid request",
 							"originalRequest": {
@@ -4950,6 +6038,54 @@
 							"header": [],
 							"cookie": [],
 							"body": null
+						},
+						{
+							"id": "ad6aeca8-6783-4cee-9475-d821b640f821",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"challenge\": \"<string>\"\n}"
 						}
 					]
 				},
@@ -5380,7 +6516,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"status\": \"ACTIVE\",\n  \"token\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"period\": \"YEARLY\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}"
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"status\": \"ACTIVE\",\n  \"token\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"period\": \"YEARLY\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
 							"id": "1c442190-3769-4a7a-a274-6b9cfa0d171c",
@@ -5671,85 +6807,6 @@
 					},
 					"response": [
 						{
-							"id": "7cde09d5-f1ea-428f-8c27-0ad31166ee61",
-							"name": "Successful operation",
-							"originalRequest": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "(Required) HTTP signature",
-										"key": "Signature",
-										"value": "<string>"
-									},
-									{
-										"description": "(Required) Idempotency key (free format)",
-										"key": "Idempotency-Key",
-										"value": "<string>"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}",
-									"options": {
-										"raw": {
-											"headerFamily": "json",
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "https://api.sandbox.offblocks.xyz/v1/accounts/:accountId/limits/:limitId",
-									"protocol": "https",
-									"host": [
-										"api",
-										"sandbox",
-										"offblocks",
-										"xyz"
-									],
-									"path": [
-										"v1",
-										"accounts",
-										":accountId",
-										"limits",
-										":limitId"
-									],
-									"variable": [
-										{
-											"key": "accountId",
-											"value": "<string>",
-											"description": "(Required) ID of account to be closed"
-										},
-										{
-											"key": "limitId",
-											"value": "<string>",
-											"description": "(Required) ID for a limit to be created or updated"
-										}
-									]
-								},
-								"description": "Removes account spending limit"
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "text",
-							"header": [],
-							"cookie": [],
-							"body": null
-						},
-						{
 							"id": "287abe6a-c6b7-405d-9618-895e2387a72f",
 							"name": "Invalid request",
 							"originalRequest": {
@@ -5970,6 +7027,693 @@
 							"header": [],
 							"cookie": [],
 							"body": null
+						},
+						{
+							"id": "5c9f5569-3433-47bd-92cb-c810ed539f06",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"challenge\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve account limit challenge",
+					"id": "edc5aa32-4f32-4ffa-9943-cbd25ced50d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountId",
+								"limits",
+								":limitId",
+								"challenge"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of account to be challenged"
+								},
+								{
+									"key": "limitId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID for a limit to be challenged"
+								}
+							]
+						},
+						"description": "Retrieves challenge to sign account limit creation, update or deletion transaction on-chain. This operation invalidates any previously issued challenges for the limit"
+					},
+					"response": [
+						{
+							"id": "8b27f4de-917d-44b2-a0bc-3a6194b87d1a",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"challenge\": \"<string>\"\n}"
+						},
+						{
+							"id": "1109810d-1ceb-4055-aea7-3d458d454a8f",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "f0eeeba8-f192-4f55-bdbb-1a8528e61a3b",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "fec04624-1e51-40d3-b175-a4bc376edff6",
+							"name": "Limit not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Sign previously issued limit challenge",
+					"id": "f4543dd3-7f73-48c0-9aa0-0354382f7129",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) Idempotency key (UUID)",
+								"key": "Idempotency-Key",
+								"value": "<uuid>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge/sign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountId",
+								"limits",
+								":limitId",
+								"challenge",
+								"sign"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID of account to be challenged"
+								},
+								{
+									"key": "limitId",
+									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"description": "(Required) ID for a limit to be challenged"
+								}
+							]
+						},
+						"description": "Signs previously issued challenge to sign account limit creation, update or deletion transaction on-chain"
+					},
+					"response": [
+						{
+							"id": "243fadde-fda5-405b-b4d0-a866d58a5bad",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "3fcb7454-9f0f-4310-946e-67942ef96731",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "8ba8bfd8-ec95-4faf-a89d-0405c3960db6",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "ef360ba3-d802-4040-ba63-4c53c231851f",
+							"name": "Limit not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) Idempotency key (UUID)",
+										"key": "Idempotency-Key",
+										"value": "<uuid>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ownerId\": \"ut consequat ex Ut\",\n  \"challenge\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:accountId/limits/:limitId/challenge/sign",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":accountId",
+										"limits",
+										":limitId",
+										"challenge",
+										"sign"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "limitId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
 						}
 					]
 				}
