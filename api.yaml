@@ -1469,15 +1469,7 @@ components:
           description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
           $ref: '#/components/schemas/BlockchainAccountId'
         status:
-          type: string
-          description: Customer status
-          enum:
-            - INITIATING
-            - VERIFYING
-            - REVIEWING
-            - REJECTED
-            - ACTIVE
-            - INACTIVE
+          $ref: '#/components/schemas/CustomerStatus'
         createdAt:
           type: string
           format: date-time
@@ -1489,6 +1481,16 @@ components:
     CustomerId:
       description: Unique customer ID
       $ref: '#/components/schemas/UUID'
+    CustomerStatus:
+      type: string
+      description: Customer status
+      enum:
+        - INITIATING
+        - VERIFYING
+        - REVIEWING
+        - REJECTED
+        - ACTIVE
+        - INACTIVE
 
     CustomerInfo:
       type: object
@@ -1532,19 +1534,9 @@ components:
           description: Unique account ID in a form of a valid on-chain address. This would normally correspond to account's SCA address
           $ref: '#/components/schemas/BlockchainAccountId'
         status:
-          type: string
-          description: Account status
-          enum:
-            - INITIATING
-            - PENDING
-            - ACTIVE
-            - INACTIVE
-            - CLOSED
+          $ref: '#/components/schemas/AccountStatus'
         type:
-          type: string
-          description: Type of the account
-          enum:
-            - CARD_ACCOUNT
+          $ref: '#/components/schemas/AccountType'
         currencies:
           type: array
           description: Currencies of the account, at least one is required (ISO-4217)
@@ -1561,6 +1553,20 @@ components:
     AccountId:
       description: Unique account ID
       $ref: '#/components/schemas/UUID'
+    AccountStatus:
+      type: string
+      description: Account status
+      enum:
+        - INITIATING
+        - PENDING
+        - ACTIVE
+        - INACTIVE
+        - CLOSED
+    AccountType:
+      type: string
+      description: Type of the account
+      enum:
+        - CARD_ACCOUNT
 
     Limit:
       required:
@@ -1579,13 +1585,7 @@ components:
         accountId:
           $ref: '#/components/schemas/AccountId'
         status:
-          type: string
-          description: Limit status
-          enum:
-            - INITIATING
-            - PENDING
-            - ACTIVE
-            - INACTIVE
+          $ref: '#/components/schemas/LimitStatus'
         token:
           description: Token contract address
           $ref: '#/components/schemas/BlockchainAssetId'
@@ -1593,13 +1593,7 @@ components:
           description: Token amount expressed as a decimal number
           $ref: '#/components/schemas/Decimal'
         period:
-          type: string
-          description: Period for spending limit reset
-          enum:
-            - DAILY
-            - WEEKLY
-            - MONTHLY
-            - YEARLY
+          $ref: '#/components/schemas/LimitPeriod'
         createdAt:
           type: string
           format: date-time
@@ -1611,6 +1605,22 @@ components:
     LimitId:
       description: Unique limit ID
       $ref: '#/components/schemas/UUID'
+    LimitStatus:
+      type: string
+      description: Limit status
+      enum:
+        - INITIATING
+        - PENDING
+        - ACTIVE
+        - INACTIVE
+    LimitPeriod:
+      type: string
+      description: Limit period
+      enum:
+        - DAILY
+        - WEEKLY
+        - MONTHLY
+        - YEARLY
 
     Card:
       required:
@@ -1630,21 +1640,13 @@ components:
         customerId:
           $ref: '#/components/schemas/CustomerId'
         type:
-          type: string
-          description: Type of the card
-          enum:
-            - VIRTUAL
-            - PHYSICAL
+          $ref: '#/components/schemas/CardType'
         name:
           type: string
           description: Name on the card
           examples: ["John Carter"]
         network:
-          type: string
-          description: Network brand of the card
-          enum:
-            - VISA
-            - MASTERCARD
+          $ref: '#/components/schemas/CardNetwork'
         lastFourDigits:
           type: string
           description: Last four digits of card PAN
@@ -1657,18 +1659,7 @@ components:
           $ref: '#/components/schemas/Address'
           description: Billing address of a cardholder
         status:
-          type: string
-          description: Card status
-          enum:
-            - INITIATING
-            - READY_TO_ISSUE
-            - ISSUE_FAILED
-            - ISSUE_PENDING
-            - INACTIVE
-            - ACTIVE
-            - REPORTED
-            - SUSPENDED
-            - TERMINATED
+          $ref: '#/components/schemas/CardStatus'
         createdAt:
           type: string
           format: date-time
@@ -1680,6 +1671,31 @@ components:
     CardId:
       description: Unique card ID
       $ref: '#/components/schemas/UUID'
+    CardStatus:
+      type: string
+      description: Card status
+      enum:
+        - INITIATING
+        - READY_TO_ISSUE
+        - ISSUE_FAILED
+        - ISSUE_PENDING
+        - INACTIVE
+        - ACTIVE
+        - REPORTED
+        - SUSPENDED
+        - TERMINATED
+    CardType:
+      type: string
+      description: Card type
+      enum:
+        - VIRTUAL
+        - PHYSICAL
+    CardNetwork:
+      type: string
+      description: Card network
+      enum:
+        - VISA
+        - MASTERCARD
 
     Address:
       type: object
@@ -1735,19 +1751,7 @@ components:
           description: Unique transaction ID in a form of a valid transaction hash. Normally, card payment is represented by multiple transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
           $ref: '#/components/schemas/BlockchainTransactionId'
         status:
-          type: string
-          description: Transaction status
-          enum:
-          - INITIATING
-          - AUTHORISING
-          - AUTHORISED
-          - REJECTED
-          - PROCESSING
-          - CLEARED
-          - REVERSED
-          - COMPLETED
-          - REFUNDED
-          - DISPUTED
+          $ref: '#/components/schemas/TransactionStatus'
         amount:
           description: Transaction amount expressed as a decimal number
           $ref: '#/components/schemas/Decimal'
@@ -1774,6 +1778,20 @@ components:
     TransactionId:
       description: Unique transaction ID
       $ref: '#/components/schemas/UUID'
+    TransactionStatus:
+      type: string
+      description: Transaction status
+      enum:
+        - INITIATING
+        - AUTHORISING
+        - AUTHORISED
+        - REJECTED
+        - PROCESSING
+        - CLEARED
+        - REVERSED
+        - COMPLETED
+        - REFUNDED
+        - DISPUTED
     
     TransactionMetadata:
       type: object
@@ -1784,14 +1802,7 @@ components:
       description: Metadata related to the transaction
       properties: 
         transactionType:
-          type: string
-          description: Type of the transaction
-          enum:
-            - PURCHASE
-            - DEPOSIT
-            - REFUND
-            - WITHDRAWAL
-            - OTHER
+          $ref: '#/components/schemas/TransactionType'
         exchangeRate:
           description: Exchange rate for transaction if currency is different to account currency expressed as a decimal number
           $ref: '#/components/schemas/Decimal'
@@ -1801,6 +1812,15 @@ components:
           examples: ["123456"]
         merchant:
           $ref: '#/components/schemas/Merchant'
+    TransactionType:
+      type: string
+      description:  Type of the transaction
+      enum:
+        - PURCHASE
+        - DEPOSIT
+        - REFUND
+        - WITHDRAWAL
+        - OTHER
 
     Merchant:
       type: object
@@ -1847,31 +1867,9 @@ components:
         customerId:
           $ref: '#/components/schemas/CustomerId'
         status:
-          type: string
-          description: Authorisation status
-          enum:
-            - PENDING
-            - APPROVED
-            - REJECTED
+          $ref: '#/components/schemas/AuthorisationStatus'
         request:
-          type: object
-          description: Details of pending authorisation request including requested amount in fiat currency and ERC-20 token
-          properties:
-            amount:
-              description: Transaction amount pending authorisation expressed as a decimal number
-              $ref: '#/components/schemas/Decimal'
-            currency:
-              type: string
-              description: Currency of the transaction (ISO-4217)
-              examples: ["EUR"]
-            token:
-              description: Token contract address
-              $ref: '#/components/schemas/BlockchainAssetId'
-            tokenAmount:
-              description: Token amount pending authorisation expressed as a decimal number
-              $ref: '#/components/schemas/Decimal'
-            meta:
-              $ref: '#/components/schemas/TransactionMetadata'
+          $ref: '#/components/schemas/AuthorisationRequest'
         createdAt:
           type: string
           format: date-time
@@ -1883,6 +1881,38 @@ components:
     AuthorisationId:
       description: Unique authorisation ID
       $ref: '#/components/schemas/UUID'
+    AuthorisationStatus:
+      type: string
+      description: Authorisation status
+      enum:
+        - PENDING
+        - APPROVED
+        - REJECTED
+    AuthorisationRequest:
+      required:
+        - amount
+        - currency
+        - token
+        - tokenAmount
+        - meta
+      type: object
+      description: Details of pending authorisation request including requested amount in fiat currency and ERC-20 token
+      properties:
+        amount:
+          description: Transaction amount pending authorisation expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        currency:
+          type: string
+          description: Currency of the transaction (ISO-4217)
+          examples: ["EUR"]
+        token:
+          description: Token contract address
+          $ref: '#/components/schemas/BlockchainAssetId'
+        tokenAmount:
+          description: Token amount pending authorisation expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        meta:
+          $ref: '#/components/schemas/TransactionMetadata'
 
     BlockchainAccountId:
       description: Universal unique on-chain identifier of the account following CAIP-10 specification
