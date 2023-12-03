@@ -1682,7 +1682,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of customer to be challenged"
 								}
 							]
@@ -1945,7 +1945,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of customer to be challenged"
 								}
 							]
@@ -3147,7 +3147,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"address\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/info",
@@ -3162,7 +3162,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "9578ab75-53fe-4a48-a318-b07346964764",
+									"value": "daaa46cd-1ff0-4746-a9f4-dbdcaec9d810",
 									"description": "(Required) ID of customer to be updated"
 								}
 							]
@@ -4264,7 +4264,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\",\n  \"type\": \"CARD_ACCOUNT\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
+							"raw": "{\n  \"type\": \"CARD_ACCOUNT\",\n  \"currencies\": [\n    \"EUR\"\n  ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/accounts",
@@ -4279,7 +4279,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "<string>",
+									"value": "daaa46cd-1ff0-4746-a9f4-dbdcaec9d810",
 									"description": "(Required) ID of customer"
 								}
 							]
@@ -4634,7 +4634,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of account to be challenged"
 								}
 							]
@@ -4897,7 +4897,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of account to be challenged"
 								}
 							]
@@ -6413,7 +6413,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<uuid>\",\n  \"token\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"period\": \"YEARLY\",\n  \"sessionKey\": \"<string>\",\n  \"signature\": {\n    \"chainId\": \"<integer>\",\n    \"owner\": \"<string>\",\n    \"r\": \"<string>\",\n    \"s\": \"<string>\",\n    \"v\": \"<integer>\"\n  }\n}"
+							"raw": "{\n  \"token\": \"eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f\",\n  \"amount\": \"100.0\",\n  \"period\": \"DAILY\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/limits",
@@ -7132,12 +7132,12 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of account to be challenged"
 								},
 								{
 									"key": "limitId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID for a limit to be challenged"
 								}
 							]
@@ -7422,12 +7422,12 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID of account to be challenged"
 								},
 								{
 									"key": "limitId",
-									"value": "cc8a6c05-fb11-ad87-f6c0-29d4e6edec74",
+									"value": "<string>",
 									"description": "(Required) ID for a limit to be challenged"
 								}
 							]
@@ -8511,7 +8511,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
+							"raw": "{\n  \"type\": \"VIRTUAL\",\n  \"billingAddress\": {\n    \"firstLine\": \"1 Text Avenue\",\n    \"city\": \"London\",\n    \"country\": \"GB\",\n    \"postCode\": \"SW1 1AA\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/cards",
