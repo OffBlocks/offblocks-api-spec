@@ -943,7 +943,7 @@ paths:
         - Accounts
       summary: Sign previously issued limit challenge
       description: Signs previously issued challenge to sign account limit creation, update or deletion transaction on-chain
-      operationId: signAccountChallenge
+      operationId: signLimitChallenge
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
