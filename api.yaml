@@ -488,11 +488,9 @@ paths:
           application/json:
             schema:
               type: object
-              required: 
-                - id
+              required:
                 - type
                 - currencies
-                - signature
               properties:
                 type:
                   type: string
@@ -794,7 +792,6 @@ paths:
                 - token
                 - amount
                 - period
-                - signature
               properties:
                 id:
                   description: ID for a limit to be updated
@@ -1486,6 +1483,7 @@ components:
       description: Customer status
       enum:
         - INITIATING
+        - PENDING
         - VERIFYING
         - REVIEWING
         - REJECTED
