@@ -3147,7 +3147,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\"\n  }\n}"
+							"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"dateOfBirth\": \"<date>\",\n  \"address\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/info",
