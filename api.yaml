@@ -1915,16 +1915,25 @@ components:
     BlockchainAccountId:
       description: Universal unique on-chain identifier of the account following CAIP-10 specification
       type: string
+      x-go-type: blockchain.AccountId
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/blockchain
       examples: ["eip155:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb", "starknet:SN_MAIN:0x02dd1b492765c064eac4039e3841aa5f382773b598097a40073bd8b48170ab57"]
 
     BlockchainTransactionId:
       description: Universal unique on-chain identifier of the transaction with chain identification part following CAIP-2 specification
       type: string
+      x-go-type: blockchain.TransactionId
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/blockchain
       examples: ["eip155:1:0xa3847d82245abb63692bded9da859af0b73b1bfd2409502291c39795eb14954f", "starknet:SN_MAIN:0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d"]
 
     BlockchainAssetId:
       description: Universal unique on-chain identifier of the asset following CAIP-19 specification
       type: string
+      x-go-type: blockchain.AssetId
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/blockchain
       examples: ["eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f", "starknet:SN_MAIN:0x02dd1b492765c064eac4039e3841aa5f382773b598097a40073bd8b48170ab57"]
 
     OwnerChallenge:
@@ -2064,9 +2073,9 @@ components:
     Decimal:
       type: string
       format: decimal
-      x-go-type: decimal.Decimal
+      x-go-type: types.Decimal
       x-go-type-import:
-        path: github.com/shopspring/decimal
+        path: github.com/offblocks/offblocks-common/types
       description: Decimal number
       examples: ["10.0"]
 
