@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "3222055a-103f-4ee7-9d2f-f2d617a9f61d",
 		"name": "OffBlocks API 1.0",
+		"description": "OffBlocks API provides endpoints and capabilities covering user (customer) onboarding, account and card management, transaction lifecycle as well as live feed for all entities via webhooks.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_uid": "31088643-3222055a-103f-4ee7-9d2f-f2d617a9f61d"
 	},
