@@ -1602,8 +1602,12 @@ paths:
                   default: true
                   description: Whether to capture the authorisation immediately
       responses:
-        '202':
+        '201':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authorisation'
         '400':
           description: Invalid request
         '401':
