@@ -50,6 +50,8 @@ paths:
           description: Invalid request
         '401':
           description: Invalid credentials
+        '500':
+          description: Internal error
   /auth/signing:
     put:
       tags:
@@ -84,6 +86,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     delete:
@@ -113,6 +117,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /auth/credentials:
@@ -148,6 +154,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     delete:
@@ -177,6 +185,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers:
@@ -197,10 +207,14 @@ paths:
               type: object
               required: 
                 - chainId
+                - externalId
               properties:
                 chainId:
                   description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
                   $ref: '#/components/schemas/BlockchainAccountId'
+                externalId:
+                  description: Unique customer ID in a form of an external identifier. This would normally correspond to customer's ID in your system
+                  type: string
       responses:
         '201':
           description: Successful operation
@@ -214,6 +228,10 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '409':
+          description: Customer already exists
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     get:
@@ -238,6 +256,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}:
@@ -269,6 +289,8 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}/challenge:
@@ -276,7 +298,7 @@ paths:
       tags:
         - Customers
       summary: Retrieve customer challenge
-      description: Retrieves challenge to verify customer's ownership of their blockchain account. This operation invalidates any previously issued challenges for the customer
+      description: Retrieves challenge to verify customer's ownership of their blockchain account
       operationId: getCustomerChallenge
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
@@ -300,6 +322,8 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}/challenge/sign:
@@ -333,6 +357,10 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '409':
+          description: Challenge already signed
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}/deactivate:
@@ -365,6 +393,10 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}/activate:
@@ -397,73 +429,10 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
-      security:
-        - bearerAuth: []
-  /customers/{customerId}/info:
-    get:
-      tags:
-        - Customers
-      summary: Retrieve customer info
-      description: Retrieves customer's personal details
-      operationId: getCustomerInfo
-      parameters:
-        - $ref: '#/components/parameters/SignatureHeader'
-        - $ref: '#/components/parameters/SignatureInputHeader'
-        - name: customerId
-          in: path
-          description: ID of customer to be retrieved
-          required: true
-          schema:
-            $ref: '#/components/schemas/CustomerId'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerInfo'
-        '400':
-          description: Invalid request
-        '401':
-          description: Not authorised
-        '404':
-          description: Customer not found
-      security:
-        - bearerAuth: []
-    put:
-      tags:
-        - Customers
-      summary: Update customer info
-      description: Updates customer's personal details
-      operationId: updateCustomerInfo
-      parameters:
-        - $ref: '#/components/parameters/SignatureHeader'
-        - $ref: '#/components/parameters/SignatureInputHeader'
-        - $ref: '#/components/parameters/IdempotencyKeyHeader'
-        - name: customerId
-          in: path
-          description: ID of customer to be updated
-          required: true
-          schema:
-            $ref: '#/components/schemas/CustomerId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerInfo'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerInfo'
-        '400':
-          description: Invalid request
-        '401':
-          description: Not authorised
-        '404':
-          description: Customer not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /customers/{customerId}/accounts:
@@ -493,10 +462,7 @@ paths:
                 - currencies
               properties:
                 type:
-                  type: string
-                  description: Type of the account
-                  enum:
-                    - CARD_ACCOUNT
+                  $ref: '#/components/schemas/AccountType'
                 currencies:
                   type: array
                   description: Currencies of the account, at least one is required (ISO-4217)
@@ -517,6 +483,8 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     get:
@@ -549,6 +517,8 @@ paths:
           description: Not authorised
         '404':
           description: Customer not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts:
@@ -574,6 +544,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}:
@@ -605,6 +577,8 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     delete:
@@ -612,7 +586,7 @@ paths:
         - Accounts
       summary: Close account
       description: Closes account and generates a challenge to be signed in order to delete related blockchain account
-      operationId: deleteAccount
+      operationId: closeAccount
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
@@ -624,18 +598,18 @@ paths:
           schema:
             $ref: '#/components/schemas/AccountId'
       responses:
-        '200':
+        '204':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OwnerChallenge'
         '400':
           description: Invalid request
         '401':
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/challenge:
@@ -667,6 +641,8 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/challenge/sign:
@@ -700,6 +676,10 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Challenge already signed
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/deactivate:
@@ -732,6 +712,10 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/activate:
@@ -764,6 +748,10 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/limits:
@@ -803,13 +791,8 @@ paths:
                   description: Token amount expressed as a decimal
                   $ref: '#/components/schemas/Decimal'
                 period:
-                  type: string
                   description: Period for spending limit reset
-                  enum:
-                    - DAILY
-                    - WEEKLY
-                    - MONTHLY
-                    - YEARLY
+                  $ref: '#/components/schemas/LimitPeriod'
       responses:
         '200':
           description: Successful operation
@@ -824,7 +807,11 @@ paths:
         '401':
           description: Not authorised
         '404':
-          description: Customer not found
+          description: Account not found
+        '409':
+          description: Limit already exists
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     get:
@@ -857,9 +844,11 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
-  /accounts/{accountId}/limits/{limitId}:
+  /accounts/limits/{limitId}:
     delete:
       tags:
         - Accounts
@@ -870,12 +859,6 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
-        - name: accountId
-          in: path
-          description: ID of account to be closed
-          required: true
-          schema:
-            $ref: '#/components/schemas/AccountId'
         - name: limitId
           in: path
           description: ID for a limit to be deleted
@@ -894,10 +877,14 @@ paths:
         '401':
           description: Not authorised
         '404':
-          description: Account not found
+          description: Limit not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
-  /accounts/{accountId}/limits/{limitId}/challenge:
+  /accounts/limits/{limitId}/challenge:
     get:
       tags:
         - Accounts
@@ -907,12 +894,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
-        - name: accountId
-          in: path
-          description: ID of account to be challenged
-          required: true
-          schema:
-            $ref: '#/components/schemas/AccountId'
         - name: limitId
           in: path
           description: ID for a limit to be challenged
@@ -932,9 +913,11 @@ paths:
           description: Not authorised
         '404':
           description: Limit not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
-  /accounts/{accountId}/limits/{limitId}/challenge/sign:
+  /accounts/limits/{limitId}/challenge/sign:
     post:
       tags:
         - Accounts
@@ -945,12 +928,6 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
-        - name: accountId
-          in: path
-          description: ID of account to be challenged
-          required: true
-          schema:
-            $ref: '#/components/schemas/AccountId'
         - name: limitId
           in: path
           description: ID for a limit to be challenged
@@ -971,6 +948,10 @@ paths:
           description: Not authorised
         '404':
           description: Limit not found
+        '409':
+          description: Challenge already signed
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/cards:
@@ -1000,11 +981,7 @@ paths:
                 - billingAddress
               properties:
                 type:
-                  type: string
-                  description: Type of the card
-                  enum:
-                    - VIRTUAL
-                    - PHYSICAL
+                  $ref: '#/components/schemas/CardType'
                 billingAddress:
                   description: Billing address of a cardholder
                   $ref: '#/components/schemas/Address'
@@ -1024,6 +1001,8 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     get:
@@ -1056,6 +1035,8 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /cards:
@@ -1081,6 +1062,8 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /cards/{cardId}:
@@ -1112,6 +1095,8 @@ paths:
           description: Not authorised
         '404':
           description: Card not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
     delete:
@@ -1139,6 +1124,10 @@ paths:
           description: Not authorised
         '404':
           description: Card not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /cards/{cardId}/deactivate:
@@ -1171,6 +1160,10 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /cards/{cardId}/activate:
@@ -1203,6 +1196,10 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '409':
+          description: Invalid state transition
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /accounts/{accountId}/transactions:
@@ -1236,6 +1233,8 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /cards/{cardId}/transactions:
@@ -1269,6 +1268,8 @@ paths:
           description: Not authorised
         '404':
           description: Card not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /transactions/{transactionId}:
@@ -1300,6 +1301,41 @@ paths:
           description: Not authorised
         '404':
           description: Transaction not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /authorisations/{authorisationId}:
+    get:
+      tags:
+        - Authorisations
+      summary: Retrieve authorisation details
+      description: Retrieves authorisation's details
+      operationId: getAuthorisationDetails
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - name: authorisationId
+          in: path
+          description: ID of the authorisation
+          required: true
+          schema:
+            $ref: '#/components/schemas/AuthorisationId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authorisation'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Authorisation not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /webhooks:
@@ -1403,6 +1439,239 @@ paths:
           description: Not authorised
         '404':
           description: Account not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/customers/{customerId}/verify:
+    patch:
+      tags:
+        - Simulator
+      summary: Verify customer
+      description: Simulates customer verification success
+      operationId: simulateVerifyCustomer
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be verified
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Customer not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/customers/{customerId}/reject:
+    patch:
+      tags:
+        - Simulator
+      summary: Reject customer
+      description: Simulates customer verification rejection
+      operationId: simulateRejectCustomer
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: customerId
+          in: path
+          description: ID of customer to be rejected
+          required: true
+          schema:
+            $ref: '#/components/schemas/CustomerId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Customer not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/cards/{cardId}/issue:
+    patch:
+      tags:
+        - Simulator
+      summary: Issue card
+      description: Simulates card issuing success
+      operationId: simulateIssueCard
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: cardId
+          in: path
+          description: ID of card to be issued
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Card not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/cards/{cardId}/fail:
+    patch:
+      tags:
+        - Simulator
+      summary: Fail card issuance
+      description: Simulates card issuing failure
+      operationId: simulateCardFail
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: cardId
+          in: path
+          description: ID of card to be failed
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Card not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/cards/{cardId}/authorisation:
+    post:
+      tags:
+        - Simulator
+      summary: Initiate card authorisation
+      description: Simulates card authorisation
+      operationId: simulateCardAuthorisation
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: cardId
+          in: path
+          description: ID of card
+          required: true
+          schema:
+            $ref: '#/components/schemas/CardId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+                - currency
+                - capture
+              properties:
+                amount:
+                  description: Amount to be authorised
+                  $ref: '#/components/schemas/Decimal'
+                currency:
+                  type: string
+                  description: Authorisation currency (ISO-4217)
+                  examples: ["EUR"]
+                capture:
+                  type: boolean
+                  default: true
+                  description: Whether to capture the authorisation immediately
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Card not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/authorisations/{authorisationId}/capture:
+    patch:
+      tags:
+        - Simulator
+      summary: Capture card authorisation
+      description: Simulates card authorisation capture
+      operationId: simulateCardAuthorisationCapture
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: authorisationId
+          in: path
+          description: ID of authorisation to be captured
+          required: true
+          schema:
+            $ref: '#/components/schemas/AuthorisationId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Authorisation not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /simulator/authorisations/{authorisationId}/release:
+    patch:
+      tags:
+        - Simulator
+      summary: Release card authorisation
+      description: Simulates card authorisation release
+      operationId: simulateCardAuthorisationRelease
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - name: authorisationId
+          in: path
+          description: ID of authorisation to be released
+          required: true
+          schema:
+            $ref: '#/components/schemas/AuthorisationId'
+      responses:
+        '202':
+          description: Successful operation
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Authorisation not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
 webhooks:
@@ -1455,6 +1724,8 @@ components:
     Customer:
       required:
         - id
+        - externalId
+        - chainId
         - status
         - createdAt
         - updatedAt
@@ -1462,18 +1733,19 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/CustomerId'
+        externalId:
+          type: string
+          description: Unique customer ID in a form of an external ID
         chainId:
           description: Unique customer ID in a form of a valid on-chain address. This would normally correspond to customer's EOA wallet address
           $ref: '#/components/schemas/BlockchainAccountId'
         status:
           $ref: '#/components/schemas/CustomerStatus'
         createdAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this customer was created (ISO-8601)
         updatedAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this customer was updated (ISO-8601)
     CustomerId:
       description: Unique customer ID
@@ -1482,16 +1754,19 @@ components:
       type: string
       description: Customer status
       enum:
-        - INITIATING
-        - PENDING
-        - VERIFYING
-        - REVIEWING
-        - REJECTED
-        - ACTIVE
-        - INACTIVE
+        - initiating
+        - screening
+        - verifying
+        - rejected
+        - active
+        - inactive
 
     CustomerInfo:
       type: object
+      required:
+        - name
+        - dateOfBirth
+        - address
       properties:
         name:
           type: string
@@ -1509,10 +1784,6 @@ components:
           description: The date of birth of the customer, in YYYY-MM-DD format.
         address:
           $ref: '#/components/schemas/Address'
-        updatedAt:
-          type: string
-          format: date-time
-          description: Date customer info was updated (ISO-8601)
 
     Account:
       required:
@@ -1541,12 +1812,10 @@ components:
           items:
             type: string
         createdAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this account was created (ISO-8601)
         updatedAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this account was updated (ISO-8601)
     AccountId:
       description: Unique account ID
@@ -1555,16 +1824,17 @@ components:
       type: string
       description: Account status
       enum:
-        - INITIATING
-        - PENDING
-        - ACTIVE
-        - INACTIVE
-        - CLOSED
+        - initiating
+        - pending
+        - active
+        - inactive
+        - closed
+        - failed
     AccountType:
       type: string
       description: Type of the account
       enum:
-        - CARD_ACCOUNT
+        - card_account
 
     Limit:
       required:
@@ -1593,12 +1863,10 @@ components:
         period:
           $ref: '#/components/schemas/LimitPeriod'
         createdAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this limit was created (ISO-8601)
         updatedAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this limit was updated (ISO-8601)
     LimitId:
       description: Unique limit ID
@@ -1607,24 +1875,24 @@ components:
       type: string
       description: Limit status
       enum:
-        - INITIATING
-        - PENDING
-        - ACTIVE
-        - INACTIVE
+        - initiating
+        - pending
+        - updating
+        - active
+        - deleting
+        - deleted
+        - failed
     LimitPeriod:
       type: string
       description: Limit period
       enum:
-        - DAILY
-        - WEEKLY
-        - MONTHLY
-        - YEARLY
+        - daily
+        - monthly
 
     Card:
       required:
         - id
         - accountId
-        - customerId
         - type
         - status
         - createdAt
@@ -1635,8 +1903,6 @@ components:
           $ref: '#/components/schemas/CardId'
         accountId:
           $ref: '#/components/schemas/AccountId'
-        customerId:
-          $ref: '#/components/schemas/CustomerId'
         type:
           $ref: '#/components/schemas/CardType'
         name:
@@ -1645,10 +1911,10 @@ components:
           examples: ["John Carter"]
         network:
           $ref: '#/components/schemas/CardNetwork'
-        lastFourDigits:
+        maskedPan:
           type: string
-          description: Last four digits of card PAN
-          examples: ["4019"]
+          description: Card PAN masked according to regulations
+          examples: ["530518******9871"]
         expirationDate:
           type: string
           description: Expiration date of the card in MM/YYYY format
@@ -1659,12 +1925,10 @@ components:
         status:
           $ref: '#/components/schemas/CardStatus'
         createdAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this card was created (ISO-8601)
         updatedAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this card was updated (ISO-8601)
     CardId:
       description: Unique card ID
@@ -1673,27 +1937,25 @@ components:
       type: string
       description: Card status
       enum:
-        - INITIATING
-        - READY_TO_ISSUE
-        - ISSUE_FAILED
-        - ISSUE_PENDING
-        - INACTIVE
-        - ACTIVE
-        - REPORTED
-        - SUSPENDED
-        - TERMINATED
+        - issuing
+        - issue_failed
+        - active
+        - inactive
+        - blocked
+        - suspended
+        - terminated
     CardType:
       type: string
       description: Card type
       enum:
-        - VIRTUAL
-        - PHYSICAL
+        - virtual
+        - physical
     CardNetwork:
       type: string
       description: Card network
       enum:
-        - VISA
-        - MASTERCARD
+        - visa
+        - mastercard
 
     Address:
       type: object
@@ -1727,99 +1989,6 @@ components:
           description: Postal or ZIP code
           examples: ["NW6 2FG"]
 
-    Transaction:
-      required:
-        - id
-        - accountId
-        - customerId
-        - status
-        - createdAt
-        - updatedAt
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/TransactionId'
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        cardId:
-          $ref: '#/components/schemas/CardId'
-        customerId:
-          $ref: '#/components/schemas/CustomerId'
-        chainId:
-          description: Unique transaction ID in a form of a valid transaction hash. Normally, card payment is represented by multiple transactions, however for best consistency we use the first transaction hash (outgoing transaction from customer's SCA) to represent an entire payment transaction
-          $ref: '#/components/schemas/BlockchainTransactionId'
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        amount:
-          description: Transaction amount expressed as a decimal number
-          $ref: '#/components/schemas/Decimal'
-        currency:
-          type: string
-          description: Currency of the transaction (ISO-4217)
-          examples: ["EUR"]
-        token:
-          description: Token contract address
-          $ref: '#/components/schemas/BlockchainAssetId'
-        tokenAmount:
-          description: Token amount expressed as a decimal number
-          $ref: '#/components/schemas/Decimal'
-        meta:
-          $ref: '#/components/schemas/TransactionMetadata'
-        createdAt:
-          type: string
-          format: date-time
-          description: Date this transaction was created (ISO-8601)
-        updatedAt:
-          type: string
-          format: date-time
-          description: Date this transaction was updated (ISO-8601)
-    TransactionId:
-      description: Unique transaction ID
-      $ref: '#/components/schemas/UUID'
-    TransactionStatus:
-      type: string
-      description: Transaction status
-      enum:
-        - INITIATING
-        - AUTHORISING
-        - AUTHORISED
-        - REJECTED
-        - PROCESSING
-        - CLEARED
-        - REVERSED
-        - COMPLETED
-        - REFUNDED
-        - DISPUTED
-    
-    TransactionMetadata:
-      type: object
-      required:
-        - transactionType
-        - authCode
-        - merchant
-      description: Metadata related to the transaction
-      properties: 
-        transactionType:
-          $ref: '#/components/schemas/TransactionType'
-        exchangeRate:
-          description: Exchange rate for transaction if currency is different to account currency expressed as a decimal number
-          $ref: '#/components/schemas/Decimal'
-        authCode:
-          type: string
-          description: Card authorisation number
-          examples: ["123456"]
-        merchant:
-          $ref: '#/components/schemas/Merchant'
-    TransactionType:
-      type: string
-      description:  Type of the transaction
-      enum:
-        - PURCHASE
-        - DEPOSIT
-        - REFUND
-        - WITHDRAWAL
-        - OTHER
-
     Merchant:
       type: object
       required:
@@ -1846,12 +2015,142 @@ components:
           type: string
           description: City of the merchant location
 
+    Fee:
+      type: object
+      required:
+        - type
+        - tokenAmount
+      description: Fee information for token transactions
+      properties: 
+        type:
+          $ref: '#/components/schemas/FeeType'
+        tokenAmount:
+          description: Token amount expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+
+    FeeType:
+      type: string
+      description: Fee type
+      enum:
+        - partner
+        - service
+        - network
+
+    ChainTransaction:
+      type: object
+      required:
+        - chainId
+        - createdAt
+      properties:
+        chainId:
+          description: Unique transaction ID on-chain
+          $ref: '#/components/schemas/BlockchainTransactionId'
+        createdAt:
+          $ref: '#/components/schemas/DateTime'
+          description: Date this transaction was created (ISO-8601)
+
+    Transaction:
+      required:
+        - id
+        - accountId
+        - status
+        - direction
+        - amount
+        - currency
+        - merchantAmount
+        - merchantCurrency
+        - exchangeRate
+        - merchant
+        - tokenAmount
+        - token
+        - fees
+        - chainTransactions
+        - createdAt
+        - updatedAt
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/TransactionId'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        cardId:
+          $ref: '#/components/schemas/CardId'
+        authorisationId:
+          $ref: '#/components/schemas/AuthorisationId'
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        direction:
+          $ref: '#/components/schemas/TransactionDirection'
+        amount:
+          description: Transaction amount expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        currency:
+          type: string
+          description: Currency of the transaction (ISO-4217)
+          examples: ["EUR"]
+        merchantAmount:
+          description: Total authorised amount in origin (merchant) currency expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        merchantCurrency:
+          type: string
+          description: Origin currency of the merchant (ISO-4217)
+          examples: ["EUR"]
+        exchangeRate:
+          description: Exchange rate for authorisation if merchant currency is different to account currency expressed as a decimal number. If merchant currency is the same as account currency, exchange rate is 1.0
+          $ref: '#/components/schemas/Decimal'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        tokenAmount:
+          description: Token amount expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        token:
+          description: Token contract address
+          $ref: '#/components/schemas/BlockchainAssetId'
+        fees:
+          type: array
+          description: Fees for the transaction
+          items:
+            $ref: '#/components/schemas/Fee'
+        chainTransactions:
+          type: array
+          description: On-chain transactions associated with this transaction
+          items:
+            $ref: '#/components/schemas/ChainTransaction'
+        createdAt:
+          $ref: '#/components/schemas/DateTime'
+          description: Date this transaction was created (ISO-8601)
+        updatedAt:
+          $ref: '#/components/schemas/DateTime'
+          description: Date this transaction was updated (ISO-8601)
+    TransactionId:
+      description: Unique transaction ID
+      $ref: '#/components/schemas/UUID'
+    TransactionStatus:
+      type: string
+      description: Transaction status
+      enum:
+        - processing
+        - processed
+        - reversing
+        - reversed
+    TransactionDirection:
+      type: string
+      description: Direction of the transaction
+      enum:
+        - debit
+        - credit
+
     Authorisation:
       required:
         - id
         - accountId
-        - customerId
         - status
+        - amount
+        - currency
+        - merchantAmount
+        - merchantCurrency
+        - exchangeRate
+        - merchant
         - createdAt
         - updatedAt
       type: object
@@ -1862,19 +2161,32 @@ components:
           $ref: '#/components/schemas/AccountId'
         cardId:
           $ref: '#/components/schemas/CardId'
-        customerId:
-          $ref: '#/components/schemas/CustomerId'
         status:
           $ref: '#/components/schemas/AuthorisationStatus'
-        request:
-          $ref: '#/components/schemas/AuthorisationRequest'
-        createdAt:
+        amount:
+          description: Total authorised amount expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        currency:
           type: string
-          format: date-time
+          description: Currency of the account (ISO-4217)
+          examples: ["EUR"]
+        merchantAmount:
+          description: Total authorised amount in origin (merchant) currency expressed as a decimal number
+          $ref: '#/components/schemas/Decimal'
+        merchantCurrency:
+          type: string
+          description: Origin currency of the merchant (ISO-4217)
+          examples: ["EUR"]
+        exchangeRate:
+          description: Exchange rate for authorisation if merchant currency is different to account currency expressed as a decimal number. If merchant currency is the same as account currency, exchange rate is 1.0
+          $ref: '#/components/schemas/Decimal'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        createdAt:
+          $ref: '#/components/schemas/DateTime'
           description: Date this authorisation was created (ISO-8601)
         updatedAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this authorisation was updated (ISO-8601)
     AuthorisationId:
       description: Unique authorisation ID
@@ -1883,34 +2195,11 @@ components:
       type: string
       description: Authorisation status
       enum:
-        - PENDING
-        - APPROVED
-        - REJECTED
-    AuthorisationRequest:
-      required:
-        - amount
-        - currency
-        - token
-        - tokenAmount
-        - meta
-      type: object
-      description: Details of pending authorisation request including requested amount in fiat currency and ERC-20 token
-      properties:
-        amount:
-          description: Transaction amount pending authorisation expressed as a decimal number
-          $ref: '#/components/schemas/Decimal'
-        currency:
-          type: string
-          description: Currency of the transaction (ISO-4217)
-          examples: ["EUR"]
-        token:
-          description: Token contract address
-          $ref: '#/components/schemas/BlockchainAssetId'
-        tokenAmount:
-          description: Token amount pending authorisation expressed as a decimal number
-          $ref: '#/components/schemas/Decimal'
-        meta:
-          $ref: '#/components/schemas/TransactionMetadata'
+        - pending
+        - capturing
+        - captured
+        - releasing
+        - released
 
     BlockchainAccountId:
       description: Universal unique on-chain identifier of the account following CAIP-10 specification
@@ -1991,8 +2280,7 @@ components:
           items:
             $ref: '#/components/schemas/EntityUpdateType'
         createdAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/DateTime'
           description: Date this webhook was created (ISO-8601)
     WebhookId:
       description: Unique webhook ID
@@ -2002,11 +2290,11 @@ components:
       type: string
       description: Entity type
       enum:
-        - CUSTOMER
-        - ACCOUNT
-        - CARD
-        - AUTHORISATION
-        - TRANSACTION
+        - customer
+        - account
+        - card
+        - authorisation
+        - transaction
 
     EntityUpdate:
       type: object
@@ -2069,6 +2357,9 @@ components:
     UUID:
       type: string
       format: uuid
+      x-go-type: types.UUID
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/types
 
     Decimal:
       type: string
@@ -2078,6 +2369,14 @@ components:
         path: github.com/offblocks/offblocks-common/types
       description: Decimal number
       examples: ["10.0"]
+
+    DateTime:
+      type: string
+      format: date-time
+      x-go-type: types.Time
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/types
+      description: ISO-8601 timestamp
 
   parameters:
     SignatureHeader:
