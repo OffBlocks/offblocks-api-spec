@@ -1339,12 +1339,38 @@ paths:
       security:
         - bearerAuth: []
   /webhooks:
+    get:
+      tags:
+        - Webhooks
+      summary: Retrieve all active webhooks
+      description: Retrieves all active webhooks
+      operationId: getWebhooks
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
     put:
       tags:
         - Webhooks
       summary: Create new or update an existing webhook
       description: Creates new webhook subscription or updates an existing one
-      operationId: createOrUpdateWebhook
+      operationId: saveWebhook
       parameters:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
@@ -1354,23 +1380,21 @@ paths:
           application/json:
             schema:
               type: object
-              required: 
-                - id
+              required:
                 - callbackUrl
-                - scopes
+                - types
               properties:
                 id:
-                  description: Unique ID of the webhook to be created or updated
+                  description: Unique ID of the webhook to be updated
                   $ref: '#/components/schemas/WebhookId'
                 callbackUrl:
-                  type: string
+                  $ref: '#/components/schemas/URL'
                   description: URL to be subscribed for receiving events
-                  examples: ["https://example.com/callback"]
-                scopes:
+                types:
                   type: array
-                  description: Scopes for events to be received by the callback
+                  description: Types of events to be received by the callback
                   items:
-                    $ref: '#/components/schemas/EntityUpdateType'
+                    $ref: '#/components/schemas/WebhookType'
       callbacks:
         webhook:
           '{$request.body#/callbackUrl}':
@@ -1383,14 +1407,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      oneOf: 
-                        - $ref: "#/components/schemas/CustomerUpdate"
-                        - $ref: "#/components/schemas/AccountUpdate"
-                        - $ref: "#/components/schemas/CardUpdate"
-                        - $ref: "#/components/schemas/AuthorisationUpdate"
-                        - $ref: "#/components/schemas/TransactionUpdate"
-                      discriminator:
-                        propertyName: entityType
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 '200':
                   description: Return a 200 status to indicate that the data was received successfully
@@ -1409,11 +1426,43 @@ paths:
           description: Invalid request
         '401':
           description: Not authorised
-        '404':
-          description: Customer not found
+        '500':
+          description: Internal error
       security:
         - bearerAuth: []
   /webhooks/{webhookId}:
+    get:
+      tags:
+        - Webhooks
+      summary: Retrieve webhook subscription information
+      description: Retrieves webhook subscription information
+      operationId: getWebhook
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - name: webhookId
+          in: path
+          description: ID for a webhook to be retrieved
+          required: true
+          schema:
+            $ref: '#/components/schemas/WebhookId'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Webhook'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '404':
+          description: Webhook not found
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
     delete:
       tags:
         - Webhooks
@@ -1438,7 +1487,7 @@ paths:
         '401':
           description: Not authorised
         '404':
-          description: Account not found
+          description: Webhook not found
         '500':
           description: Internal error
       security:
@@ -1685,18 +1734,11 @@ webhooks:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
       requestBody:
-        description: Updates for entities based on subscribed scope
+        description: Webhook events based on subscribed types
         content:
           application/json:
             schema:
-              oneOf: 
-                - $ref: "#/components/schemas/CustomerUpdate"
-                - $ref: "#/components/schemas/AccountUpdate"
-                - $ref: "#/components/schemas/CardUpdate"
-                - $ref: "#/components/schemas/AuthorisationUpdate"
-                - $ref: "#/components/schemas/TransactionUpdate"
-              discriminator:
-                propertyName: entityType
+              $ref: '#/components/schemas/WebhookEvent'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -2268,86 +2310,90 @@ components:
       required:
         - id
         - callbackUrl
-        - scopes
+        - types
         - createdAt
+        - updatedAt
       description: Webhook details for subscribed callback URL receiving entity update events
       properties:
         id:
           $ref: '#/components/schemas/WebhookId'
         callbackUrl:
-          type: string
+          $ref: '#/components/schemas/URL'
           description: URL to be subscribed for receiving events
-          examples: ["https://example.com/callback"]
-        scopes:
+        types:
           type: array
-          description: Scopes for events to be received by the callback
+          description: Types of events to be received by the callback
           items:
-            $ref: '#/components/schemas/EntityUpdateType'
+            $ref: '#/components/schemas/WebhookType'
         createdAt:
           $ref: '#/components/schemas/DateTime'
           description: Date this webhook was created (ISO-8601)
+        updatedAt:
+          $ref: '#/components/schemas/DateTime'
+          description: Date this webhook was last updated (ISO-8601)
     WebhookId:
       description: Unique webhook ID
       $ref: '#/components/schemas/UUID'
 
-    EntityUpdateType:
+    WebhookType:
       type: string
       description: Entity type
       enum:
-        - customer
-        - account
-        - card
-        - authorisation
-        - transaction
+        - customer.updated
+        - account.updated
+        - card.updated
+        - authorisation.updated
+        - transaction.updated
 
-    EntityUpdate:
+    WebhookEventBase:
       type: object
       required:
-        - entityType
-      description: Event object representing entity update used in webhook callbacks
+        - webhookType
+      description: Event object representing webhook updates used in webhook callbacks
       properties: 
-        entityType:
-          $ref: '#/components/schemas/EntityUpdateType'
+        webhookType:
+          $ref: '#/components/schemas/WebhookType'
+
+    WebhookEvent:
+      description: Event object representing webhook updates used in webhook callbacks
+      oneOf: 
+        - $ref: "#/components/schemas/CustomerUpdate"
+        - $ref: "#/components/schemas/AccountUpdate"
+        - $ref: "#/components/schemas/CardUpdate"
+        - $ref: "#/components/schemas/AuthorisationUpdate"
+        - $ref: "#/components/schemas/TransactionUpdate"
+      discriminator:
+        propertyName: webhookType
   
     CustomerUpdate:
       description: Event object representing customer update used in webhook callbacks
       allOf: 
-        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/WebhookEventBase'
         - $ref: '#/components/schemas/Customer'
   
     AccountUpdate:
       description: Event object representing account update used in webhook callbacks
       allOf: 
-        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/WebhookEventBase'
         - $ref: '#/components/schemas/Account'
   
     CardUpdate:
       description: Event object representing card update used in webhook callbacks
       allOf: 
-        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/WebhookEventBase'
         - $ref: '#/components/schemas/Card'
   
     TransactionUpdate:
       description: Event object representing transaction update used in webhook callbacks
       allOf: 
-        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/WebhookEventBase'
         - $ref: '#/components/schemas/Transaction'
   
     AuthorisationUpdate:
       description: Event object representing authorisation update used in webhook callbacks
       allOf: 
-        - $ref: '#/components/schemas/EntityUpdate'
+        - $ref: '#/components/schemas/WebhookEventBase'
         - $ref: '#/components/schemas/Authorisation'
-    
-    AuthorisationResponse:
-      type: object
-      required:
-        - approved
-      description: Webhook response for relayed payment authorisation logic
-      properties: 
-        approved:
-          type: boolean
-          description: Notifies whether the authorisation should be approved or rejected
 
     EmptyResponse:
       type: object
@@ -2355,7 +2401,6 @@ components:
     
     WebhookResponse:
       oneOf:
-        - $ref: '#/components/schemas/AuthorisationResponse'
         - $ref: '#/components/schemas/EmptyResponse'
 
     UUID:
@@ -2381,6 +2426,15 @@ components:
       x-go-type-import:
         path: github.com/offblocks/offblocks-common/types
       description: ISO-8601 timestamp
+
+    URL:
+      type: string
+      format: uri
+      x-go-type: types.URL
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/types
+      description: URL
+      examples: ["https://example.com/callback"]
 
   parameters:
     SignatureHeader:
