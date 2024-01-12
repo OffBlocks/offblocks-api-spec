@@ -1675,7 +1675,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"chainId\": \"eip155:1:0x43158f45b5EbD7b1179130130DF00393928C2691\",\n  \"externalId\": \"b197bf62-99d3-4734-bc1f-095b9a898f9f\"\n}"
+							"raw": "{\n  \"chainId\": \"eip155:280:0x43158f45b5EbD7b1179130130DF00393928C2691\",\n  \"externalId\": \"b197bf62-99d3-4734-bc1f-095b9a898f9f\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
@@ -13212,7 +13212,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "dad4e121-266b-48eb-880c-77203c26570e",
+				"id": "0a5bb48f-b361-487d-a28d-9fcc0160832f",
 				"type": "text/javascript",
 				"exec": [
 					"const URL = require('url')",
@@ -13288,7 +13288,7 @@
 					"    updateSignature();",
 					"}",
 					"",
-					"pm.sendRequest('https://github.com/OffBlocks/node-http-message-signatures/releases/download/v1.0.5/http-message-signatures.min.js', (err, res) => {",
+					"pm.sendRequest('https://github.com/OffBlocks/node-http-message-signatures/releases/download/v1.2.0/http-message-signatures.min.js', (err, res) => {",
 					"    if (err) {",
 					"        console.log(err)",
 					"    } else {",
@@ -13317,7 +13317,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "936634f3-4719-451e-b1dd-f901aa4dad9d",
+				"id": "562a5d23-9ce0-48a5-8f01-193b909986ec",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -13327,7 +13327,7 @@
 	],
 	"variable": [
 		{
-			"id": "ca201faa-8021-4248-b7c1-f2c7af782ed1",
+			"id": "088ddef3-98d5-4255-b8c8-ee6a619b5a1b",
 			"key": "baseUrl",
 			"value": "https://api.offblocks.xyz/v1",
 			"type": "string"
