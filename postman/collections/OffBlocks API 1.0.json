@@ -1650,6 +1650,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -1673,10 +1678,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"chainId\": \"eip155:280:0x43158f45b5EbD7b1179130130DF00393928C2691\",\n  \"externalId\": \"b197bf62-99d3-4734-bc1f-095b9a898f9f\"\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
 							"host": [
@@ -2256,6 +2257,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -2275,16 +2281,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"ownerId\": \"eip155:280:0x43158f45b5EbD7b1179130131DF00393928C2691\",\n  \"challenge\": \"YmUzNDI0YjItNWExYy00MDg3LWJiZDAtMDVhNWQ4M2RkZTI3\",\n  \"signature\": \"c2lnbmF0dXJl\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
 							"host": [
@@ -4275,6 +4271,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -4298,10 +4299,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"type\": \"card_account\",\n  \"currencies\": [\n    \"EUR\"\n  ]\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/accounts",
 							"host": [
@@ -4964,6 +4961,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -4983,16 +4985,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"ownerId\": \"eip155:280:0x43158f45b5EbD7b1179130131DF00393928C2691\",\n  \"challenge\": \"ZGExYTU2MjUtMTAxNi00ZjM1LTkyYTktOGJlYWRmMGFhNWI0\",\n  \"signature\": \"c2lnbmF0dXJl\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
 							"host": [
@@ -7363,6 +7355,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -7386,10 +7383,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"type\": \"virtual\",\n  \"billingAddress\": {\n    \"firstLine\": \"1 Test Avenue\",\n    \"city\": \"London\",\n    \"country\": \"GB\",\n    \"postCode\": \"SW1 1AA\"\n  }\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/cards",
 							"host": [
@@ -10590,6 +10583,11 @@
 						"method": "PUT",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -10613,10 +10611,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": \"90bd0ad0-4fff-441b-bde2-d52f8d9f19c2\",\n  \"callbackUrl\": \"http://localhost:8888\",\n  \"types\": [\n    \"customer.updated\",\n    \"account.updated\"\n  ]\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/webhooks",
 							"host": [
@@ -12292,6 +12286,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -12311,16 +12310,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"amount\": \"10.0\",\n  \"currency\": \"EUR\",\n  \"capture\": false\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/simulator/cards/:cardId/authorisation",
 							"host": [
@@ -13212,10 +13201,11 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0a5bb48f-b361-487d-a28d-9fcc0160832f",
+				"id": "7c9773a9-2c99-45e6-ad7f-15d083e3e6ad",
 				"type": "text/javascript",
 				"exec": [
 					"const URL = require('url')",
+					"var canonicalize = {};",
 					"",
 					"function updateRequestSignature(httpMessageSignatures) {",
 					"    if (!pm.request.headers.has(\"Signature\")) {",
@@ -13234,8 +13224,7 @@
 					"    const headers = {};",
 					"",
 					"    if (pm.request.body.raw) {",
-					"        var body = JSON.stringify(JSON.parse(pm.variables.replaceIn(pm.request.body).raw));",
-					"        var hash = CryptoJS.SHA512(body);",
+					"        var hash = CryptoJS.SHA512(pm.variables.replaceIn(pm.request.body).raw);",
 					"        var digest = hash.toString(CryptoJS.enc.Base64);",
 					"        headers[\"content-digest\"] = `sha-512=:${digest}:`;",
 					"        fields.push('content-digest');",
@@ -13293,7 +13282,16 @@
 					"        console.log(err)",
 					"    } else {",
 					"        eval(res.text());",
-					"        updateRequestSignature(httpMessageSignatures);",
+					"        pm.sendRequest('https://cdn.jsdelivr.net/npm/canonicalize@2.0.0/lib/canonicalize.min.js', (err, res) => {",
+					"            if (err) {",
+					"                console.log(err)",
+					"            } else {",
+					"                var module = {};",
+					"                eval(res.text());",
+					"                canonicalize = module.exports",
+					"                updateRequestSignature(httpMessageSignatures);",
+					"            }",
+					"        })",
 					"    }",
 					"});",
 					"",
@@ -13317,7 +13315,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "562a5d23-9ce0-48a5-8f01-193b909986ec",
+				"id": "fabd9da8-e6f0-4308-9694-0c06a502287c",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -13327,7 +13325,7 @@
 	],
 	"variable": [
 		{
-			"id": "088ddef3-98d5-4255-b8c8-ee6a619b5a1b",
+			"id": "68aa58ac-7978-40f4-8799-b0abb697d29b",
 			"key": "baseUrl",
 			"value": "https://api.offblocks.xyz/v1",
 			"type": "string"

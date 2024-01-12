@@ -200,6 +200,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
       requestBody:
         content:
           application/json:
@@ -337,6 +338,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
         - name: customerId
           in: path
           description: ID of customer to be challenged
@@ -446,6 +448,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
         - name: customerId
           in: path
           description: ID of customer
@@ -656,6 +659,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
         - name: accountId
           in: path
           description: ID of account to be challenged
@@ -765,6 +769,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
         - name: accountId
           in: path
           description: ID of account
@@ -1175,6 +1180,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
       requestBody:
         content:
           application/json:
@@ -1423,6 +1429,7 @@ paths:
         - $ref: '#/components/parameters/SignatureHeader'
         - $ref: '#/components/parameters/SignatureInputHeader'
         - $ref: '#/components/parameters/IdempotencyKeyHeader'
+        - $ref: '#/components/parameters/ContentDigestHeader'
         - name: cardId
           in: path
           description: ID of card
@@ -2196,6 +2203,13 @@ components:
       name: Signature-Input
       required: true
       description: HTTP message signature input
+      schema:
+        type: string
+    ContentDigestHeader:
+      in: header
+      name: Content-Digest
+      required: true
+      description: Content digest
       schema:
         type: string
     IdempotencyKeyHeader:
