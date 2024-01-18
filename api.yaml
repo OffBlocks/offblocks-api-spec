@@ -189,6 +189,66 @@ paths:
           description: Internal error
       security:
         - bearerAuth: []
+  /chains:
+    get:
+      tags:
+        - Chains
+      summary: Retrieve supported blockchains
+      description: Retrieves supported blockchains
+      operationId: getChains
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blockchain'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
+  /assets:
+    get:
+      tags:
+        - Assets
+      summary: Retrieve supported assets
+      description: Retrieves supported assets
+      operationId: getAssets
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+        - in: query
+          name: chain
+          schema:
+            type: string
+            examples: ["eip155:1", "starknet:SN_MAIN"]
+          description: Optional filter by blockchain
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
   /customers:
     post:
       tags:
@@ -2000,6 +2060,48 @@ components:
         - captured
         - releasing
         - released
+
+    Blockchain:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/BlockchainId'
+        name:
+          type: string
+          description: Name of the blockchain
+          examples: ["Ethereum"]
+
+    Asset:
+      required:
+        - id
+        - blockchain
+        - name
+        - symbol
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/BlockchainAssetId'
+        blockchain:
+          $ref: '#/components/schemas/BlockchainId'
+        name:
+          type: string
+          description: Name of the asset
+          examples: ["Ethereum"]
+        symbol:
+          type: string
+          description: Symbol of the asset
+          examples: ["ETH"]
+
+    BlockchainId:
+      description: Universal unique identifier of the blockchain following CAIP-2 specification
+      type: string
+      x-go-type: blockchain.ChainId
+      x-go-type-import:
+        path: github.com/offblocks/offblocks-common/blockchain
+      examples: ["eip155:1", "starknet:SN_MAIN"]
 
     BlockchainAccountId:
       description: Universal unique on-chain identifier of the account following CAIP-10 specification
