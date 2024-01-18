@@ -12,6 +12,7 @@ tags:
   - name: Cards
   - name: Transactions
   - name: Webhooks
+  - name: Engine
 paths:
   /auth/token:
     post:
@@ -192,7 +193,7 @@ paths:
   /chains:
     get:
       tags:
-        - Chains
+        - Engine
       summary: Retrieve supported blockchains
       description: Retrieves supported blockchains
       operationId: getChains
@@ -219,7 +220,7 @@ paths:
   /assets:
     get:
       tags:
-        - Assets
+        - Engine
       summary: Retrieve supported assets
       description: Retrieves supported assets
       operationId: getAssets
