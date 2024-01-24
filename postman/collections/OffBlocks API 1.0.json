@@ -1650,6 +1650,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -1673,10 +1678,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"chainId\": \"eip155:280:0x43158f45b5EbD7b1179130130DF00393928C2691\",\n  \"externalId\": \"a56e4492-dacf-4782-a671-2c2a6ae891ae\"\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
 							"host": [
@@ -2256,6 +2257,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -2275,16 +2281,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"ownerId\": \"eip155:280:0x43158f45b5EbD7b1179130131DF00393928C2691\",\n  \"challenge\": \"YXBpLnNhbmRib3gub2ZmYmxvY2tzLnh5eiB3YW50cyB5b3UgdG8gc2lnbiBpbiB3aXRoIHlvdXIgRXRoZXJldW0gYWNjb3VudDoKMHg0MzE1OGY0NWI1RWJEN2IxMTc5MTMwMTMwREYwMDM5MzkyOEMyNjkxCgpPZmZCbG9ja3Mgd2FudHMgdG8gdmVyaWZ5IG93bmVyc2hpcCBvZiB5b3VyIHdhbGxldC4gQnkgY29ubmVjdGluZyB5b3VyIHdhbGxldCBhbmQgdXNpbmcgT2ZmQmxvY2tzLCB5b3UgYWdyZWUgdG8gb3VyIFRlcm1zIG9mIHNlcnZpY2VzIGFuZCBQcml2YWN5IFBvbGljeQoKVVJJOiBodHRwczovL2FwaS5zYW5kYm94Lm9mZmJsb2Nrcy54eXoKVmVyc2lvbjogMQpDaGFpbiBJRDogMjgwCk5vbmNlOiA1dWZvaUVxRGFGdm1mbzc4Cklzc3VlZCBBdDogMjAyNC0wMS0xN1QxODoyMTo1M1o=\",\n  \"signature\": \"MHg4M2IxM2RhYjE2MjI3MjAxMWQzMzQ4NDFkZjE5NTQ1MjUwNDI1NjczMjhhZDdjMDVjOTYyYjAwNWVlZDg3MGI2NDhjMjA0ZjBiZmZjZjUyYjM3NTE0MGIwYzg0OTA4ZTQ2MzMyNWIxZGZlNWJiYjAzMjU5NzYyNDgyODM0YWYzNzFi\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
 							"host": [
@@ -4965,6 +4961,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -4984,16 +4985,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"ownerId\": \"eip155:280:0x43158f45b5EbD7b1179130131DF00393928C2691\",\n  \"challenge\": \"NWRmMzU5ZjAtZDI5OS00MGExLTgwMjMtMTdjNzdhNTAxNDRj\",\n  \"signature\": \"c2lnbmF0dXJl\"\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
 							"host": [
@@ -12295,6 +12286,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature",
 								"key": "Signature",
 								"value": "<string>"
@@ -12314,16 +12310,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"amount\": \"20.0\",\n  \"currency\": \"EUR\",\n  \"capture\": true\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/simulator/cards/:cardId/authorisation",
 							"host": [

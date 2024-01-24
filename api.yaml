@@ -2205,9 +2205,13 @@ components:
     WebhookEventBase:
       type: object
       required:
+        - eventId
         - webhookType
       description: Event object representing webhook updates used in webhook callbacks
       properties: 
+        eventId:
+          description: Unique event ID
+          $ref: '#/components/schemas/UUID'
         webhookType:
           $ref: '#/components/schemas/WebhookType'
 
@@ -2221,6 +2225,12 @@ components:
         - $ref: "#/components/schemas/TransactionUpdate"
       discriminator:
         propertyName: webhookType
+        mapping:
+          customer.updated: "#/components/schemas/CustomerUpdate"
+          account.updated: "#/components/schemas/AccountUpdate"
+          card.updated: "#/components/schemas/CardUpdate"
+          authorisation.updated: "#/components/schemas/AuthorisationUpdate"
+          transaction.updated: "#/components/schemas/TransactionUpdate"
   
     CustomerUpdate:
       description: Event object representing customer update used in webhook callbacks
