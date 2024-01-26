@@ -1359,6 +1359,31 @@ paths:
           description: Internal error
       security:
         - bearerAuth: []
+  /webhooks/verification-key:
+    get:
+      tags:
+        - Webhooks
+      summary: Retrieve webhook verification key
+      description: Retrieves webhook verification key
+      operationId: getWebhookVerificationKey
+      parameters:
+        - $ref: '#/components/parameters/SignatureHeader'
+        - $ref: '#/components/parameters/SignatureInputHeader'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationKey'
+        '400':
+          description: Invalid request
+        '401':
+          description: Not authorised
+        '500':
+          description: Internal error
+      security:
+        - bearerAuth: []
   /simulator/customers/{customerId}/verify:
     patch:
       tags:
@@ -2270,6 +2295,21 @@ components:
       oneOf:
         - $ref: '#/components/schemas/EmptyResponse'
 
+    VerificationKey:
+      type: object
+      required:
+        - keyId
+        - key
+      description: Webhook verification key
+      properties:
+        keyId:
+          $ref: '#/components/schemas/UUID'
+          description: Unique ID of verification key
+        key:
+          type: string
+          format: byte
+          description: Base64 encoded public key used for verifying webhook notifications. Requirements for cryptographic algorithms and more details can be found in our documentation
+
     UUID:
       type: string
       format: uuid
@@ -2331,8 +2371,7 @@ components:
       required: true
       description: Idempotency key (UUID)
       schema:
-        type: string
-        format: uuid
+        $ref: '#/components/schemas/UUID'
 
   securitySchemes:
     bearerAuth:

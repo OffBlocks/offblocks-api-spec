@@ -10611,6 +10611,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callbackUrl\": \"https://webhook.site/fcbdc550-bb57-4d5d-9e76-656a0b053fd0\",\n    \"id\": \"c489873c-43ce-45b1-8ebb-d4399f8711a5\",\n    \"types\": [\n        \"customer.updated\",\n        \"account.updated\",\n        \"card.updated\",\n        \"authorisation.updated\",\n        \"transaction.updated\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/webhooks",
 							"host": [
@@ -11143,6 +11152,221 @@
 										{
 											"key": "webhookId"
 										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Retrieve webhook verification key",
+					"id": "a28706ac-b6d8-45ff-adab-e64252c3724c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) HTTP message signature",
+								"key": "Signature",
+								"value": "<string>"
+							},
+							{
+								"description": "(Required) HTTP message signature input",
+								"key": "Signature-Input",
+								"value": "<string>"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/webhooks/verification-key",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"webhooks",
+								"verification-key"
+							]
+						},
+						"description": "Retrieves webhook verification key"
+					},
+					"response": [
+						{
+							"id": "0f0f5baf-5361-456a-9fed-5ec7780aa223",
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/webhooks/verification-key",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"webhooks",
+										"verification-key"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"keyId\": \"ff758253-3f00-8cda-82b7-243ed3d9d88d\",\n  \"key\": \"<string>\"\n}"
+						},
+						{
+							"id": "43a2dc06-128b-42bc-9507-f1ff28d5ecd4",
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/webhooks/verification-key",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"webhooks",
+										"verification-key"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "400f0dfb-33e8-4faa-8950-3c3e9f5a6d43",
+							"name": "Not authorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/webhooks/verification-key",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"webhooks",
+										"verification-key"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "e8568c12-2644-4d59-a615-50088e65bba7",
+							"name": "Internal error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) HTTP message signature",
+										"key": "Signature",
+										"value": "<string>"
+									},
+									{
+										"description": "(Required) HTTP message signature input",
+										"key": "Signature-Input",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/webhooks/verification-key",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"webhooks",
+										"verification-key"
 									]
 								}
 							},
@@ -12310,6 +12534,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": \"10.0\",\n    \"currency\": \"EUR\",\n    \"capture\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/simulator/cards/:cardId/authorisation",
 							"host": [
