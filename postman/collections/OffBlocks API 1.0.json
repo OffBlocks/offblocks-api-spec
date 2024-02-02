@@ -1650,6 +1650,11 @@
 						"method": "POST",
 						"header": [
 							{
+								"description": "(Required) Content digest",
+								"key": "Content-Digest",
+								"value": "<string>"
+							},
+							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -1673,10 +1678,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"chainId\": \"<blockchain-id>\",\n  \"externalId\": \"<external-id>\"\n}"
-						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
 							"host": [
@@ -10648,12 +10649,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"callbackUrl\": \"<url>\",\n    \"types\": [\n        \"customer.updated\",\n        \"account.updated\",\n        \"card.updated\",\n        \"authorisation.updated\",\n        \"transaction.updated\"\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n  \"callbackUrl\": \"<uri>\",\n  \"types\": [\n    \"customer.updated\",\n    \"account.updated\",\n    \"card.updated\",\n    \"authorisation.updated\",\n    \"transaction.updated\"\n  ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/webhooks",
