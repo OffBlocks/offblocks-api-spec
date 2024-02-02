@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "3222055a-103f-4ee7-9d2f-f2d617a9f61d",
+		"_postman_id": "c0b1226f-dcbe-44c8-8eac-d37b00c6ea90",
 		"name": "OffBlocks API 1.0",
 		"description": "OffBlocks API provides endpoints and capabilities covering user (customer) onboarding, account and card management, transaction lifecycle as well as live feed for all entities via webhooks.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "31088643-3222055a-103f-4ee7-9d2f-f2d617a9f61d"
+		"_uid": "31088643-c0b1226f-dcbe-44c8-8eac-d37b00c6ea90"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "Initial Authentication",
-					"id": "0a954abf-d3a2-4b74-943c-ca4cdac7b414",
+					"id": "17452a4e-249b-409c-9700-194f7a776d9a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -52,7 +52,7 @@
 					},
 					"response": [
 						{
-							"id": "381edc5c-80e9-46b6-9ee4-5a9054b0eeea",
+							"id": "e4c61dbb-a93f-46a4-bda8-5225c74c6c98",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "POST",
@@ -96,6 +96,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -106,7 +107,7 @@
 							"body": "{\n  \"token\": \"<string>\",\n  \"expiresAt\": \"<integer>\",\n  \"tokenType\": \"<string>\"\n}"
 						},
 						{
-							"id": "c581e3b8-af18-40f0-b214-c0cc17bfa6f3",
+							"id": "8a4866d6-4915-4238-94b5-d6155f47024e",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "POST",
@@ -145,12 +146,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "0aa18550-9691-4285-8c87-c21c37e1457d",
+							"id": "69d51cf9-ae38-47c8-86a9-3ddde2ac6153",
 							"name": "Invalid credentials",
 							"originalRequest": {
 								"method": "POST",
@@ -189,12 +191,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "18fb9647-d6aa-485d-953e-b7fb8aa6686c",
+							"id": "30d708d6-35c7-49ab-bdfc-f39ecc9eed5d",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -223,6 +226,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -230,7 +234,7 @@
 				},
 				{
 					"name": "Update signing key",
-					"id": "7a169602-7226-469e-985c-119b1dfe1e78",
+					"id": "7a38e473-0011-4763-a4ed-4641b75848bd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -274,7 +278,7 @@
 					},
 					"response": [
 						{
-							"id": "9f687f94-d814-4e3e-afa5-01a0f68f4c38",
+							"id": "19676b47-20a8-47f5-a0af-d91980e191ab",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PUT",
@@ -316,11 +320,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "1de86824-c0fe-4fc7-a411-aa50a089e663",
+							"id": "60272156-3f99-47fc-b5bf-b742b26369e2",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PUT",
@@ -359,11 +364,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "2ef6bfab-3c78-48ea-927d-a919efc48e9b",
+							"id": "047db800-684e-484a-8d0f-e30f823d4eb7",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PUT",
@@ -398,11 +404,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b52cba28-f4cd-4123-ab1c-9d4803a0a40e",
+							"id": "1a1d2fb0-d11a-44f1-994d-091804e4ba5a",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PUT",
@@ -431,6 +438,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -438,7 +446,7 @@
 				},
 				{
 					"name": "Delete signing key",
-					"id": "8334c027-859e-4655-8b79-dddeec22033c",
+					"id": "5cb792c0-40b7-4ccc-81ed-ae9918730995",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -484,7 +492,7 @@
 					},
 					"response": [
 						{
-							"id": "109f901e-112d-42a4-b75f-5f303fd63532",
+							"id": "db986c8b-f0aa-479e-9def-f55281c17e8d",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "DELETE",
@@ -526,11 +534,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "80531afe-e1a8-4334-b206-b8daa79463f1",
+							"id": "82763597-a98f-4563-beb8-a2bdb3e378c6",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "DELETE",
@@ -569,11 +578,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "ca3391f8-c507-4789-93a7-a37746cfcbd2",
+							"id": "37795021-70e8-4331-93d6-ce79feae4603",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "DELETE",
@@ -612,11 +622,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "817329fd-c1c2-4dbc-a2ba-02ff53c7260d",
+							"id": "57979bd5-0474-4228-a983-ea01fc1332da",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "DELETE",
@@ -651,6 +662,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -658,7 +670,7 @@
 				},
 				{
 					"name": "Update API credentials",
-					"id": "96aa30d8-c200-4931-806e-eac535e99a38",
+					"id": "4c60442c-97e8-4e13-bd19-eb32d322ad3f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -704,7 +716,7 @@
 					},
 					"response": [
 						{
-							"id": "480e0e53-71b3-4d79-8c6e-dcc9905a8fa5",
+							"id": "16b59591-8749-481d-baba-e14199711964",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PUT",
@@ -748,11 +760,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "753fbb04-c7d9-45ce-ac2c-94d390261173",
+							"id": "2d4e9ee7-ca8c-41d4-b4c2-b3ea1332a473",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PUT",
@@ -791,11 +804,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "02040ad1-2bad-4558-a7f9-d5c46717ca7f",
+							"id": "8805c173-ef61-4104-9212-e89b7e6f12d4",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PUT",
@@ -834,11 +848,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a72940f1-fb76-4d05-8635-39536124baea",
+							"id": "ec4d757a-b094-4362-b752-0b95422e0dda",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PUT",
@@ -873,6 +888,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -880,7 +896,7 @@
 				},
 				{
 					"name": "Delete API credentials",
-					"id": "1b5e3d75-55aa-4044-97cc-6df559d4f2d0",
+					"id": "0bc8b34f-3506-48d2-be56-9a63cdf16f9a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -926,7 +942,7 @@
 					},
 					"response": [
 						{
-							"id": "99593fbc-2367-45b2-ae9f-fc08e3ec9f1e",
+							"id": "78ae70d0-0ab4-449e-adcc-d7d97ebd74d6",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "DELETE",
@@ -968,11 +984,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "1ec74a46-bdf3-407f-be77-40f5ce904007",
+							"id": "db13ba6c-ae54-423f-912e-04f423c0c405",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "DELETE",
@@ -1011,11 +1028,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "d213bb47-43a2-4d2f-a66f-ca438e0b3c24",
+							"id": "efb51bc8-478d-4864-9ad4-a318ceb3193d",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "DELETE",
@@ -1054,11 +1072,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "794c11aa-a53e-4b9b-b53f-1227294b69df",
+							"id": "d057324e-9777-45b1-b0c4-a6a9f75ecd7d",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "DELETE",
@@ -1093,20 +1112,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "5b5f6c35-4b50-44f3-8eb7-c566256191b5"
+			"id": "e8c5ffde-409f-44bb-9d50-6f3419d4c992"
 		},
 		{
 			"name": "customers",
 			"item": [
 				{
 					"name": "Retrieve customers",
-					"id": "c59d46fb-de01-4c80-8778-c4d8ab1fdae7",
+					"id": "95c9f5da-709e-4b76-a6e5-ef084e7f6722",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1151,7 +1171,7 @@
 					},
 					"response": [
 						{
-							"id": "57b361f1-f920-4183-bc1c-920bd8328ceb",
+							"id": "a8bff6bf-22d5-4241-89bb-9f14a2e7ab53",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -1195,6 +1215,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1205,7 +1226,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"status\": \"inactive\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"chainId\": \"<string>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"status\": \"active\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"externalId\": \"<string>\",\n    \"chainId\": \"<string>\"\n  }\n]"
 						},
 						{
-							"id": "13f24b33-6af6-40ec-b9c6-42df782d2017",
+							"id": "0eef944c-c22a-41b7-aadc-42a4fff17328",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -1244,12 +1265,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "df2f6f11-149a-4fb3-a2d4-cb2a3a397bef",
+							"id": "e2bdac14-a27b-4c63-9794-269dcd5d58f3",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -1288,12 +1310,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "089227bc-95f6-4791-863a-f1224253cebd",
+							"id": "9fb26458-3127-42be-993d-aca49fdcdb70",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -1317,6 +1340,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -1324,7 +1348,7 @@
 				},
 				{
 					"name": "Retrieve customer",
-					"id": "59e910ad-7695-413d-b80c-a721cb6e7fe5",
+					"id": "048eb3d7-2b62-45c9-a645-05f2951a19d6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1377,7 +1401,7 @@
 					},
 					"response": [
 						{
-							"id": "a3f534ce-8e3e-4785-af01-8d51b0f61b78",
+							"id": "710d764d-f790-4407-b3dd-d05c15b6ddcb",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -1429,6 +1453,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1439,7 +1464,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"verifying\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"externalId\": \"<string>\",\n  \"chainId\": \"<string>\"\n}"
 						},
 						{
-							"id": "fffc3baf-51de-4bbe-9b1d-fd117751917b",
+							"id": "4d1d2cab-5555-4554-9e53-b0cb4123dca4",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -1486,12 +1511,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "85657ba4-57a4-4e4a-bf1d-9519dd547b03",
+							"id": "fceaaf86-4636-4c9d-80fc-cd80ba2c8253",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -1538,12 +1564,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "93fd02d5-f759-4eaa-b850-f3f952eb109f",
+							"id": "466e7157-40de-4713-a4a5-eb1fb748fb55",
 							"name": "Customer not found",
 							"originalRequest": {
 								"auth": {
@@ -1590,12 +1617,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "b11e7b11-d5e4-4df0-a1d0-8a04f57878c3",
+							"id": "d7e52851-58d8-43d0-8a7d-cef4738167c7",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -1625,6 +1653,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -1632,7 +1661,7 @@
 				},
 				{
 					"name": "Create new customer",
-					"id": "8ca1b91a-e16d-4745-b9d3-2ae81903e151",
+					"id": "6876e4c3-d72c-46c0-97ac-f6ff73bfa3a9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1691,7 +1720,7 @@
 					},
 					"response": [
 						{
-							"id": "c8860ace-d385-4419-85f7-8ec138146937",
+							"id": "22da3d62-27f0-4bf9-86ac-502e54ea347f",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -1754,6 +1783,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1764,7 +1794,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"inactive\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"challenge\": \"<string>\",\n  \"chainId\": \"<string>\",\n  \"externalId\": \"<string>\"\n}"
 						},
 						{
-							"id": "281d1026-f410-4572-a6c3-442318547708",
+							"id": "be8503a4-bb54-4233-bda7-40c90ec8845f",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -1822,12 +1852,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "ac34ba52-822d-4eb2-b0b4-4808f38ef6ba",
+							"id": "93ba89f0-9194-44d2-9b3e-126e4c7d436f",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -1885,12 +1916,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "40dd22d0-c4e7-4564-9269-49e56b0a45bc",
+							"id": "5333e0b7-4756-4208-9063-e57f38525f27",
 							"name": "Customer already exists",
 							"originalRequest": {
 								"method": "POST",
@@ -1918,11 +1950,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a38be9ad-da52-4c07-b164-b34a98515dec",
+							"id": "a203b127-c955-441d-80bb-e75244c5077a",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -1950,6 +1983,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -1957,7 +1991,7 @@
 				},
 				{
 					"name": "Retrieve customer challenge",
-					"id": "9135af0e-197d-4563-be25-88bed6834a82",
+					"id": "dae0f2cc-ad29-4cca-9554-04d8286581ca",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2011,7 +2045,7 @@
 					},
 					"response": [
 						{
-							"id": "09ff063e-fd01-4b89-9b5a-e49a465adf0e",
+							"id": "32023d58-717d-41bb-b428-e6cacc46fb9b",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -2056,6 +2090,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2066,7 +2101,7 @@
 							"body": "{\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
-							"id": "cf1c144c-1bfa-4743-a75e-82f6a2e3870f",
+							"id": "d25acd78-541c-48a7-9a38-dc15afb6ecbf",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -2107,11 +2142,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "cc481d45-63f7-45c1-a0b4-fe4c0bb69e94",
+							"id": "bd029e67-48a0-49b7-968f-10767685924e",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -2152,11 +2188,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "0fa2f5cf-b0dd-4a43-82de-15ea2acf9208",
+							"id": "e86a495d-8953-4017-a2df-67cb4a9ec3ce",
 							"name": "Customer not found",
 							"originalRequest": {
 								"method": "GET",
@@ -2197,11 +2234,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a8686b53-b89a-414c-9bad-715f0debdf41",
+							"id": "d5a04650-32a0-4a7e-ad71-9acc1dfad9d5",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -2232,6 +2270,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -2239,7 +2278,7 @@
 				},
 				{
 					"name": "Sign previously issued customer challenge",
-					"id": "3830e20a-1074-4f3f-bc1e-a0b3748798c2",
+					"id": "a1d090c0-8f40-49a4-a180-b8043d974087",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2313,7 +2352,7 @@
 					},
 					"response": [
 						{
-							"id": "e93301a1-24c8-495c-9520-ac36dee0c41b",
+							"id": "a73cf547-8835-4f72-b7e3-90b1d7c5626d",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "POST",
@@ -2374,11 +2413,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "6098ee85-71a1-4762-be64-ad63db48ec6d",
+							"id": "29bbce1b-c71e-4ea6-8d59-ac9e2f7e85a4",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "POST",
@@ -2439,11 +2479,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "fdff5db9-7452-4fd8-b79c-46d06f7b9964",
+							"id": "57c18647-9b67-44d7-8cf8-9d7085247854",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "POST",
@@ -2504,11 +2545,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "f993375d-bab4-47c4-ac38-0a3d4e01644c",
+							"id": "17c1a585-a5a9-4503-9a36-783b467e332c",
 							"name": "Customer not found",
 							"originalRequest": {
 								"method": "POST",
@@ -2569,11 +2611,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "c7d27af5-452a-4d1b-90f7-70e938e49868",
+							"id": "505c3171-fd3c-4b3d-b47a-06d3e1464bcb",
 							"name": "Challenge already signed",
 							"originalRequest": {
 								"method": "POST",
@@ -2615,11 +2658,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "99a49dc6-ec69-4d3e-86b9-91423e8fb8e1",
+							"id": "1935ca86-f02c-40fb-bdba-09ad1608620e",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -2661,6 +2705,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -2668,7 +2713,7 @@
 				},
 				{
 					"name": "Deactivate customer",
-					"id": "f034902e-2f22-4641-a79b-d3fc46aabec2",
+					"id": "fd6d9f31-c2ea-4875-a235-0c04de8b5ec6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2727,7 +2772,7 @@
 					},
 					"response": [
 						{
-							"id": "64fd32ac-8c5a-4504-a245-471019eb97f6",
+							"id": "c9bb9bf3-cdb6-49b6-bc3d-8bef7aeaadec",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -2785,6 +2830,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2795,7 +2841,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"rejected\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"externalId\": \"<string>\",\n  \"chainId\": \"<string>\"\n}"
 						},
 						{
-							"id": "ddcc3c3c-3335-4310-b630-3d3f40d409b7",
+							"id": "ced908ca-42d5-42d6-b9a5-f5b7ea1ad203",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -2848,12 +2894,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "90c6eb5f-dc99-48b3-a45b-f1aeca82bff2",
+							"id": "78f2818d-7597-48c9-b28e-652525e94b9f",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -2906,12 +2953,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "51df8d41-cc31-45cb-b339-928928fe6dd7",
+							"id": "aa03df00-b018-47a1-a2b2-0d4d32a634f5",
 							"name": "Customer not found",
 							"originalRequest": {
 								"auth": {
@@ -2964,12 +3012,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "f7239dd3-2518-43ed-b510-444abb1d2ba5",
+							"id": "74685760-e033-4111-8982-51d8f3bb60a9",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -3000,11 +3049,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "78220bd8-e390-4a91-acf6-d0431c856018",
+							"id": "f589641c-a258-4f1d-8a26-a780e70dfc2f",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -3035,6 +3085,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -3042,7 +3093,7 @@
 				},
 				{
 					"name": "Activate customer",
-					"id": "12acd24f-386f-45c1-9b8c-7af0fff213cb",
+					"id": "46d285ae-77ce-4cfc-84f8-3fac3674827b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3101,7 +3152,7 @@
 					},
 					"response": [
 						{
-							"id": "f47e5959-f2bc-472f-9567-1a8993e76872",
+							"id": "fb2f3aad-32b5-4d77-982c-d56ad361b509",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -3159,6 +3210,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3169,7 +3221,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"initiating\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"externalId\": \"<string>\",\n  \"chainId\": \"<string>\"\n}"
 						},
 						{
-							"id": "fdebfec1-9e6a-4381-9cb8-9252b2dcce4a",
+							"id": "dde769e3-53e9-4948-82dd-435ee49860cf",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -3222,12 +3274,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "c08b8be3-7e70-4171-b082-dab4f2d80cfa",
+							"id": "12be394d-71f7-4c3b-9955-f92914d09a86",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -3280,12 +3333,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "0fb77152-79e6-4e73-ba49-94def132fdaf",
+							"id": "45c25c9b-cb1f-4d40-aa02-8a8386a9490a",
 							"name": "Customer not found",
 							"originalRequest": {
 								"auth": {
@@ -3338,12 +3392,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "b373ff93-40cd-43d5-bda6-4a6dfba8e13d",
+							"id": "4942edf7-6c26-4404-a1b5-566da177e53f",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -3374,11 +3429,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "8f6d0b67-70b8-4d7b-9293-eac937ad6c5d",
+							"id": "c96bf26a-3640-4384-86e6-93f908a6f79b",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -3409,20 +3465,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "e290621f-a647-47c9-ba90-90b350866433"
+			"id": "c45c6185-f683-4dea-99e9-01d386dcd884"
 		},
 		{
 			"name": "accounts",
 			"item": [
 				{
 					"name": "Retrieve accounts",
-					"id": "9576ed4a-1733-4577-bee0-82968cc6dec9",
+					"id": "21aa5677-ce1f-4192-8284-f2bd43d15d51",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3467,7 +3524,7 @@
 					},
 					"response": [
 						{
-							"id": "c7205315-ba38-430f-898d-4a89aab5b3b3",
+							"id": "407b046b-2559-4ef6-a042-69c0b797606e",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -3511,6 +3568,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3521,7 +3579,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"initiating\",\n    \"type\": \"card_account\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"active\",\n    \"type\": \"card_account\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
 						},
 						{
-							"id": "0c83179e-d2d0-4848-a916-60af8599eedd",
+							"id": "26c7becb-bc14-4b83-afda-dafa7342966f",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -3560,12 +3618,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "83360761-088a-4777-ad1e-9358a1608292",
+							"id": "8192fde3-adda-40fc-bca2-06c6fdb1f00b",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -3604,12 +3663,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "bf3519f1-fa77-4d48-ad05-3eb6a9db8496",
+							"id": "63a8536d-0070-4905-8561-9c07abf8680f",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -3633,6 +3693,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -3640,7 +3701,7 @@
 				},
 				{
 					"name": "Retrieve account",
-					"id": "48f2941d-de99-4e72-ba81-4334e05f3f42",
+					"id": "4e2ed2d4-bda0-4eeb-82dc-06884dd65693",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3693,7 +3754,7 @@
 					},
 					"response": [
 						{
-							"id": "fa77ae13-9013-4a86-90a1-397fc32bfde0",
+							"id": "4fae46bf-dd71-44cc-8b07-2f2eadf0394e",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -3745,6 +3806,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3755,7 +3817,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"closed\",\n  \"type\": \"card_account\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
-							"id": "51367f0f-c8ae-4dc4-984a-8a8d24371bf2",
+							"id": "d9281075-e0b2-4d2f-a819-b7a2d5059656",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -3802,12 +3864,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "a6fc5400-e817-445e-aee1-a2c0a9829df5",
+							"id": "8aba8a7d-c224-45b2-aff4-fa0d69172cfd",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -3854,12 +3917,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "61d82ebe-4051-4000-bc96-b876497bdc6a",
+							"id": "3bf98771-a3f5-42f5-b0f0-31afe546f667",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -3906,12 +3970,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "e6d78195-a808-4e8c-920f-c9732ed26a3b",
+							"id": "5d0295bc-cc21-4b85-9d64-f068d86143d4",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -3941,6 +4006,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -3948,7 +4014,7 @@
 				},
 				{
 					"name": "Retrieve customer accounts",
-					"id": "ecfedec4-7799-4d48-808d-fed72dd59ce3",
+					"id": "784096b4-1e45-49d7-b951-d0a2de026f83",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4002,7 +4068,7 @@
 					},
 					"response": [
 						{
-							"id": "206c941c-c2f8-48e3-873f-3306b1bb2a54",
+							"id": "e2afac06-42e1-4845-90c2-98b3e214b65c",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -4055,6 +4121,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4065,7 +4132,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"pending\",\n    \"type\": \"card_account\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"initiating\",\n    \"type\": \"card_account\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]"
 						},
 						{
-							"id": "28391b43-ed14-4dde-8610-609adbd71a19",
+							"id": "474a2227-075e-42ba-ba44-0b453b906183",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -4113,12 +4180,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "1bec9d44-c980-44df-bb67-f65c823e3a67",
+							"id": "41f3f82d-bc7f-4db0-a01a-f820126b6154",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -4166,12 +4234,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "b0f15204-90ec-449e-91bb-7052c73a9d6d",
+							"id": "96cc026a-61eb-4126-894d-6bfd77c179fd",
 							"name": "Customer not found",
 							"originalRequest": {
 								"auth": {
@@ -4219,12 +4288,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "40e8da41-5d16-4e6e-b2e0-2df7d1b00f6b",
+							"id": "7c7fe77d-a71e-4a5a-a038-767aeb7d8be7",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -4255,6 +4325,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -4262,7 +4333,7 @@
 				},
 				{
 					"name": "Create new customer account",
-					"id": "aa4e10d6-b95b-453a-b285-2705b9ef92c4",
+					"id": "e482c39c-3780-4299-ad56-ded99d6bac25",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4339,7 +4410,7 @@
 					},
 					"response": [
 						{
-							"id": "96a6bfc5-3398-4c73-bb0b-caef208efa0a",
+							"id": "201f94b5-3c34-4415-87d8-238a3483dcfe",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -4411,6 +4482,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4421,7 +4493,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"pending\",\n  \"type\": \"card_account\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
-							"id": "a5f44a56-02cb-44ad-b01d-dae28703e314",
+							"id": "06a349d0-8728-4638-b466-a1262593d5c9",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -4488,12 +4560,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "92ccae01-6565-401d-a2de-73e7b019e951",
+							"id": "a0f85021-c9ec-4947-9dc3-952d8aeb3d3f",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -4560,12 +4633,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "0f79e147-681a-412b-a9e3-be726ceba6a2",
+							"id": "c3c248c0-0601-47e5-9964-aa39c41d61f9",
 							"name": "Customer not found",
 							"originalRequest": {
 								"auth": {
@@ -4632,12 +4706,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "594c8b7a-6a2e-4788-adfb-3c950331604e",
+							"id": "248f2c84-dda6-49ae-825b-95909bd307e3",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -4672,6 +4747,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -4679,7 +4755,7 @@
 				},
 				{
 					"name": "Retrieve account challenge",
-					"id": "0a577a3a-8d54-428c-83ff-7507873da703",
+					"id": "7be4de38-fcc7-407d-89d4-6fdc1f6ecf9e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4733,7 +4809,7 @@
 					},
 					"response": [
 						{
-							"id": "96ef4e07-d19f-4be8-9f9f-55d1fb2cd38e",
+							"id": "24ff9404-625b-42f3-a466-306114b49746",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -4778,6 +4854,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4788,7 +4865,7 @@
 							"body": "{\n  \"challenge\": \"<string>\"\n}"
 						},
 						{
-							"id": "c4c2005e-7982-4258-b3a6-969b43b652a7",
+							"id": "8ce753f5-550d-473d-9010-d549c5b7e0dc",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -4829,11 +4906,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b73e7a78-8410-45bc-8def-bd5cf296942b",
+							"id": "a03f75e6-93fd-4d82-8975-71cc74b4c532",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -4874,11 +4952,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "c9103ba6-cdaf-487a-9121-ffb204e3cecd",
+							"id": "04153f12-046b-4d31-9a6e-860516a07d74",
 							"name": "Account not found",
 							"originalRequest": {
 								"method": "GET",
@@ -4919,11 +4998,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "76be2ad2-761d-4c02-b529-a5b6ce350f77",
+							"id": "1fe2343c-cedf-444b-bb0a-90525d55a500",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -4954,6 +5034,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -4961,7 +5042,7 @@
 				},
 				{
 					"name": "Sign previously issued account challenge",
-					"id": "1cd4a6ec-7822-478f-94dc-491396b91385",
+					"id": "baa6a3d6-7785-4969-90fb-2fda0b6b6472",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5035,7 +5116,7 @@
 					},
 					"response": [
 						{
-							"id": "d1c03c6c-9755-497f-9a80-931dd4f68c70",
+							"id": "f5951ebe-5e6e-48da-9f07-a77f330449fc",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "POST",
@@ -5096,11 +5177,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "0de79043-5785-4040-8d0f-c8cd26e3f9f3",
+							"id": "3e98ac3c-743e-495d-885e-8fe36aef8371",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "POST",
@@ -5161,11 +5243,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "85de1fe3-eca8-4985-92ab-8c7c39c208a0",
+							"id": "9ebfb50e-e48f-4e74-ad56-79ac7b185603",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "POST",
@@ -5226,11 +5309,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "8691af97-8ee6-49cc-9f7a-628bc72656e2",
+							"id": "61535330-1bbb-449d-a309-ed5b2d4ffa78",
 							"name": "Account not found",
 							"originalRequest": {
 								"method": "POST",
@@ -5291,11 +5375,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "ba1fd25f-2ad6-464a-a126-36125ee5a94c",
+							"id": "52f1c438-6e75-482c-88ee-ba360539612f",
 							"name": "Challenge already signed",
 							"originalRequest": {
 								"method": "POST",
@@ -5337,11 +5422,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "67bfa0a2-2be9-402c-be77-aee0605e6203",
+							"id": "02370751-f411-419b-8ec8-b9edff90b771",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -5383,6 +5469,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -5390,7 +5477,7 @@
 				},
 				{
 					"name": "Deactivate account",
-					"id": "1dac505a-6461-4415-a88d-485f447aa35e",
+					"id": "5eef180e-a9e1-491d-8b90-4431edd27756",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5449,7 +5536,7 @@
 					},
 					"response": [
 						{
-							"id": "d0abd47e-ca03-4fe8-8485-2c55a0905b05",
+							"id": "b55b2a46-eb5c-4b29-bdc0-c005b5f1f23d",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -5507,6 +5594,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -5517,7 +5605,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"closed\",\n  \"type\": \"card_account\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
-							"id": "8a9a83ce-103c-4ad3-9e63-916c4a50acb4",
+							"id": "30b7911b-6c24-4165-91a2-cbf8ed63a342",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -5570,12 +5658,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "c856d789-2015-482a-bc08-af01d0066da1",
+							"id": "a4b68de7-a397-42fd-b4ad-55ac30140bf3",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -5628,12 +5717,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "83a11650-1a16-4967-a191-14debe9554e7",
+							"id": "d7d36a12-fff7-445e-8387-0b927f43c044",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -5686,12 +5776,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "e8d4d9ac-2823-41fb-86be-4dcf3329f1d3",
+							"id": "cdb9ee11-965d-4768-83eb-8fe9dab19947",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -5722,11 +5813,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "253daacb-96f8-4749-9974-7595e49cd933",
+							"id": "96a3964a-ec18-45dc-91d4-f88c17de0c7a",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -5757,6 +5849,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -5764,7 +5857,7 @@
 				},
 				{
 					"name": "Activate account",
-					"id": "6fddf751-6aca-43e8-bbfc-d373639f01c1",
+					"id": "b28eed4d-efd1-45dd-94a4-7dd59c834add",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5823,7 +5916,7 @@
 					},
 					"response": [
 						{
-							"id": "0ca921af-cc85-458e-a22b-0ad7455a59bd",
+							"id": "4687b35a-2a6f-4aa1-b3e3-72ac5df5fb61",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -5881,6 +5974,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -5891,7 +5985,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"pending\",\n  \"type\": \"card_account\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
 						},
 						{
-							"id": "9cdab790-078d-4428-ae1a-4c51d4e613e5",
+							"id": "2684033d-99b0-4365-87fc-2f7bfda6f4ba",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -5944,12 +6038,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "116ce4a0-d7d7-4848-9dd4-cc2298f07d86",
+							"id": "4ac630b1-c0d6-4733-9402-d162c41bb0e8",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -6002,12 +6097,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "1b2248a5-6d9a-4f51-8686-60ea5642fec8",
+							"id": "8f335bf5-f73d-409c-aefe-a3f3a2091865",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -6060,12 +6156,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "f5abff93-003e-40c4-b3ef-d8ebe09dd6b0",
+							"id": "536ac75c-1e0a-4389-921e-b9b9a5a150de",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -6096,11 +6193,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "e96eb1da-d7e9-4a9f-b041-d532c58c30cb",
+							"id": "1abf0c3f-ec2a-4843-8f5d-a4c9ec3fec9e",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -6131,6 +6229,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -6138,7 +6237,7 @@
 				},
 				{
 					"name": "Close account",
-					"id": "e94bb01e-1e0a-49ed-9e8b-bafd65684d9e",
+					"id": "d32de123-92d4-4f7f-900f-184a88650bd9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -6200,7 +6299,7 @@
 					},
 					"response": [
 						{
-							"id": "f979d547-1bd3-4246-b322-184be23901ac",
+							"id": "7299d5ea-5c37-456d-af8f-60a3fb169e06",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -6262,12 +6361,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "bbbe317a-4c2c-4952-a75f-4681aa82673a",
+							"id": "7f341d66-1164-4ba4-b42a-5683660a7e79",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -6329,12 +6429,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "9f1cbc2d-232b-46f0-a31c-c32acb8921f2",
+							"id": "90a55215-d40b-4693-8ff4-f856ab6677ac",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -6396,12 +6497,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "98b392c1-06d4-4cbf-bdea-f21f01e48e87",
+							"id": "6deac779-1117-46a0-99b7-e027a0b16d04",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "DELETE",
@@ -6435,11 +6537,12 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "4d2e7e59-d54f-478a-9aaa-9733be38ef45",
+							"id": "107310e4-3a5f-4c8a-9ee3-11059a76883d",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "DELETE",
@@ -6473,11 +6576,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "0db91be4-7c30-4608-be33-4dbac42cf417",
+							"id": "8dfdc7fe-7c06-49d2-955a-86328c8d5070",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "DELETE",
@@ -6511,20 +6615,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "68c3b886-02b0-4bd4-9f48-3c9769d01e75"
+			"id": "8be23c85-b622-43e2-ba0d-0a7bfa49c232"
 		},
 		{
 			"name": "cards",
 			"item": [
 				{
 					"name": "Retrieve cards",
-					"id": "db42f730-40c4-4943-a808-b46cb57d3883",
+					"id": "8fd35f4e-8acb-4c32-beb7-69edea8e8166",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -6569,7 +6674,7 @@
 					},
 					"response": [
 						{
-							"id": "40a0d438-2778-47cc-8ec5-20eb50f453b9",
+							"id": "8ce923a9-966f-4147-9f19-aa6d89f4562e",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -6613,6 +6718,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -6623,7 +6729,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"physical\",\n    \"status\": \"suspended\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"mastercard\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"virtual\",\n    \"status\": \"blocked\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"visa\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
-							"id": "e646ba20-ecad-403a-8b47-3d7ee5a88da6",
+							"id": "4918314e-f4d8-48bf-9946-aa739e4cf180",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -6662,12 +6768,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "1e270ab1-a7cd-4edc-b0e3-f6c2e5f8a43c",
+							"id": "6bf4cf85-1de1-48ff-9ddc-5b89ac85358e",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -6706,12 +6813,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "63a37fd9-1431-496a-86ae-014b8c75c4c0",
+							"id": "f92b32f5-21a8-44da-8fb5-f115f06a3041",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -6735,6 +6843,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -6742,7 +6851,7 @@
 				},
 				{
 					"name": "Retrieve card",
-					"id": "ce65fa87-5f4a-4e15-a92c-75bd749fbe78",
+					"id": "5a6a330f-d318-4a07-a46d-566e394e6c6e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -6795,7 +6904,7 @@
 					},
 					"response": [
 						{
-							"id": "fba4b0ab-dd06-42f2-9799-142020e87561",
+							"id": "0e2024b7-3322-427a-9ed6-d07b92551a80",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -6847,6 +6956,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -6857,7 +6967,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"virtual\",\n  \"status\": \"blocked\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"mastercard\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
-							"id": "4e3f29a2-8655-4436-86e1-fe8fe0c482ef",
+							"id": "25eb141d-96be-4417-b7ef-62d55c1830e1",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -6904,12 +7014,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "b21d8db1-ff10-48b3-8f92-8bd011d14332",
+							"id": "a5bb1317-49e6-43fc-9ef8-e5b27c91e83d",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -6956,12 +7067,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "af18d1e8-ff14-42eb-a1e9-8302fb41f9c5",
+							"id": "298f2335-d1c0-4239-a475-6335a92741e5",
 							"name": "Card not found",
 							"originalRequest": {
 								"auth": {
@@ -7008,12 +7120,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "319cd81b-ab75-442a-a964-27b09a8b5ef0",
+							"id": "3e6009cd-9e0a-4143-8750-825b9ccf9b67",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -7043,6 +7156,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -7050,7 +7164,7 @@
 				},
 				{
 					"name": "Retrieve account cards",
-					"id": "f0a8816d-20ee-41de-89c7-b7af03b4302a",
+					"id": "1902300e-9500-43aa-83b8-b5d589ce43aa",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -7104,7 +7218,7 @@
 					},
 					"response": [
 						{
-							"id": "a54f8f26-e2b4-415e-9066-1d333c734da8",
+							"id": "488416c9-60e7-42ea-b057-320fbfe03999",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -7157,6 +7271,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -7167,7 +7282,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"virtual\",\n    \"status\": \"blocked\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"visa\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"type\": \"physical\",\n    \"status\": \"inactive\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"network\": \"mastercard\",\n    \"lastFourDigits\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"billingAddress\": {\n      \"firstLine\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"secondLine\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  }\n]"
 						},
 						{
-							"id": "d00133f5-b067-4c98-a837-14c269ac59d8",
+							"id": "ee179945-766e-46fb-9398-599dbaded21c",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -7215,12 +7330,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "b1a6a3d4-4b62-4323-bb14-d7a13fd538a4",
+							"id": "59c1440e-d0b1-49fa-99b6-e57e3a2ad9ac",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -7268,12 +7384,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "052431f1-09bb-4c4f-80f2-4177bbdcc967",
+							"id": "1a25a280-5d80-4929-8782-8fc846a1550b",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -7321,12 +7438,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "41e63f92-42a9-490a-87d0-6e8d15b332e6",
+							"id": "8c6040a9-a25d-4c51-a208-a633d84468ba",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -7357,6 +7475,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -7364,7 +7483,7 @@
 				},
 				{
 					"name": "Create new card",
-					"id": "2667fb5f-2494-41b8-82e0-044104b4dffd",
+					"id": "3257f32f-cec9-4df7-bfbc-9771c0a4eadc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -7441,7 +7560,7 @@
 					},
 					"response": [
 						{
-							"id": "0060708b-5e55-4fb9-8da9-b7ead94c0e1b",
+							"id": "0dfca241-11f4-4c05-9b0a-9ab24f186589",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -7513,6 +7632,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -7523,7 +7643,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"virtual\",\n  \"status\": \"suspended\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"mastercard\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
-							"id": "22ab8c93-0ffc-431a-b914-251da854b31c",
+							"id": "1365c34e-1455-4a38-83c8-13749687f407",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -7590,12 +7710,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "74ac075b-7b66-4039-ab34-fa99efdc53a7",
+							"id": "cf8fa85f-f32a-4fe6-af56-bb5899426141",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -7662,12 +7783,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "97592b20-5cc2-4744-b0ed-8ddb782c86a2",
+							"id": "209dc2d7-32a7-4ce7-a3ad-14bf2f6e70a5",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -7734,12 +7856,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "311824b5-d91b-42c7-b56e-01c978258eda",
+							"id": "15dd15b0-6f37-4cb0-8048-f7c63650ba4f",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -7774,6 +7897,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -7781,7 +7905,7 @@
 				},
 				{
 					"name": "Deactivate card",
-					"id": "5e1e2e9b-43ee-4540-ad6f-ca822db37c32",
+					"id": "2a5ad24a-2f9a-4c63-8dd0-8bb7be27908a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -7840,7 +7964,7 @@
 					},
 					"response": [
 						{
-							"id": "cfe75ec1-7292-494e-847e-783adf6958a5",
+							"id": "79a8d575-c8e2-4a72-bd21-b79a24450211",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -7898,6 +8022,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -7908,7 +8033,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"physical\",\n  \"status\": \"inactive\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"visa\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
-							"id": "39722d4d-451c-404c-9d3a-b2d9aeb17b5f",
+							"id": "02c6bc15-4571-4169-a6be-2c680b7a4627",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -7961,12 +8086,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "e71ad4cd-4f6a-49fa-970b-e2e029e0933d",
+							"id": "6ba07fd5-da90-42fd-9dca-ea1bef43d26a",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -8019,12 +8145,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "e9f5da55-d835-4ed1-992f-d78558c87588",
+							"id": "122c70cb-a5dd-4da9-9ed9-e5998b22c67b",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -8077,12 +8204,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "c573659d-18ac-4fd5-9784-56e376d4eccf",
+							"id": "9a7b7364-e9fd-4ecd-af50-400f0c9fed63",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -8113,11 +8241,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "7d83699e-41c9-4a5e-adb8-967c1017c84e",
+							"id": "26bace72-f63e-477f-85c9-623be5f9f063",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -8148,6 +8277,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -8155,7 +8285,7 @@
 				},
 				{
 					"name": "Activate card",
-					"id": "620055f2-6cca-4e16-b534-0cc8d67ce6be",
+					"id": "31eb97f0-d4a7-49e2-960e-ddf33cf8b2e8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -8214,7 +8344,7 @@
 					},
 					"response": [
 						{
-							"id": "1e919e47-3398-4947-ab9a-beb319df2c92",
+							"id": "fee578df-355b-4cb2-8ad1-97d70e5a10c4",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -8272,6 +8402,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -8282,7 +8413,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"type\": \"virtual\",\n  \"status\": \"active\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"network\": \"mastercard\",\n  \"lastFourDigits\": \"<string>\",\n  \"expirationDate\": \"<string>\",\n  \"billingAddress\": {\n    \"firstLine\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postCode\": \"<string>\",\n    \"secondLine\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}"
 						},
 						{
-							"id": "8f9b8271-8439-432f-b548-a6ee7bd780e9",
+							"id": "9a4d8006-348d-416e-b9dd-7b32ab9bcd6d",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -8335,12 +8466,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "725e10f3-037d-41a5-b160-5010af2585ce",
+							"id": "fc9e6237-c1cb-4214-8da9-7c0b1f0d8eb9",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -8393,12 +8525,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "2c152578-3687-44f1-b7b3-a210415325cf",
+							"id": "b0a9457e-04b9-4754-ad95-f23eb8308b15",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -8451,12 +8584,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "d4438c93-8788-4dc5-94b4-1aa4cb4cd777",
+							"id": "83259244-a72c-4d50-8d43-3c9e219372da",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "PATCH",
@@ -8487,11 +8621,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b81c9ec3-7bd1-4dcd-8744-c8bcb2339c98",
+							"id": "d3382d98-fa4e-4bdb-898c-352efaf37271",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -8522,6 +8657,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -8529,7 +8665,7 @@
 				},
 				{
 					"name": "Terminate card",
-					"id": "d86c67cf-3fc1-4058-aa79-714e7cc5c74e",
+					"id": "2548d250-1b9c-4d7e-9f06-6ab52d6257f5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -8583,7 +8719,7 @@
 					},
 					"response": [
 						{
-							"id": "aff54be9-9bdf-4e36-a689-1f4c1366a380",
+							"id": "4e36b6ec-703d-4732-a08b-0a70c001127b",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -8636,12 +8772,13 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "376cd4bd-2749-4214-ae6c-385c9f8be219",
+							"id": "cf9626b1-862e-40c2-8354-e4ecfe23de6c",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -8689,12 +8826,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "059e19a1-4359-4aa6-a047-05a1deb5e08a",
+							"id": "e6aaf731-8afc-4be8-8cdf-fa279d2c8802",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -8742,12 +8880,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "f55a1e0a-c5cd-4571-a262-5921e343e955",
+							"id": "730de310-0060-484c-a348-d91b68b1f24a",
 							"name": "Card not found",
 							"originalRequest": {
 								"auth": {
@@ -8795,12 +8934,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "15a7ea23-3ee5-4b47-87ff-34aabe8debb4",
+							"id": "48e50a29-cc1f-4157-a24b-4b9095e374b1",
 							"name": "Invalid state transition",
 							"originalRequest": {
 								"method": "DELETE",
@@ -8830,11 +8970,12 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "34797a32-0977-4580-94cb-671592b8cebd",
+							"id": "169c0575-544a-4f11-8c8d-9efcf02fc10e",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "DELETE",
@@ -8864,20 +9005,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "ec7ebe8d-01c1-4a6d-9ea3-abf0d3916b09"
+			"id": "eb09101e-1771-4e2d-bd75-6b6c0e1ca183"
 		},
 		{
 			"name": "transactions",
 			"item": [
 				{
 					"name": "Retrieve transaction details",
-					"id": "240300cf-ba38-4653-aa5e-b253ac41ff9a",
+					"id": "b1c0be39-b6ea-4a4e-8a6b-46cd6134a064",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -8930,7 +9072,7 @@
 					},
 					"response": [
 						{
-							"id": "bf9c588d-50e2-4177-8c1d-61d2e761a55f",
+							"id": "a375b295-db10-48d4-8126-e8c336fd1a9e",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -8982,6 +9124,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -8992,7 +9135,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"status\": \"processed\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"cardId\": \"<uuid>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"token\": \"<string>\",\n  \"tokenAmount\": \"<string>\",\n  \"meta\": {\n    \"direction\": \"NOOP\",\n    \"exchangeRate\": \"<integer>\",\n    \"merchant\": {\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"transactionType\": \"PURCHASE\",\n    \"authCode\": \"<string>\"\n  },\n  \"direction\": \"credit\",\n  \"merchantAmount\": \"<string>\",\n  \"merchantCurrency\": \"<string>\",\n  \"exchangeRate\": \"<string>\",\n  \"merchant\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"mcc\": \"<integer>\",\n    \"country\": \"<string>\",\n    \"city\": \"<string>\"\n  },\n  \"fees\": [\n    {\n      \"type\": \"network\",\n      \"tokenAmount\": \"<string>\"\n    },\n    {\n      \"type\": \"service\",\n      \"tokenAmount\": \"<string>\"\n    }\n  ],\n  \"chainTransactions\": [\n    {\n      \"chainId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"chainId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "d7607b73-4bf2-48b3-8d70-b1d5ef844951",
+							"id": "c998c0e7-7d79-4d9a-9e06-4c3d3333a237",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -9039,12 +9182,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "edfd8dae-50ca-430f-b402-7bf078d56696",
+							"id": "335692c1-8136-48c3-be62-c45a329b9612",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -9091,12 +9235,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "c76d9524-6d18-49cd-8b41-d84498cea402",
+							"id": "0e64b06d-90ef-482f-95d5-deeb8340f795",
 							"name": "Transaction not found",
 							"originalRequest": {
 								"auth": {
@@ -9143,12 +9288,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "47ce044b-32ed-456b-8097-fe55c36f74a2",
+							"id": "953099f1-3eb7-40b1-8cc9-6088c51edc07",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -9178,6 +9324,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -9185,7 +9332,7 @@
 				},
 				{
 					"name": "Retrieve account transactions",
-					"id": "f2d404fb-c16d-480b-b386-0e2acdf1f763",
+					"id": "659b2e11-1d8c-4c0f-804d-d6e478993e25",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -9239,7 +9386,7 @@
 					},
 					"response": [
 						{
-							"id": "0ad3de69-1b34-44c5-b5dd-1b36bea29b32",
+							"id": "7ae4ef58-be41-4443-8be4-f6da3924a279",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -9292,6 +9439,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -9302,7 +9450,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"reversed\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"DEPOSIT\",\n      \"authCode\": \"<string>\"\n    },\n    \"direction\": \"credit\",\n    \"merchantAmount\": \"<string>\",\n    \"merchantCurrency\": \"<string>\",\n    \"exchangeRate\": \"<string>\",\n    \"merchant\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    },\n    \"fees\": [\n      {\n        \"type\": \"network\",\n        \"tokenAmount\": \"<string>\"\n      },\n      {\n        \"type\": \"partner\",\n        \"tokenAmount\": \"<string>\"\n      }\n    ],\n    \"chainTransactions\": [\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      },\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"reversing\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"REFUND\",\n      \"authCode\": \"<string>\"\n    },\n    \"direction\": \"debit\",\n    \"merchantAmount\": \"<string>\",\n    \"merchantCurrency\": \"<string>\",\n    \"exchangeRate\": \"<string>\",\n    \"merchant\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    },\n    \"fees\": [\n      {\n        \"type\": \"partner\",\n        \"tokenAmount\": \"<string>\"\n      },\n      {\n        \"type\": \"service\",\n        \"tokenAmount\": \"<string>\"\n      }\n    ],\n    \"chainTransactions\": [\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      },\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    ]\n  }\n]"
 						},
 						{
-							"id": "ae9f6647-2eeb-40c5-9e25-be47b0541000",
+							"id": "f3e83129-2027-4cbc-a0c6-db033b8e4f32",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -9350,12 +9498,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "96a82dd2-d21f-4fcd-8558-b53d303ea07b",
+							"id": "0b1dbe52-8bd8-4d34-9e5c-c0f1ce869e8c",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -9403,12 +9552,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "99523ff3-a875-4dbe-9ae5-bdf33159a2cc",
+							"id": "9c0b93f9-dc6f-4d34-8ec9-5de89784c962",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -9456,12 +9606,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "74a55a6a-a533-42ec-84ac-541ea901b045",
+							"id": "31bdf27e-0134-4ea9-b243-2df0ad58bd45",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -9492,6 +9643,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -9499,7 +9651,7 @@
 				},
 				{
 					"name": "Retrieve card transactions",
-					"id": "183c282b-dc01-4b09-8ac6-f569bf8b74a4",
+					"id": "97c8b4d6-7295-409f-ad60-3d8d69580e44",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -9553,7 +9705,7 @@
 					},
 					"response": [
 						{
-							"id": "39dba429-3f53-4b9b-9277-366f7c9077b0",
+							"id": "49328934-f8d8-4910-b5e9-73c9b78a2ea9",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -9606,6 +9758,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -9616,7 +9769,7 @@
 							"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"processed\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"DEBIT\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"OTHER\",\n      \"authCode\": \"<string>\"\n    },\n    \"direction\": \"credit\",\n    \"merchantAmount\": \"<string>\",\n    \"merchantCurrency\": \"<string>\",\n    \"exchangeRate\": \"<string>\",\n    \"merchant\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    },\n    \"fees\": [\n      {\n        \"type\": \"partner\",\n        \"tokenAmount\": \"<string>\"\n      },\n      {\n        \"type\": \"network\",\n        \"tokenAmount\": \"<string>\"\n      }\n    ],\n    \"chainTransactions\": [\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      },\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"customerId\": \"<uuid>\",\n    \"status\": \"reversing\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"cardId\": \"<uuid>\",\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"token\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"meta\": {\n      \"direction\": \"NOOP\",\n      \"exchangeRate\": \"<integer>\",\n      \"merchant\": {\n        \"name\": \"<string>\",\n        \"mcc\": \"<integer>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"transactionType\": \"WITHDRAWAL\",\n      \"authCode\": \"<string>\"\n    },\n    \"direction\": \"credit\",\n    \"merchantAmount\": \"<string>\",\n    \"merchantCurrency\": \"<string>\",\n    \"exchangeRate\": \"<string>\",\n    \"merchant\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"mcc\": \"<integer>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\"\n    },\n    \"fees\": [\n      {\n        \"type\": \"network\",\n        \"tokenAmount\": \"<string>\"\n      },\n      {\n        \"type\": \"service\",\n        \"tokenAmount\": \"<string>\"\n      }\n    ],\n    \"chainTransactions\": [\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      },\n      {\n        \"chainId\": \"<string>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    ]\n  }\n]"
 						},
 						{
-							"id": "42b1504f-2495-4cec-a2ce-f34dea1ab227",
+							"id": "ed936617-0e27-468b-8280-3efeeff2d32c",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -9664,12 +9817,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "7caf1c79-6494-4772-b636-4be1dc2380c2",
+							"id": "f5c12c74-5c9a-4ae3-8feb-cd8521603fbc",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -9717,12 +9871,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "d9f7f381-9785-446f-ba04-4c77c2bccfd6",
+							"id": "4ec50f2d-109e-4712-a8c4-cfa646e7e7dc",
 							"name": "Card not found",
 							"originalRequest": {
 								"auth": {
@@ -9770,12 +9925,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "3de31133-3c1e-4a00-942e-b69f0f88a40b",
+							"id": "3ddf10d8-0c68-4cb9-a3b8-15099ee4b24b",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -9806,6 +9962,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -9813,7 +9970,7 @@
 				},
 				{
 					"name": "Retrieve authorisation details",
-					"id": "86e3405a-36ec-4202-8de5-9802370f54d2",
+					"id": "0bf1fbc6-2e32-48f9-ab2d-0e8fd1d60e62",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -9866,7 +10023,7 @@
 					},
 					"response": [
 						{
-							"id": "28ed1e10-c976-42b3-b923-496600b83723",
+							"id": "567c4fd2-e140-4eab-89e2-4ad636ced9d1",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -9910,6 +10067,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -9920,7 +10078,7 @@
 							"body": "{\n  \"id\": \"urn:uuid:a612862f-5bd9-f9aa-8cca-1ee958b266ba\",\n  \"accountId\": \"3bc109e6-8e9a-8157-077f-a1e017f3e201\",\n  \"status\": \"released\",\n  \"amount\": \"consequat fugiat deserunt\",\n  \"currency\": \"<string>\",\n  \"merchantAmount\": \"labore Excepteur nulla\",\n  \"merchantCurrency\": \"<string>\",\n  \"exchangeRate\": \"ipsum qui aute do\",\n  \"merchant\": {\n    \"id\": \"dolor adipisicing\",\n    \"name\": \"dolore esse sed consectetur cupidatat\",\n    \"mcc\": 12738263,\n    \"country\": \"elit voluptate ullamco sint\",\n    \"city\": \"in aliquip esse dolore nisi\"\n  },\n  \"createdAt\": \"1982-09-19T22:22:35.732Z\",\n  \"updatedAt\": \"2020-04-14T17:52:11.235Z\",\n  \"cardId\": \"urn:uuid:3e4c5d3b-509b-2104-1a49-24bc7ea8f1a8\"\n}"
 						},
 						{
-							"id": "23ee30bc-1806-4fa6-a2c5-5851569ca913",
+							"id": "ed094231-9058-4f66-9aa0-4daf948587f9",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -9960,11 +10118,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "eb5df29b-4770-440e-9d1c-77381461c779",
+							"id": "ae761250-4284-4acd-bda5-943d32c929cb",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -10004,11 +10163,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "192a7b01-70f7-4bb8-8fff-1b48d165d3df",
+							"id": "49346593-f9be-424d-a529-27d5f54bfd37",
 							"name": "Authorisation not found",
 							"originalRequest": {
 								"method": "GET",
@@ -10048,11 +10208,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "4f442bc8-b78b-463e-9253-abfe78e1b44a",
+							"id": "e7674e8d-e23f-474c-9097-b09cea142302",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -10092,20 +10253,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "f3963098-828f-4bf1-a057-9b77f11d704c"
+			"id": "57a73ad4-6949-46c7-8649-f559bb28418c"
 		},
 		{
 			"name": "webhooks",
 			"item": [
 				{
 					"name": "Retrieve all active webhooks",
-					"id": "4646b08e-b143-41db-b5d7-428fc9be4225",
+					"id": "13fabd07-2656-4c1b-9da3-e40598aab768",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -10150,7 +10312,7 @@
 					},
 					"response": [
 						{
-							"id": "11e63157-9151-4b04-91bd-ccf0fc7fde7d",
+							"id": "e90308ac-91a1-43cc-af59-fce74e49158f",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -10188,6 +10350,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -10198,7 +10361,7 @@
 							"body": "[\n  {\n    \"id\": \"0035c6b1-2d9a-a173-5f40-bb43cc7c1b11\",\n    \"callbackUrl\": \"<uri>\",\n    \"types\": [\n      \"card.updated\",\n      \"account.updated\"\n    ],\n    \"createdAt\": \"1946-06-27T21:33:35.570Z\",\n    \"updatedAt\": \"1998-06-23T18:04:25.880Z\"\n  },\n  {\n    \"id\": \"b78cf6f4-f2a3-cec0-3298-39326e207ab1\",\n    \"callbackUrl\": \"<uri>\",\n    \"types\": [\n      \"transaction.updated\",\n      \"account.updated\"\n    ],\n    \"createdAt\": \"1980-02-19T22:57:18.409Z\",\n    \"updatedAt\": \"1997-09-27T23:29:02.103Z\"\n  }\n]"
 						},
 						{
-							"id": "8b216b18-47eb-4950-96a3-0055336c4f65",
+							"id": "d334bb98-67f3-4507-91f4-6c5313ba320c",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -10232,11 +10395,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "d619ed97-858c-4ccf-9841-86462ad32854",
+							"id": "49e12a1f-7829-4f8a-a7af-6611a227eedb",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -10270,11 +10434,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "98023554-4adc-4c9e-8d72-662cbd47e3de",
+							"id": "11e5f669-f886-4e2f-89d5-2ceb9f4c4ae7",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -10308,6 +10473,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -10315,7 +10481,7 @@
 				},
 				{
 					"name": "Retrieve webhook subscription information",
-					"id": "a9945e3a-f895-4d20-ad80-38a58eecc493",
+					"id": "f65c497a-9767-47b5-a588-01965d80e740",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -10368,7 +10534,7 @@
 					},
 					"response": [
 						{
-							"id": "69a7a5f8-057a-48eb-bca2-5d7a4a4aab60",
+							"id": "9a595ce1-7dda-4c24-8784-5712b8879a08",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -10412,6 +10578,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -10422,7 +10589,7 @@
 							"body": "{\n  \"id\": \"urn:uuid:5fee6244-408b-246c-f2d6-56717b8386fe\",\n  \"callbackUrl\": \"<uri>\",\n  \"types\": [\n    \"authorisation.updated\",\n    \"card.updated\"\n  ],\n  \"createdAt\": \"1980-02-19T12:53:45.389Z\",\n  \"updatedAt\": \"1994-12-28T16:45:05.168Z\"\n}"
 						},
 						{
-							"id": "48f386b8-63b3-4df2-b87c-8a5c611e7342",
+							"id": "bd4f3b61-c48b-4bd4-8fd5-e012c160bfbd",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -10462,11 +10629,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b909c8c1-4c7a-40b7-984d-aa6d568b4191",
+							"id": "814a89e5-fd93-4a3e-90ed-225cf24fdc30",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -10506,11 +10674,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "6f4ec1a6-21da-4a6a-915a-1d009a4c51fa",
+							"id": "9c512358-f90c-40c8-b8d0-8cb190cb5fd1",
 							"name": "Webhook not found",
 							"originalRequest": {
 								"method": "GET",
@@ -10550,11 +10719,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "37b7b99b-6a05-45b5-b627-907bf8832259",
+							"id": "c61e953b-966a-4c1a-8278-0d58f7f76ef7",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -10594,6 +10764,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -10601,7 +10772,7 @@
 				},
 				{
 					"name": "Create new or update an existing webhook",
-					"id": "2a0b39f1-ea1f-4644-8ea1-66367fe309c9",
+					"id": "96e5fc68-2371-43f3-bfe0-0b10a2176308",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -10664,7 +10835,7 @@
 					},
 					"response": [
 						{
-							"id": "4f554117-29a0-4c4b-8dc3-937528b358c0",
+							"id": "74866b9b-8ec1-4882-aee1-e11a9209f6bb",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -10722,6 +10893,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -10732,7 +10904,7 @@
 							"body": "{\n  \"id\": \"<uuid>\",\n  \"callbackUrl\": \"<uri>\",\n  \"scopes\": [\n    \"transaction\",\n    \"card\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"types\": [\n    \"card.updated\",\n    \"card.updated\"\n  ],\n  \"updatedAt\": \"<dateTime>\"\n}"
 						},
 						{
-							"id": "f019d46a-043e-435d-a8c6-3ec5188afeff",
+							"id": "103714d7-3d85-4d77-8962-21e6e1e73a38",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -10790,12 +10962,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "e8a0dcc8-0864-4c95-8afd-f15997f9f4b6",
+							"id": "0fe7f8c9-c92d-40a0-843a-10efc7f11008",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -10853,12 +11026,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "1ea9ae0e-a5f9-4143-a444-f898d9cc83bc",
+							"id": "83167f60-499c-4d05-b91a-003b8ad77664",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PUT",
@@ -10886,6 +11060,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -10893,7 +11068,7 @@
 				},
 				{
 					"name": "Remove webhook subscription",
-					"id": "a7b8d7e6-c8b3-48fa-9b7e-1972c4946e2c",
+					"id": "7333a88e-ceac-4d2b-ac47-7968eee5d0c1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -10947,7 +11122,7 @@
 					},
 					"response": [
 						{
-							"id": "04112b27-c9bf-44ae-bc65-b4db865b179b",
+							"id": "c264bd41-8cde-4e89-b417-312f7002121f",
 							"name": "Successful operation",
 							"originalRequest": {
 								"auth": {
@@ -10995,12 +11170,13 @@
 							"status": "No Content",
 							"code": 204,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "da20419e-b25e-4ac6-906f-ae1efefebf1f",
+							"id": "73d9c6d9-8015-4e4c-ac6a-efbd5e0420ff",
 							"name": "Invalid request",
 							"originalRequest": {
 								"auth": {
@@ -11048,12 +11224,13 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "1fd56b7f-ace1-4eda-b024-02e58dd2530f",
+							"id": "555e022b-7025-4787-bfce-a1450dceb18e",
 							"name": "Not authorised",
 							"originalRequest": {
 								"auth": {
@@ -11101,12 +11278,13 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "11508fd4-984c-40d5-8b5c-2745e0adec88",
+							"id": "980327d7-b823-4a02-bd4c-cef33b6d57b9",
 							"name": "Account not found",
 							"originalRequest": {
 								"auth": {
@@ -11154,12 +11332,13 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": [],
 							"body": null
 						},
 						{
-							"id": "29671057-41ed-4af7-825b-bc15c58c0dbf",
+							"id": "7e0d1f86-84ef-4d10-9fe5-c9a5f10afe3d",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "DELETE",
@@ -11189,6 +11368,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -11196,7 +11376,7 @@
 				},
 				{
 					"name": "Retrieve webhook verification key",
-					"id": "a28706ac-b6d8-45ff-adab-e64252c3724c",
+					"id": "03f210be-1acd-4d0c-bb54-d08adb5494da",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -11242,7 +11422,7 @@
 					},
 					"response": [
 						{
-							"id": "0f0f5baf-5361-456a-9fed-5ec7780aa223",
+							"id": "41f205ca-8c74-48a0-a182-41b92eaa0c46",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "GET",
@@ -11281,6 +11461,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -11291,7 +11472,7 @@
 							"body": "{\n  \"keyId\": \"ff758253-3f00-8cda-82b7-243ed3d9d88d\",\n  \"key\": \"<string>\"\n}"
 						},
 						{
-							"id": "43a2dc06-128b-42bc-9507-f1ff28d5ecd4",
+							"id": "d9a63ee4-338b-48cd-8d6f-c44033ea5d28",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "GET",
@@ -11326,11 +11507,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "400f0dfb-33e8-4faa-8950-3c3e9f5a6d43",
+							"id": "af8526e1-0b75-4079-b0b8-73dd4921cbca",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "GET",
@@ -11365,11 +11547,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "e8568c12-2644-4d59-a615-50088e65bba7",
+							"id": "797b06e4-a5fd-4d89-9a57-391732a7c630",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "GET",
@@ -11404,20 +11587,21 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "a325e9c6-46a3-46b5-80f4-5fb81a81530f"
+			"id": "de814e15-af56-4b47-8b9c-4f84b6abd719"
 		},
 		{
 			"name": "simulator",
 			"item": [
 				{
 					"name": "Verify customer",
-					"id": "c9f08078-925d-4fa1-a0e3-10b4eaca1939",
+					"id": "9a395318-12bc-4fa6-ac5e-e24a0819cde8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -11463,7 +11647,7 @@
 					},
 					"response": [
 						{
-							"id": "b33522c1-4af7-4bd8-b7fa-8b2d225750a6",
+							"id": "53e96b62-2955-4cb2-b7a7-fade125a0524",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11505,11 +11689,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "90183834-5916-40dd-8c32-ca9da0d6a7f2",
+							"id": "c72c6415-9034-4cb1-8d09-3b4a51142d84",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11551,11 +11736,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "bfe3cd72-48ba-4a40-84fe-04a248ecc23c",
+							"id": "35a24d94-1784-45f0-8cf3-85cecf661e64",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11597,11 +11783,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "88009bcf-7b08-43ea-b6fe-cdd7a86e7f70",
+							"id": "f4f8da9e-d25d-44d3-a71f-db28b128e046",
 							"name": "Customer not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11643,11 +11830,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a2e02e54-a496-4ac4-8cbb-835b24e1fdcb",
+							"id": "91b5ce4c-8418-4b78-8582-a6427ecb8dd6",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11689,6 +11877,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -11696,7 +11885,7 @@
 				},
 				{
 					"name": "Reject customer",
-					"id": "9e922677-2bcd-476c-b347-ea9a21397b4d",
+					"id": "3a031220-3d77-4946-870a-ff6a68547f4d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -11742,7 +11931,7 @@
 					},
 					"response": [
 						{
-							"id": "5b14e568-2dc8-4137-b69e-7fa430c09a18",
+							"id": "58fab439-1698-4fa9-9c50-c96b24a0b9a7",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11784,11 +11973,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "493f9006-e3eb-445a-834d-8e52ddae2aa3",
+							"id": "7343e5da-c970-4d1a-9169-353ca88312ba",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11830,11 +12020,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "45bed638-3f9b-4502-913b-b4b4a2883521",
+							"id": "f8a41439-6eca-41da-8e4a-4242ace2f321",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11876,11 +12067,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a249ab2e-5450-48be-aeac-c33af0c8c646",
+							"id": "ea2b6a0a-9912-4119-bcc2-06b2d2f86de0",
 							"name": "Customer not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11922,11 +12114,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "7d489a48-f350-4a11-bddd-2d89b1719c7f",
+							"id": "a5e0df86-ae62-457e-8792-4532311fa10a",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -11968,6 +12161,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -11975,7 +12169,7 @@
 				},
 				{
 					"name": "Issue card",
-					"id": "320d501c-13f8-4a8d-8836-3d4f698d3f32",
+					"id": "f0e454f1-4474-46ea-871c-a41fdd64929c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -12021,7 +12215,7 @@
 					},
 					"response": [
 						{
-							"id": "a131b33b-81b8-464f-a9e6-998c2276de4d",
+							"id": "aa3d6b8d-b8d2-478f-934e-2ddf95d79f28",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12063,11 +12257,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "4c5adc64-5f20-404c-9660-aab2485c517c",
+							"id": "8a892641-5168-44cb-87c3-e42619be1cfc",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12109,11 +12304,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a9e6fa59-80b3-4a36-aaa1-0210ca735db0",
+							"id": "b070403a-2b15-4038-8767-1b84df0bdc2e",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12155,11 +12351,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "dd5f1a65-1d8a-4943-a27c-e8fb5e5bc45a",
+							"id": "06e316cf-f1b6-47bb-a447-031c28e4d4ba",
 							"name": "Card not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12201,11 +12398,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "9731f4b8-b556-47bd-9831-d1bac0f59568",
+							"id": "456ed4ad-19b4-4460-b47b-ed081f06fdef",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12247,6 +12445,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -12254,7 +12453,7 @@
 				},
 				{
 					"name": "Fail card issuance",
-					"id": "6a120727-c96b-4ab4-82cd-59a2cb27980a",
+					"id": "8849d10d-72e6-41ae-be3e-fcc6b55423e7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -12300,7 +12499,7 @@
 					},
 					"response": [
 						{
-							"id": "d9f24d89-cd2c-4d88-aeeb-024e6a79d9a5",
+							"id": "c258cc20-d895-442b-9259-0d1cb92e65c3",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12342,11 +12541,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "90a4c64e-a217-4448-abc4-baad148930aa",
+							"id": "f048dc90-aca7-4794-ae67-e6cf0e55ff35",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12388,11 +12588,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "db2b77ea-905e-4200-a942-182ccef9de06",
+							"id": "9410871a-9c00-4724-8942-1b5b01d47ce9",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12434,11 +12635,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "c09f6e34-754a-471b-83db-db91098769b1",
+							"id": "ef36a15a-2dbe-4b14-b1ec-46dada737ca9",
 							"name": "Card not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12480,11 +12682,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b89c75e9-65e9-42ef-b401-6615e04fc4c5",
+							"id": "0a1fb6ed-a89e-46f4-8bed-6a1a57682c1e",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12526,6 +12729,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -12533,7 +12737,7 @@
 				},
 				{
 					"name": "Initiate card authorisation",
-					"id": "8028248e-d62b-4476-99c7-6e5fcbdb6b01",
+					"id": "75b01a70-5407-44b8-8f6c-bcc249134a49",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -12597,7 +12801,7 @@
 					},
 					"response": [
 						{
-							"id": "a7cb3cad-17ab-4a40-b664-b8e019be6a9b",
+							"id": "54b0c83d-9209-4916-a867-7964261ba0e4",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "POST",
@@ -12653,11 +12857,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "e66e8fce-7698-42f6-8d07-9b2723a2a6f8",
+							"id": "df17791b-fba7-42e0-9e3b-5ec2429a52c9",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "POST",
@@ -12713,11 +12918,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "2955e2a8-5e54-422f-b66f-9679e05bbf78",
+							"id": "7d411d2f-a9e0-4e4f-b0de-9256778a5f57",
 							"name": "Card not found",
 							"originalRequest": {
 								"method": "POST",
@@ -12773,11 +12979,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "86c7cb18-996c-42f7-9233-56068f95a76c",
+							"id": "54944f2d-6654-4d5d-b734-5056299731c7",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "POST",
@@ -12833,11 +13040,12 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "17736aae-ab62-4692-a68c-08e8f744731e",
+							"id": "7e137dd2-bfdd-4b5b-b1a3-2c2227963f74",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "POST",
@@ -12878,6 +13086,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -12891,7 +13100,7 @@
 				},
 				{
 					"name": "Capture card authorisation",
-					"id": "7f86dccf-bb36-4e0a-bd2f-daf38b2c7421",
+					"id": "5f512f5b-81f0-47eb-a601-1494f351f21c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -12937,7 +13146,7 @@
 					},
 					"response": [
 						{
-							"id": "626cd8b7-f720-44a0-9cf4-bfab8eb564eb",
+							"id": "ab65cd70-6c40-4769-a2b4-e537138619c5",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -12979,11 +13188,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "780b9e6c-2717-4a4f-a86b-5431196ea235",
+							"id": "54716d81-eb7b-4b2d-b2fd-6f6fca0f800b",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13025,11 +13235,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "799539fc-f282-475c-b3f4-5097720f82a9",
+							"id": "89d8550e-1bee-44e1-838b-6b6794a8174c",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13071,11 +13282,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "d44b8b9d-d393-479a-9265-024416216438",
+							"id": "d4e399e0-ab91-489f-b286-3f913528a9d6",
 							"name": "Authorisation not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13117,11 +13329,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "fc85e751-38d2-4ba2-86a3-59b22e7aa2c9",
+							"id": "6e1e03d8-7afc-4c21-b77b-276addd0e71c",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13163,6 +13376,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -13170,7 +13384,7 @@
 				},
 				{
 					"name": "Release card authorisation",
-					"id": "9bd62ad2-d9d6-4d7c-9d47-68fd419002e4",
+					"id": "0b8c11d3-13d9-46da-8f90-1e79b97700b7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -13216,7 +13430,7 @@
 					},
 					"response": [
 						{
-							"id": "166d5906-6d41-4de6-aa90-916d8ff43f4e",
+							"id": "0a195061-8532-4367-badf-ae816d749844",
 							"name": "Successful operation",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13258,11 +13472,12 @@
 							"status": "Accepted",
 							"code": 202,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "4464674f-4627-414a-a206-9265afd2d52d",
+							"id": "cea28cb8-9afe-4871-b96a-e63fe60a2f88",
 							"name": "Invalid request",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13304,11 +13519,12 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "a693651a-85ac-46c5-a005-602f3e1c04b2",
+							"id": "e79ba03d-7c16-43a0-8160-f304cd1afa10",
 							"name": "Not authorised",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13350,11 +13566,12 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "b4e55ced-25da-4d82-8d6f-aba036d01c17",
+							"id": "6ca5b18c-09ec-43c7-bbb1-d60870e56fd3",
 							"name": "Authorisation not found",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13396,11 +13613,12 @@
 							"status": "Not Found",
 							"code": 404,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						},
 						{
-							"id": "61204a15-434c-403a-85e3-6f40a4377d92",
+							"id": "23becbc4-6e42-4c44-8349-4b0ddced1222",
 							"name": "Internal error",
 							"originalRequest": {
 								"method": "PATCH",
@@ -13442,17 +13660,18 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "5022f2ee-3179-4031-9554-b632d7e8d005"
+			"id": "87eaa549-fc8a-4e09-8fc4-45a80dbed6d9"
 		},
 		{
 			"name": "Retrieve supported blockchains",
-			"id": "dadecbbc-f2d8-4ad8-a0d7-89760e72a68b",
+			"id": "0bc2d6e7-e33b-40b3-a09a-88d92e77d222",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -13497,7 +13716,7 @@
 			},
 			"response": [
 				{
-					"id": "2a7480e1-7677-44f8-ab2a-d516bdc91219",
+					"id": "7bb4999c-60ea-41ac-aede-26367f3159d9",
 					"name": "Successful operation",
 					"originalRequest": {
 						"method": "GET",
@@ -13535,6 +13754,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -13545,7 +13765,7 @@
 					"body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n]"
 				},
 				{
-					"id": "ef2209e4-563c-45bb-a910-117b657747da",
+					"id": "2a57d78c-cd7f-4a3d-afbf-02935a935005",
 					"name": "Invalid request",
 					"originalRequest": {
 						"method": "GET",
@@ -13579,11 +13799,12 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				},
 				{
-					"id": "ba1505f4-5598-427f-a9f5-918966e60aa2",
+					"id": "6a0d413e-3185-49da-8986-4beaa3f7f032",
 					"name": "Not authorised",
 					"originalRequest": {
 						"method": "GET",
@@ -13617,11 +13838,12 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				},
 				{
-					"id": "1ea21edc-29c6-4714-a808-29ee6e2a1c73",
+					"id": "0a54301e-0fa4-49b0-b037-ce11bc8ac408",
 					"name": "Internal error",
 					"originalRequest": {
 						"method": "GET",
@@ -13655,6 +13877,7 @@
 					"status": "Internal Server Error",
 					"code": 500,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				}
@@ -13662,7 +13885,7 @@
 		},
 		{
 			"name": "Retrieve supported assets",
-			"id": "5c049e90-f510-4e17-9d2a-dfd8c4f97bfc",
+			"id": "7eff28de-4e9a-440d-a7a2-ec94b53e7ed6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -13714,7 +13937,7 @@
 			},
 			"response": [
 				{
-					"id": "6f2dc0c1-0b8e-4d08-ac56-68c27a1c5ca8",
+					"id": "e84db26f-2f74-44fc-b3a3-a468ee9eb5c2",
 					"name": "Successful operation",
 					"originalRequest": {
 						"method": "GET",
@@ -13759,6 +13982,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -13769,7 +13993,7 @@
 					"body": "[\n  {\n    \"id\": \"ex sed\",\n    \"blockchain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"symbol\": \"<string>\"\n  },\n  {\n    \"id\": \"consequat sit\",\n    \"blockchain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"symbol\": \"<string>\"\n  }\n]"
 				},
 				{
-					"id": "e39c74a0-177f-4584-8066-c15bf90c6bdf",
+					"id": "62bcdf96-6aa0-4704-a77f-943ea87f8fd5",
 					"name": "Invalid request",
 					"originalRequest": {
 						"method": "GET",
@@ -13810,11 +14034,12 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				},
 				{
-					"id": "7a26cbba-c288-4cf1-94a3-153fa5065e53",
+					"id": "44ea52c5-4029-4b28-8ded-b7f83754e70c",
 					"name": "Not authorised",
 					"originalRequest": {
 						"method": "GET",
@@ -13855,11 +14080,12 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				},
 				{
-					"id": "a71b6cdd-5d4f-4fc7-8da2-bb35a364233f",
+					"id": "4f3850f2-8be5-4332-81d0-b6c19d51167a",
 					"name": "Internal error",
 					"originalRequest": {
 						"method": "GET",
@@ -13900,6 +14126,7 @@
 					"status": "Internal Server Error",
 					"code": 500,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [],
 					"cookie": []
 				}
@@ -13920,7 +14147,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "53fa8865-d836-42ab-aa40-face36fc7523",
+				"id": "1e256fe3-29d6-4c5e-9bca-865e7b91813f",
 				"type": "text/javascript",
 				"exec": [
 					"const URL = require('url')",
@@ -14034,7 +14261,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "acca8d51-0f0f-4420-a190-da6d915c12c3",
+				"id": "77d249d5-0e28-4349-8b7c-74d13941a709",
 				"type": "text/javascript",
 				"exec": [
 					""
