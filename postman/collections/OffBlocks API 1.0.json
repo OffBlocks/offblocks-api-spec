@@ -1368,7 +1368,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "56463bb2-a4c2-537e-bfdb-a1705b9eee17",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be retrieved"
 								}
 							]
@@ -1650,11 +1650,6 @@
 						"method": "POST",
 						"header": [
 							{
-								"description": "(Required) Content digest",
-								"key": "Content-Digest",
-								"value": "<string>"
-							},
-							{
 								"description": "(Required) HTTP message signature input",
 								"key": "Signature-Input",
 								"value": "<string>"
@@ -1678,6 +1673,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"chainId\": \"<blockchain-id>\",\n  \"externalId\": \"<external-id>\"\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/customers",
 							"host": [
@@ -2002,7 +2001,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "d7dcb9a5-f05b-526c-957c-603ffb7024ff",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be challenged"
 								}
 							]
@@ -2281,6 +2280,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": \"<blockchain-id>\",\n    \"challenge\": \"<challenge>\",\n    \"signature\": \"<signature>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/challenge/sign",
 							"host": [
@@ -2295,7 +2303,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "56463bb2-a4c2-537e-bfdb-a1705b9eee17",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be challenged"
 								}
 							]
@@ -2709,7 +2717,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "16843e98-857b-5ec3-b616-43d8b334c828",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be deactivated"
 								}
 							]
@@ -3083,7 +3091,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "16843e98-857b-5ec3-b616-43d8b334c828",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be activated"
 								}
 							]
@@ -3675,7 +3683,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "ae61c362-4136-49af-8e01-544457fe265b",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be retrieved"
 								}
 							]
@@ -3984,7 +3992,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "16843e98-857b-5ec3-b616-43d8b334c828",
+									"value": "<customer-id>",
 									"description": "(Required) ID of the customer"
 								}
 							]
@@ -4299,6 +4307,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"card_account\",\n    \"currencies\": [\n        \"EUR\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/customers/:customerId/accounts",
 							"host": [
@@ -4312,7 +4329,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "16843e98-857b-5ec3-b616-43d8b334c828",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer"
 								}
 							]
@@ -4706,7 +4723,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "fdd70cfa-7933-467b-a37c-303ad37afaa6",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be challenged"
 								}
 							]
@@ -4985,6 +5002,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": \"<blockchain-id>\",\n    \"challenge\": \"<challenge>\",\n    \"signature\": \"<signature>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/challenge/sign",
 							"host": [
@@ -4999,7 +5025,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "ae61c362-4136-49af-8e01-544457fe265b",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be challenged"
 								}
 							]
@@ -5413,7 +5439,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cd282e77-8d7d-423c-9597-8ea54d27b9c3",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be deactivated"
 								}
 							]
@@ -5787,7 +5813,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cd282e77-8d7d-423c-9597-8ea54d27b9c3",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be activated"
 								}
 							]
@@ -6164,7 +6190,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cd282e77-8d7d-423c-9597-8ea54d27b9c3",
+									"value": "<account-id>",
 									"description": "(Required) ID of account to be closed"
 								}
 							]
@@ -6759,7 +6785,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<card-id>",
 									"description": "(Required) ID of a card to be retrieved"
 								}
 							]
@@ -7068,7 +7094,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "cd282e77-8d7d-423c-9597-8ea54d27b9c3",
+									"value": "<account-id>",
 									"description": "(Required) ID of the account"
 								}
 							]
@@ -7383,6 +7409,15 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"virtual\",\n    \"billingAddress\": {\n        \"firstLine\": \"1 Test Avenue\",\n        \"city\": \"London\",\n        \"country\": \"GB\",\n        \"postCode\": \"SW1 1AA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/accounts/:accountId/cards",
 							"host": [
@@ -7396,7 +7431,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "fdd70cfa-7933-467b-a37c-303ad37afaa6",
+									"value": "<account-id>",
 									"description": "(Required) ID of account"
 								}
 							]
@@ -7795,7 +7830,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<card-id>",
 									"description": "(Required) ID of card to be deactivated"
 								}
 							]
@@ -8169,7 +8204,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<card-id>",
 									"description": "(Required) ID of card to be activated"
 								}
 							]
@@ -8538,7 +8573,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<card-id>",
 									"description": "(Required) ID of a card to be closed"
 								}
 							]
@@ -8885,7 +8920,7 @@
 							"variable": [
 								{
 									"key": "transactionId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<transaction-id>",
 									"description": "(Required) ID of the transaction"
 								}
 							]
@@ -9194,7 +9229,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "fb52ff01-0551-4b87-9d3e-19af735ebb12",
+									"value": "<account-id>",
 									"description": "(Required) ID of the account"
 								}
 							]
@@ -9508,7 +9543,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "a196b4dc-d251-4f9c-a5e2-128c45e80c45",
+									"value": "<card-id>",
 									"description": "(Required) ID of the card"
 								}
 							]
@@ -9821,7 +9856,7 @@
 							"variable": [
 								{
 									"key": "authorisationId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<authorisation-id>",
 									"description": "(Required) ID of the authorisation"
 								}
 							]
@@ -10323,7 +10358,7 @@
 							"variable": [
 								{
 									"key": "webhookId",
-									"value": "0cf75ea8-0f78-1244-4766-099c1acaf2df",
+									"value": "<webhook-id>",
 									"description": "(Required) ID for a webhook to be retrieved"
 								}
 							]
@@ -10613,7 +10648,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"callbackUrl\": \"https://webhook.site/fcbdc550-bb57-4d5d-9e76-656a0b053fd0\",\n    \"id\": \"c489873c-43ce-45b1-8ebb-d4399f8711a5\",\n    \"types\": [\n        \"customer.updated\",\n        \"account.updated\",\n        \"card.updated\",\n        \"authorisation.updated\",\n        \"transaction.updated\"\n    ]\n}",
+							"raw": "{\n    \"callbackUrl\": \"<url>\",\n    \"types\": [\n        \"customer.updated\",\n        \"account.updated\",\n        \"card.updated\",\n        \"authorisation.updated\",\n        \"transaction.updated\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -10907,7 +10942,7 @@
 							"variable": [
 								{
 									"key": "webhookId",
-									"value": "0cf75ea8-0f78-1244-4766-099c1acaf2df",
+									"value": "<webhook-id>",
 									"description": "(Required) ID for a webhook to be removed"
 								}
 							]
@@ -11423,7 +11458,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "56463bb2-a4c2-537e-bfdb-a1705b9eee17",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be verified"
 								}
 							]
@@ -11702,7 +11737,7 @@
 							"variable": [
 								{
 									"key": "customerId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<customer-id>",
 									"description": "(Required) ID of customer to be rejected"
 								}
 							]
@@ -11981,7 +12016,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<card-id>",
 									"description": "(Required) ID of card to be issued"
 								}
 							]
@@ -12260,7 +12295,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<customer-id>",
 									"description": "(Required) ID of card to be failed"
 								}
 							]
@@ -12557,7 +12592,7 @@
 							"variable": [
 								{
 									"key": "cardId",
-									"value": "74e8120f-3de8-4a67-aa48-a966aee4ebfe",
+									"value": "<card-id>",
 									"description": "(Required) ID of card"
 								}
 							]
@@ -12897,7 +12932,7 @@
 							"variable": [
 								{
 									"key": "authorisationId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<authorisation-id>",
 									"description": "(Required) ID of authorisation to be captured"
 								}
 							]
@@ -13176,7 +13211,7 @@
 							"variable": [
 								{
 									"key": "authorisationId",
-									"value": "2857c8c8-b26f-2db7-e17c-f2adb68d3186",
+									"value": "<authorisation-id>",
 									"description": "(Required) ID of authorisation to be released"
 								}
 							]
